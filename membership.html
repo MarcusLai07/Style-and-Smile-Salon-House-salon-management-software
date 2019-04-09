@@ -60,24 +60,28 @@
         
 <!--          Dropdown menu-->
           
+<!--
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
+-->
         </nav>
         
         
  
       <div class="container-fluid">
         <h1 class="mt-4">Appointment</h1>
+          
         <div class="container">
                 <div class="row col-md-6 col-md-offset-2 custyle">
-                
                 <div class="addbutton">
             <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+                    <br>
         </div>
+          
         <table class="table table-striped custab">
         
     
@@ -129,25 +133,6 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-  <script>  
-   $(document).ready(function(){
-$("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
-
-        } else {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
-});
-
-</script>
     </div>
         
 </body>
