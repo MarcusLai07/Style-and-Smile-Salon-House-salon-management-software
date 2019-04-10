@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Style and Smile Saloon House</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Salon and Smile </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Sales Page</a>
+        <a href="" class="list-group-item list-group-item-action bg-light">Appointment</a>
+        <a href="membership.html" class="list-group-item list-group-item-action bg-light">Membership</a>
+        
+          <div class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin</a>
+                <ul class="dropdown-menu">
+                    <li><a href="staff.html">Staff Management</a></li>
+                    <li><a href="#">Sales Report</a></li>
+                </ul>
+          </div>
+          
+<!--
+        <a href="#" class="list-group-item list-group-item-action bg-light">Admin (staff/report/stock)</a>
+        <ul>
+            <li><a href="staff.html" class="list-group-item list-group-item-action bg-light">Staff Management</a></li>
+            <li><a href="#" class="list-group-item list-group-item-action bg-light">Sales Report</a></li>
+            <li><a href="#" class="list-group-item list-group-item-action bg-light">Stock Management</a></li>
+        </ul>
+-->
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+             
+              <a class="nav-link" href="#"><img src="images/logout.png" class="button"></a> 
+            </li>
+
+         </ul>
+      </div>
+           
+        
+        </nav>
+        
+        
+<!--    Main content    -->
+       <div class="container-fluid">
+        <h1 class="mt-4">Staff Management</h1>
+          
+        <div class="container">
+                <div class="row col-md-6 col-md-offset-2 custyle">
+                <div class="addbutton">
+            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Staff</a>
+                    <br>
+                    <br>
+        </div>
+          
+        <table class="table table-striped custab">
+        
+    
+        <tr>
+            <th>Staff ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Date of hired</th>
+            <th>Gender</th>
+            <th>Salary</th>
+            <th class="text-center">Action</th>
+        </tr>
+  
+            <tr>
+                <td>Some ID here</td>
+                <td>Some First Name here</td>
+                <td>Some Last Name here</td>
+                <td>Some Position here</td>
+                <td>Some Address here</td>
+                <td>Some Phone number</td>
+                <td>Some date of hired</td>
+                <td>Some Gender here</td>
+                <td>Some Salary</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            <tr>
+                <td>Some ID here</td>
+                <td>Some First Name here</td>
+                <td>Some Last Name here</td>
+                <td>Some Position here</td>
+                <td>Some Address here</td>
+                <td>Some Phone number</td>
+                <td>Some date of hired</td>
+                <td>Some Gender here</td>
+                <td>Some Salary</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            <tr>
+                <td>Some ID here</td>
+                <td>Some First Name here</td>
+                <td>Some Last Name here</td>
+                <td>Some Position here</td>
+                <td>Some Address here</td>
+                <td>Some Phone number</td>
+                <td>Some date of hired</td>
+                <td>Some Gender here</td>
+                <td>Some Salary</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+    </table>
+    </div>
+      
+      
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="frameworks/jquery/jquery.min.js"></script>
+  <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+        
+</body>
+
+</html>
