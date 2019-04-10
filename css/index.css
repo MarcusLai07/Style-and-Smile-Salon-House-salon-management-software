@@ -1,9 +1,18 @@
-.btn-success{
-    padding: 40px 30px;
-    font-size: 30px;
+.btn-info{
+    padding: 50px 40px;
+    margin: 15px;
+    font-size: 20px;
     border-radius: 10px;
     width: 100%;
-    }
+}
+
+.btn-xs{
+    padding: 30px 20px;
+    margin: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
 
 
 /*.btn-success:active{
