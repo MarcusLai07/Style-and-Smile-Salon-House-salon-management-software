@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app"myApp">
+<html lang="en" data-ng-app="myApp">
 
 <head>
 
@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body data-ng-controller="myCtrl">
 
   <div class="d-flex" id="wrapper">
 
@@ -28,10 +28,10 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Salon and Smile </div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Sales Page</a>
+        <a href="" class="list-group-item list-group-item-action bg-light">Sales Page</a>
         <a href="appointment.html" class="list-group-item list-group-item-action bg-light">Appointment</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Membership</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Admin (staff/report/stock)</a>
+        <a href="membership.html" class="list-group-item list-group-item-action bg-light">Membership</a>
+        <a href="staff.html" class="list-group-item list-group-item-action bg-light">Admin (staff/report/stock)</a>
 <!--        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>-->
 <!--        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>-->
       </div>
@@ -96,13 +96,17 @@
                                             <td>Daniel</td>
                                             <td>Hair colouring</td>
                                             <td>9/4/2019 9:30am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center">
+                                            <a class='btn btn-info btn-xs' data-ng-click="edit()"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                                            <button type="submit" data-ng-click="delete($index)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
                                         </tr>
                                         <tr>
                                             <td>Chuan Hek</td>
                                             <td>Hair cut and wash</td>
                                             <td>9/4/2019 11:30am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center">
+                                            <a class='btn btn-info btn-xs' data-ng-click="edit()"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                                            <button type="submit" data-ng-click="delete($index)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
                                         </tr>
                                         <tr>
                                             <td>Marcus</td>
@@ -269,7 +273,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+    <script src="appointment.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
