@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app"myApp">
 
 <head>
 
@@ -36,6 +36,7 @@
 <!--        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>-->
       </div>
     </div>
+   
     
     <!-- /#sidebar-wrapper -->
 
@@ -60,31 +61,17 @@
 
           </ul>
           </div>
-          
-           
-            
-            
-    
-<!--
-
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>              
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-        </div>
-      </div>
-      
--->
         </nav>
+        
+<!--        container-->
       <div class="container-fluid">
         <h1 class="mt-4">Appointment</h1>
         <div class="container">
-                <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+                <a href="#" class="addbutton btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
                <div class="row">
                     <div class="col-md-12">
                         <nav>
+<!--                           Table with tab-->
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-today-tab" data-toggle="tab" href="#nav-today" role="tab" aria-controls="nav-today" aria-selected="true">Today Appointment</a>
                                 <a class="nav-item nav-link" id="nav-upcoming-tab" data-toggle="tab" href="#nav-upcoming" role="tab" aria-controls="nav-upcoming" aria-selected="false">Upcoming Appointment</a>
@@ -92,14 +79,16 @@
                                <a class="nav-item nav-link" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="false">All</a>
                             </div>
                         </nav>
+<!--                       First table tab content-->
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-today" role="tabpanel" aria-labelledby="nav-today-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Customer Name</th>
                                             <th>Services</th>
                                             <th>Date and Time</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,7 +104,7 @@
                                             <td>9/4/2019 11:30am</td>
                                             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                         </tr>
-                                        <tr>)
+                                        <tr>
                                             <td>Marcus</td>
                                             <td>Hair cut</td>
                                             <td>9/4/2019 1:00pm</td>
@@ -124,13 +113,15 @@
                                     </tbody>
                                 </table>
                             </div>
+<!--                            Second table content-->
                             <div class="tab-pane fade" id="nav-upcoming" role="tabpanel" aria-labelledby="nav-upcoming-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Customer Name</th>
                                             <th>Services</th>
                                             <th>Date and Time</th>
+                                            <th>Action</th>
                                             
                                         </tr>
                                     </thead>
@@ -156,13 +147,16 @@
                                     </tbody>
                                 </table>
                             </div>
+<!--                            Third table content-->
                              <div class="tab-pane fade" id="nav-previous" role="tabpanel" aria-labelledby="nav-previous-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Customer Name</th>
                                             <th>Services</th>
                                             <th>Date and Time</th>
+                                            <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -187,13 +181,15 @@
                                     </tbody>
                                 </table>
                             </div>
+<!--                            Fourth table content-->
                             <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-                                <table class="table" cellspacing="0">
+                                <table class="table" >
                                     <thead>
                                         <tr>
                                             <th>Customer Name</th>
                                             <th>Services</th>
                                             <th>Date and Time</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -249,23 +245,26 @@
                                             <td>9/4/2019 11:30am</td>
                                             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                         </tr>
-                                        <tr>)
+                                        <tr>
                                             <td>Marcus</td>
                                             <td>Hair cut</td>
                                             <td>9/4/2019 1:00pm</td>
                                             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                         </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                        </table>
+                                </div>
                             </div>
-                
+                       </div>
          
-    <!-- /#page-content-wrapper -->
+ 
 
-  </div>
+                  </div>
+                </div>
+              </div>
+         </div>
         </div>
-      </div>
-  <!-- /#wrapper -->
+ 
 
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
@@ -279,26 +278,6 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-  <script>  
-   $(document).ready(function(){
-$("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
-
-        } else {
-            $("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
-});
-
-</script>
-    </div>
         
 </body>
 

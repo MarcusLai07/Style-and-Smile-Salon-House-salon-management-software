@@ -50,26 +50,26 @@ body {
     }
 
     .login-form{
-        margin-top: 80%;
+        margin-top: 50%;
     }
 
     .register-form{
-        margin-top: 20%;
+        margin-top: 30%;
     }
 }
 
 
 .login-main-text{
-    margin-top: 20%;
+    margin-top: 30%;
     padding: 60px;
     color: #fff;
 }
 
 .login-main-text h2{
-    font-weight: 300;
+    font-weight: 700;
 }
 
 .btn-black{
-    background-color: #000 !important;
-    color: #fff;
+    background-color: grey !important;
+    color: #000;
 }
