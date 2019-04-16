@@ -33,3 +33,4 @@ db.collection('Staffs').get().then((snapshot) => {
         console.log(doc.data())
     })
 })
+
