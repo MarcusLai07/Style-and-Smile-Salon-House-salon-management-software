@@ -84,25 +84,27 @@
             <a href="#" class="btn btn-outline-primary btn-xs pull-right"><b>+</b> Add Member</a>
         </div>
         <table class="table table-striped custab">
-        
-    
-        <tr>
-            <th>Membership ID</th>
-            <th>Member Name</th>
-            <th>Phone Number</th>
-            <th>Email Address</th>
-            <th class="text-center">Action</th>
-        </tr>
-  
-            <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td class="text-center"><button class='btn btn-outline-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</button> 
-                    <button href="#" class="btn btn-outline-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Membership ID</th>
+                    <th>Member Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody id="M_Content">
+                <tr>
+                    <td id="M_ID">-</td>
+                    <td id="M_Name">-</td>
+                    <td id="M_Phone">-</td>
+                    <td id="M_Email">-</td>
+                    <td class="text-center">
+                        <button class='btn btn-outline-info btn-xs' href="#"> Edit</button> 
+                        <button href="#" class="btn btn-outline-danger btn-xs"> Del</button>
+                    </td>
+                </tr>
+            </tbody>
     </table>
     </div>
                 
@@ -151,16 +153,16 @@ $("#mytable #checkall").click(function () {
     </div>
     
     <script>
-      // Initialize Firebase
-      var config = {
+        // Initialize Firebase
+        var config = {
         apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
         authDomain: "style-and-smile-salon-house.firebaseapp.com",
         databaseURL: "https://style-and-smile-salon-house.firebaseio.com",
         projectId: "style-and-smile-salon-house",
         storageBucket: "style-and-smile-salon-house.appspot.com",
         messagingSenderId: "1030007772704"
-      };
-      firebase.initializeApp(config);
+        };
+        firebase.initializeApp(config);
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
     </script> 
