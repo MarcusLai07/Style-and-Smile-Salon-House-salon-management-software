@@ -3,3 +3,4 @@ db.collection('Members').get().then((snapshot) => {
         console.log(doc.data())
     })
 })
+
