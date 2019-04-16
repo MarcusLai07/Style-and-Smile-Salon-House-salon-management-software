@@ -21,7 +21,7 @@ function renderList(doc){
     
     MembershipList.append(tr); 
 }
-
+//render the table to the web UI
 db.collection('Members').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderList(doc)
