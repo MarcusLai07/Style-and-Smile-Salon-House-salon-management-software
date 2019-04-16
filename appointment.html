@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/main.css" rel="stylesheet">
+  <link href="css/animated-modalbox.css" rel="stylesheet">
 
 </head>
 
@@ -67,9 +68,34 @@
         
 <!--        container-->
       <div class="container-fluid">
+          
         <h1 class="mt-4">Appointment</h1>
         <div class="container">
-                <a href="#" class="addbutton btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+                <a href="#" class="addbutton btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new categories</a>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Create new Appointment</h2>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                                <form action="">
+                                    Customer Name:<br>
+                                    <input type="text" name="customer_name" value=""><br>
+                                    Services:<br>
+                                    <input type="text" name="services" value=""><br>
+                                    Date:<br>
+                                    <input type="text" name="date" value=""><br>
+                                    Time:<br>
+                                    <input type="text" name="time" value=""><br><br>
+                                    <input type="submit" class="btn btn-success" value="Submit">
+                                  </form>
+                        </div>
+                        </div>
+                    </div>
+
                <div class="row">
                     <div class="col-md-12">
                         <nav>
@@ -275,7 +301,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="appointment.js"></script>
+  <script src="appointment.js"></script>
+  <script src="frameworks/js/modal.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
@@ -284,6 +311,7 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+  
         
 </body>
 
