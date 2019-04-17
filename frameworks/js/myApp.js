@@ -1,5 +1,5 @@
 const MembershipList = document.querySelector('#M_Content');
-
+const form = document.querySelector('#add-membership-form');
 // populate the membership table with the data in the database
 function renderList(doc){
     let tr = document.createElement('tr')
@@ -26,27 +26,33 @@ db.collection('Members').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderList(doc)
     })
-});
+})
 
 db.collection('Staffs').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         console.log(doc.data())
     })
-});
+})
 
 form.addEventListener('submit', (e) => {
-    
     e.preventDefault();
     db.collection('Members').add({
         
-        M_name: form.M_name.value,
-        M_id: form.M_id.value
+        Member_Name: form.M_name.value,
+        
+        Member_ID: form.M_id.value,
+        
+        Member_Email: form.M_email.value,
+        
+        Member_Phone: form.M_phone.value
+        
+        
         
     })
+    
    
     
-    
-});
+})
 
 
 

@@ -79,8 +79,7 @@
       <div class="container-fluid">
         <h1 class="mt-4">Customer Membership</h1>
         <div class="container">
-
-          <a href="#" class="btn btn-outline-primary btn-xs pull-right"><b>+</b> Add Member</a>
+            <a href="#" class="addbutton btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new membership</a>
              <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
@@ -89,16 +88,16 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form action="">
-                                    Customer Name:<br>
-                                    <input type="text" name="M_id" value=""><br>
-                                    Services:<br>
-                                    <input type="text" name="M_name" value=""><br>
-                                    Date:<br>
-                                    <input type="text" name="M_phone" value=""><br>
-                                    Time:<br>
-                                    <input type="text" name="M_email" value=""><br><br>
-                                    <input type="submit" class="btn btn-success" value="Submit">
+                                <form id="add-membership-form">
+                                    Membership Name:<br>
+                                    <input type="text" name="M_name" placeholder="Membership name"><br>
+                                    Membership ID:<br>
+                                    <input type="text" name="M_id" placeholder="Membership ID"><br>
+                                    Phone Number<br>
+                                    <input type="text" name="M_phone" placeholder="Membership phone number"><br>
+                                    Email Address:<br>
+                                    <input type="text" name="M_email" placeholder="Email address"><br><br>
+                                    <button>Submit </button>
                                   </form>
                         </div>
                         </div>
@@ -106,31 +105,7 @@
       <div class="row col-md-12 col-md-offset-2 custyle">
        
                 <div class="row col-md-12 col-md-offset-2 custyle">
-                
-                <div class="addbutton"><a href="#" class="btn btn-outline-primary btn-xs pull-right" id="myBtn"><b>+</b> Add Member</a></div>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                  <!-- Modal content -->
-                  <div class="modal-content">
-                  <div class="modal-header">
-                      <h2>Add New Membership</h2>
-                      <span class="close">&times;</span>
-                  </div>
-                  <div class="modal-body">
-                          <form action="">
-                              Member Name:<br>
-                              <input type="text" name="customer_name" value=""><br>
-                              Member ID:<br>
-                              <input type="text" name="services" value=""><br>
-                              Member Email:<br>
-                              <input type="text" name="date" value=""><br>
-                              Member Phone Number:<br>
-                              <input type="text" name="time" value=""><br><br>
-                              <input type="submit" class="btn btn-success" value="Submit">
-                            </form>
-                  </div>
-                  </div>
-                </div>
+        
 
 
         <table class="table table-striped custab">
@@ -144,6 +119,7 @@
                 </tr>
             </thead>
             <tbody id="M_Content">
+<!--
 
                 <tr id="M_Row">
                     <td id="M_ID"></td>
@@ -155,6 +131,7 @@
                         <button href="#" class="btn btn-outline-danger btn-xs"> Del</button>
                     </td>
                 </tr>
+-->
 
             </tbody>
     </table>
@@ -171,8 +148,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="frameworks/js/modal.js"></script>
 
-  <script src="frameworks/js/modal.js"></script>
     
 
 
