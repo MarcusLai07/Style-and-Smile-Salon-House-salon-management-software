@@ -78,11 +78,31 @@
       <div class="container-fluid">
         <h1 class="mt-4">Customer Membership</h1>
         <div class="container">
-                <div class="row col-md-12 col-md-offset-2 custyle">
-                
-                <div class="addbutton">
-            <a href="#" class="btn btn-outline-primary btn-xs pull-right"><b>+</b> Add Member</a>
-        </div>
+          <a href="#" class="btn btn-outline-primary btn-xs pull-right"><b>+</b> Add Member</a>
+             <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Create new Membership</h2>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                                <form action="">
+                                    Customer Name:<br>
+                                    <input type="text" name="M_id" value=""><br>
+                                    Services:<br>
+                                    <input type="text" name="M_name" value=""><br>
+                                    Date:<br>
+                                    <input type="text" name="M_phone" value=""><br>
+                                    Time:<br>
+                                    <input type="text" name="M_email" value=""><br><br>
+                                    <input type="submit" class="btn btn-success" value="Submit">
+                                  </form>
+                        </div>
+                        </div>
+                    </div>
+      <div class="row col-md-12 col-md-offset-2 custyle">
+       
         <table class="table table-striped custab">
             <thead>
                 <tr>
@@ -94,7 +114,7 @@
                 </tr>
             </thead>
             <tbody id="M_Content">
-<!--
+
                 <tr id="M_Row">
                     <td id="M_ID"></td>
                     <td id="M_Name"></td>
@@ -105,14 +125,14 @@
                         <button href="#" class="btn btn-outline-danger btn-xs"> Del</button>
                     </td>
                 </tr>
--->
+
             </tbody>
     </table>
     </div>
                 
          
     <!-- /#page-content-wrapper -->
-
+ 
   </div>
         </div>
       </div>
@@ -121,7 +141,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+      <script src="frameworks/js/myApp.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
