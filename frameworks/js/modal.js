@@ -19,3 +19,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+//Menu Toggle Script
+$("#menu-toggle").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});

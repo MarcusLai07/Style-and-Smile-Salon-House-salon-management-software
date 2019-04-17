@@ -14,10 +14,13 @@
 
 const MembershipList = document.querySelector('#M_Content');
 
+const MembershipList = document.querySelector('#M_Content');
+const form = document.querySelector('#add-membership-form');
+
 
 // populate the membership table with the data in the database
 function renderList(doc){
-    let tr = document.createElement('tr')
+    let tr = document.createElement('tr');
     let M_id = document.createElement('td');
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
@@ -44,7 +47,7 @@ function renderList(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
-
+    
     MembershipList.append(tr); 
 }
 //render the table to the web UI
@@ -59,4 +62,26 @@ db.collection('Staffs').get().then((snapshot) => {
         console.log(doc.data())
     })
 })
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    db.collection('Members').add({
+        
+        Member_Name: form.M_name.value,
+        
+        Member_ID: form.M_id.value,
+        
+        Member_Email: form.M_email.value,
+        
+        Member_Phone: form.M_phone.value
+        
+        
+        
+    })
+    
+   
+    
+})
+
+
 
