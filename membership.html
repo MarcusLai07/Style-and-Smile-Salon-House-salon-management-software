@@ -19,6 +19,7 @@
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
+  <link href="css/animated-modalbox.css" rel="stylesheet">
 
 
 </head>
@@ -80,9 +81,31 @@
         <div class="container">
                 <div class="row col-md-12 col-md-offset-2 custyle">
                 
-                <div class="addbutton">
-            <a href="#" class="btn btn-outline-primary btn-xs pull-right"><b>+</b> Add Member</a>
-        </div>
+                <div class="addbutton"><a href="#" class="btn btn-outline-primary btn-xs pull-right" id="myBtn"><b>+</b> Add Member</a></div>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h2>Add New Membership</h2>
+                      <span class="close">&times;</span>
+                  </div>
+                  <div class="modal-body">
+                          <form action="">
+                              Member Name:<br>
+                              <input type="text" name="customer_name" value=""><br>
+                              Member ID:<br>
+                              <input type="text" name="services" value=""><br>
+                              Member Email:<br>
+                              <input type="text" name="date" value=""><br>
+                              Member Phone Number:<br>
+                              <input type="text" name="time" value=""><br><br>
+                              <input type="submit" class="btn btn-success" value="Submit">
+                            </form>
+                  </div>
+                  </div>
+                </div>
+
         <table class="table table-striped custab">
             <thead>
                 <tr>
@@ -121,6 +144,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="frameworks/js/modal.js"></script>
     
 
   <!-- Menu Toggle Script -->

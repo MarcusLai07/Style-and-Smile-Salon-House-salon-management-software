@@ -20,6 +20,7 @@
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
+  <link href="css/animated-modalbox.css" rel="stylesheet">
 
 </head>
 
@@ -74,12 +75,44 @@
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
          <div class="addbutton">
-            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Staff</a>
+            <a href="#" class="btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new Staff</a>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+          <div class="modal-header">
+              <h2>Add New Staff</h2>
+              <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+                  <form action="">
+                      First Name:<br>
+                      <input type="text" name="customer_name" value=""><br>
+                      Last Name:<br>
+                      <input type="text" name="services" value=""><br>
+                      Staff ID:<br>
+                      <input type="text" name="date" value=""><br>
+                      Gender:<br>
+                      <input type="text" name="date" value=""><br>
+                      Phone Number:<br>
+                      <input type="text" name="time" value=""><br>
+                      Address:<br>
+                      <input type="text" name="date" value=""><br>
+                      Date of hired:<br>
+                      <input type="text" name="date" value=""><br>
+                      Position:<br>
+                      <input type="text" name="date" value=""><br>
+                      Salary:<br>
+                      <input type="text" name="date" value=""><br><br>
+                      <input type="submit" class="btn btn-success" value="Submit">
+                    </form>
+          </div>
+          </div>
         </div>
           
         <table class="table table-striped custab">
         
-    
         <tr>
             <th>Staff ID</th>
             <th>First Name</th>
@@ -142,6 +175,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="frameworks/js/modal.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
