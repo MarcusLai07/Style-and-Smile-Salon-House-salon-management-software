@@ -30,7 +30,7 @@ function renderList(doc){
     tr.appendChild(M_id);
     tr.appendChild(M_name);
     tr.appendChild(M_phone);
-    tr.appendChild(M_email);
+    tr.appendChild(M_email); 
     
     MembershipList.append(tr); 
 }
@@ -39,11 +39,27 @@ db.collection('Members').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderList(doc)
     })
-})
+});
 
 db.collection('Staffs').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         console.log(doc.data())
     })
-})
+});
+
+form.addEventListener('submit', (e) => {
+    
+    e.preventDefault();
+    db.collection('Members').add({
+        
+        M_name: form.M_name.value,
+        M_id: form.M_id.value
+        
+    })
+   
+    
+    
+});
+
+
 
