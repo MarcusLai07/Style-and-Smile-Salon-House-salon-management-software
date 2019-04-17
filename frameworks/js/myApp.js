@@ -15,7 +15,7 @@ const MembershipList = document.querySelector('#M_Content');
 
 // populate the membership table with the data in the database
 function renderList(doc){
-    let tr = document.createElement('tr')
+    let tr = document.createElement('tr');
     let M_id = document.createElement('td');
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
