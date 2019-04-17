@@ -1,3 +1,16 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
+    authDomain: "style-and-smile-salon-house.firebaseapp.com",
+    databaseURL: "https://style-and-smile-salon-house.firebaseio.com",
+    projectId: "style-and-smile-salon-house",
+    storageBucket: "style-and-smile-salon-house.appspot.com",
+    messagingSenderId: "1030007772704"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true})
+
 const MembershipList = document.querySelector('#M_Content');
 
 // populate the membership table with the data in the database
