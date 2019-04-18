@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
+<html lang="en">
 
 <head>
 
@@ -9,11 +9,16 @@
   <meta name="author" content="">
 
   <title>Style and Smile Saloon House</title>
-
+    <!-- Firebse library -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+    
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--
   <link href="frameworks/bootstrap/js/bootstrap.bundle.min.js" rel="stylesheet">
   <link href="frameworks/jquery/jquery.min.js" rel="stylesheet">
+-->
 
   <!-- Custom styles for this template -->
   <link href="css/main.css" rel="stylesheet">
@@ -21,7 +26,7 @@
 
 </head>
 
-<body data-ng-controller="myCtrl">
+<body>
 
   <div class="d-flex" id="wrapper">
 
@@ -70,7 +75,7 @@
           
         <h1 class="mt-4">Appointment</h1>
         <div class="container">
-                <a href="#" class="addbutton btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new categories</a>
+                <a class="addbutton btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new appointment</a>
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
                         <!-- Modal content -->
@@ -80,15 +85,15 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form action="">
+                                <form id="add-appointment-form">
                                     Customer Name:<br>
-                                    <input type="text" name="customer_name" value=""><br>
+                                    <input type="text" name="customer_name" placeholder="Customer name"><br>
                                     Services:<br>
-                                    <input type="text" name="services" value=""><br>
+                                    <input type="text" name="services" placeholder="hair cut, body waxing ...."><br>
                                     Date:<br>
-                                    <input type="text" name="date" value=""><br>
+                                    <input type="text" name="date" placeholder="10/4/2019"><br>
                                     Time:<br>
-                                    <input type="text" name="time" value=""><br><br>
+                                    <input type="text" name="time" placeholder="12:00pm"><br><br>
                                     <input type="submit" class="btn btn-success" value="Submit">
                                   </form>
                         </div>
@@ -118,29 +123,8 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Daniel</td>
-                                            <td>Hair colouring</td>
-                                            <td>9/4/2019 9:30am</td>
-                                            <td class="text-center">
-                                            <a class='btn btn-info btn-xs' data-ng-click="edit()"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                                            <button type="submit" data-ng-click="delete($index)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Chuan Hek</td>
-                                            <td>Hair cut and wash</td>
-                                            <td>9/4/2019 11:30am</td>
-                                            <td class="text-center">
-                                            <a class='btn btn-info btn-xs' data-ng-click="edit()"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                                            <button type="submit" data-ng-click="delete($index)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Marcus</td>
-                                            <td>Hair cut</td>
-                                            <td>9/4/2019 1:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
+                                    <tbody id="today_content">
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -156,25 +140,8 @@
                                             
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Bryan</td>
-                                            <td>Body Waxing</td>
-                                            <td>10/4/2019 8:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boon</td>
-                                            <td>Massages</td>
-                                            <td>10/4/2019 1:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stephen</td>
-                                            <td>Hair Care</td>
-                                            <td>11/4/2019 9:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
+                                    <tbody id="upcoming_content">
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -190,25 +157,9 @@
                                             
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Gimmy</td>
-                                            <td>Hair cutting</td>
-                                            <td>7/4/2019 8:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Steven</td>
-                                            <td>Massages</td>
-                                            <td>7/4/2019 10:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Edmund</td>
-                                            <td>Hair Care</td>
-                                            <td>8/4/2019 2:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
+                                    <tbody id="previous_content">
+                                       
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -223,65 +174,8 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Bryan</td>
-                                            <td>Body Waxing</td>
-                                            <td>10/4/2019 8:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boon</td>
-                                            <td>Massages</td>
-                                            <td>10/4/2019 1:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stephen</td>
-                                            <td>Hair Care</td>
-                                            <td>11/4/2019 9:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody>
-                                        <tr>
-                                            <td>Gimmy</td>
-                                            <td>Hair cutting</td>
-                                            <td>7/4/2019 8:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Steven</td>
-                                            <td>Massages</td>
-                                            <td>7/4/2019 10:00am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Edmund</td>
-                                            <td>Hair Care</td>
-                                            <td>8/4/2019 2:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody>
-                                        <tr>
-                                            <td>Daniel</td>
-                                            <td>Hair colouring</td>
-                                            <td>9/4/2019 9:30am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Chuan Hek</td>
-                                            <td>Hair cut and wash</td>
-                                            <td>9/4/2019 11:30am</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Marcus</td>
-                                            <td>Hair cut</td>
-                                            <td>9/4/2019 1:00pm</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                        </tr>
+                                    <tbody id="all_content">
+                                    
                                         </tbody>
                                         </table>
                                 </div>
@@ -300,10 +194,10 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="appointment.js"></script>
   <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/myApp.js"></script>
+  <script src="frameworks/js/appointment.js"></script>
+ 
+ 
         
 </body>
 
