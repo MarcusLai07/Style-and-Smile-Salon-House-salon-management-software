@@ -13,8 +13,6 @@
 
 
 const MembershipList = document.querySelector('#M_Content');
-
-const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
 
 
@@ -53,7 +51,7 @@ function renderList(doc){
 //render the table to the web UI
 db.collection('Members').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
-        renderList(doc)
+        renderList(doc);
     })
 })
 
