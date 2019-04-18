@@ -11,9 +11,6 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
-
-const MembershipList = document.querySelector('#M_Content');
-
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
 
@@ -49,6 +46,15 @@ function renderList(doc){
     tr.appendChild(btn2);
     
     MembershipList.append(tr); 
+    
+    //delete data
+    btn2.addEventListener('click', (e) => {
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('Members').doc(id).delete();
+        //reloading the page (cacat)
+        //location.reload();
+    })
 }
 //render the table to the web UI
 db.collection('Members').get().then((snapshot) => {
@@ -57,11 +63,11 @@ db.collection('Members').get().then((snapshot) => {
     })
 })
 
-db.collection('Staffs').get().then((snapshot) => {
+/*db.collection('Staffs').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         console.log(doc.data())
     })
-})
+})*/
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
