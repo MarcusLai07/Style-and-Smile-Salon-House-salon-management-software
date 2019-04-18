@@ -42,7 +42,7 @@ function renderAppointment(doc){
 }
 
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').orderBy("date", "desc").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderAppointment(doc);
