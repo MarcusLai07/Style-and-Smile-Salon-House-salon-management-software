@@ -14,7 +14,7 @@
 
 
 const AppointmentList = document.querySelector('#all_content');
-
+const form = document.querySelector('#add-appointment-form');
 
  
 function renderAppointment(doc){
@@ -49,6 +49,21 @@ db.collection('Appointment').orderBy("date", "desc").get().then((snapshot) => {
     })
 })
 
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	db.collection('Appointment').add({
+		
+		customer_name: form.A_name.value,
+		
+		services: form.A_services.value,
+		
+		time: form.A_time.value,
+		
+		date: form.A_date.value
+		
+		
+	})
+})
 
 
 
