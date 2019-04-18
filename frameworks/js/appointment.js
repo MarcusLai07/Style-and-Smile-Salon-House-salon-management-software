@@ -14,7 +14,7 @@
 
 
 const AppointmentList = document.querySelector('#all_content');
-
+const form = document.querySelector('#add-appointment-form');
 
  
 function renderAppointment(doc){
@@ -42,15 +42,130 @@ function renderAppointment(doc){
 }
 
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').orderBy("date", "desc").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderAppointment(doc);
     })
 })
 
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	db.collection('Appointment').add({
+		
+		customer_name: form.A_name.value,
+		
+		services: form.A_services.value,
+		
+		time: form.A_time.value,
+		
+		date: form.A_date.value
+		
+		
+	})
+})
 
 
+const TodayAppointmentList = document.querySelector('#today_content');
+
+function renderTodayAppointment(doc){
+    let tr = document.createElement('tr');
+    let A_name = document.createElement('td');
+    let A_services = document.createElement('td');
+    let A_date = document.createElement('td');
+    let A_time = document.createElement('td');
+    
+    tr.setAttribute('data-id', doc.id);
+    A_name.textContent = doc.data().customer_name;
+    A_services.textContent = doc.data().services;
+    A_time.textContent = doc.data().time;
+    A_date.textContent = doc.data().date;
+    
+    tr.appendChild(A_name);
+    tr.appendChild(A_services);
+    tr.appendChild(A_time);
+    tr.appendChild(A_date);
+	
+	
+    
+    TodayAppointmentList.append(tr);
+     
+}
 
 
+db.collection('Appointment').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+       
+		renderTodayAppointment(doc);
+    })
+})
+
+const PreviousAppointmentList = document.querySelector('#previous_content');
+
+function renderPreviousAppointment(doc){
+    let tr = document.createElement('tr');
+    let A_name = document.createElement('td');
+    let A_services = document.createElement('td');
+    let A_date = document.createElement('td');
+    let A_time = document.createElement('td');
+    
+    tr.setAttribute('data-id', doc.id);
+    A_name.textContent = doc.data().customer_name;
+    A_services.textContent = doc.data().services;
+    A_time.textContent = doc.data().time;
+    A_date.textContent = doc.data().date;
+    
+    tr.appendChild(A_name);
+    tr.appendChild(A_services);
+    tr.appendChild(A_time);
+    tr.appendChild(A_date);
+	
+	
+    
+    PreviousAppointmentList.append(tr);
+     
+}
+
+
+db.collection('Appointment').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+       
+		renderPreviousAppointment(doc);
+    })
+})
+
+
+const UpcomingAppointmentList = document.querySelector('#upcoming_content');
+
+function renderUpcomingAppointment(doc){
+    let tr = document.createElement('tr');
+    let A_name = document.createElement('td');
+    let A_services = document.createElement('td');
+    let A_date = document.createElement('td');
+    let A_time = document.createElement('td');
+    
+    tr.setAttribute('data-id', doc.id);
+    A_name.textContent = doc.data().customer_name;
+    A_services.textContent = doc.data().services;
+    A_time.textContent = doc.data().time;
+    A_date.textContent = doc.data().date;
+    
+    tr.appendChild(A_name);
+    tr.appendChild(A_services);
+    tr.appendChild(A_time);
+    tr.appendChild(A_date);
+	
+	
+    
+    UpcomingAppointmentList.append(tr);
+     
+}
+
+
+db.collection('Appointment').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+       
+		renderUpcomingAppointment(doc);
+    })
+})
 
