@@ -57,7 +57,7 @@ function renderList(doc){
     })
 }
 //render the table to the web UI
-db.collection('Members').get().then((snapshot) => {
+db.collection('Members').orderBy("Member_Name","desc").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderList(doc);
     })
