@@ -11,6 +11,9 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+
+//Select table and form from the html file.
+
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
 
@@ -22,16 +25,15 @@ function renderList(doc){
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
     let M_email = document.createElement('td');
-    
+    let btn_Refresh=document.createElement('td');
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
-
-
- 
     
+    
+
     tr.setAttribute('data-id', doc.id);
     M_id.textContent = doc.data().Member_ID;
     M_name.textContent=doc.data().Member_Name;
@@ -44,18 +46,19 @@ function renderList(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
+    tr.appendChild(btn_Refresh);
     
     MembershipList.append(tr); 
     
-    //delete data
-    btn2.addEventListener('click', (e) => {
+       btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         db.collection('Members').doc(id).delete();
-        //reloading the page (cacat)
-        //location.reload();
+           alert("You had sucessfully delete the item from system! Please refresh the table!");
     })
+        
 }
+
 //render the table to the web UI
 db.collection('Members').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
@@ -69,6 +72,8 @@ db.collection('Members').get().then((snapshot) => {
     })
 })*/
 
+
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('Members').add({
@@ -81,13 +86,25 @@ form.addEventListener('submit', (e) => {
         
         Member_Phone: form.M_phone.value
         
-        
-        
+               
     })
     
-   
-    
 })
+
+
+
+
+////refresh page function
+//
+//function refreshPage()
+//{
+//    var x = confirm("You had sucessfully delete the item from the System!");
+//    if(x==true)
+//        {
+//            document.location.reload(true);
+//        }
+//}
+
 
 
 
