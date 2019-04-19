@@ -28,9 +28,11 @@ function renderList(doc){
     let btn_Refresh=document.createElement('td');
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
+    btn.className="btn btn-outline-info btn-xs"
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
+    btn2.className="btn btn-outline-danger btn-xs"
     
     
 
