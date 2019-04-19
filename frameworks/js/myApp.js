@@ -21,11 +21,13 @@ const form = document.querySelector('#add-membership-form');
 // populate the membership table with the data in the database
 function renderList(doc){
     let tr = document.createElement('tr');
+    tr.className="text-center"
+    
     let M_id = document.createElement('td');
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
     let M_email = document.createElement('td');
-    let btn_Refresh=document.createElement('td');
+    //let btn_Refresh=document.createElement('td');
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     btn.className="btn btn-outline-info btn-xs"
@@ -48,7 +50,7 @@ function renderList(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
-    tr.appendChild(btn_Refresh);
+   // tr.appendChild(btn_Refresh);
     
     MembershipList.append(tr); 
     
@@ -90,7 +92,6 @@ form.addEventListener('submit', (e) => {
         
                
     })
-    
 })
 
 
