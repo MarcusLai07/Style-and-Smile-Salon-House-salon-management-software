@@ -28,7 +28,8 @@ function renderTable(doc){
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
     let M_email = document.createElement('td');
-    //let btn_Refresh=document.createElement('td');
+    
+    //creating button
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     btn.className="btn btn-outline-info btn-xs"
@@ -52,7 +53,7 @@ function renderTable(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
-   // tr.appendChild(btn_Refresh);
+
     
     MembershipList.append(tr); 
     
@@ -73,8 +74,8 @@ span2.onclick = function() {
     btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
-        db.collection('Members').doc(id).delete();//then(location.reload(true));
-           //alert("You had sucessfully delete the item from system! Please refresh the table!");
+        db.collection('Members').doc(id).delete();
+           confirm("You had sucessfully delete the item from system! Please refresh the table!");
     })
     
 //    Edit_Form.addEventListener('click', (e) => {
@@ -97,9 +98,10 @@ span2.onclick = function() {
 }
 
 //render the table to the web UI
-db.collection('Members').orderBy("Member_Name","desc").get().then((snapshot) => {
+db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderTable(doc);
+        console.log(doc);
     })
 })
 
@@ -122,7 +124,6 @@ form.addEventListener('submit', (e) => {
         Member_Email: form.M_email.value,
         
         Member_Phone: form.M_phone.value
-        
                
     })
 })
