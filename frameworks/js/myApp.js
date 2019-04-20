@@ -27,7 +27,8 @@ function renderList(doc){
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
     let M_email = document.createElement('td');
-    //let btn_Refresh=document.createElement('td');
+    
+    //creating button
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     btn.className="btn btn-outline-info btn-xs"
@@ -50,7 +51,7 @@ function renderList(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
-   // tr.appendChild(btn_Refresh);
+
     
     MembershipList.append(tr); 
     
@@ -58,14 +59,15 @@ function renderList(doc){
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         db.collection('Members').doc(id).delete();
-           alert("You had sucessfully delete the item from system! Please refresh the table!");
+           confirm("You had sucessfully delete the item from system! Please refresh the table!");
     })
         
 }
 
 //render the table to the web UI
-db.collection('Members').orderBy("Member_Name","desc").get().then((snapshot) => {
+db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
+        console.log(doc);
         renderList(doc);
     })
 })
@@ -89,7 +91,6 @@ form.addEventListener('submit', (e) => {
         Member_Email: form.M_email.value,
         
         Member_Phone: form.M_phone.value
-        
                
     })
 })

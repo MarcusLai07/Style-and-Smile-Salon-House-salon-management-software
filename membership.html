@@ -71,7 +71,9 @@
       <div class="container-fluid">
         <h1 class="mt-4">Customer Membership</h1>
         <div class="container">
-            <a href="#" class="addbutton btn btn-outline-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new membership</a>
+            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new membership</a>
+              <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                
              <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
@@ -108,7 +110,6 @@
                     <th>Phone Number</th>
                     <th>Email Address</th>
                     <th class="text-center">Action</th>
-<!--                    <th><button class="btn btn-light" id="refreshBtn" onClick="document.location.reload(true)">Refresh icon insert here</button></th>-->
                 </tr>
             </thead>
             <tbody id="M_Content">
