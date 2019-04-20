@@ -16,10 +16,11 @@
 
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
-
+const Edit_Form = document.querySelector('#edit-membership-form');
+var modal_E = document.getElementById('myModal_E');
 
 // populate the membership table with the data in the database
-function renderList(doc){
+function renderTable(doc){
     let tr = document.createElement('tr');
     tr.className="text-center"
     
@@ -31,6 +32,7 @@ function renderList(doc){
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
@@ -54,19 +56,50 @@ function renderList(doc){
     
     MembershipList.append(tr); 
     
-       btn2.addEventListener('click', (e) => {
+var span2 = document.getElementsByClassName("close1")[0];
+btn.onclick = function() {
+  modal_E.style.display = "block";
+}
+
+
+span2.onclick = function() {
+  modal.style.display = "none";
+}
+
+
+
+
+    
+    btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
-        db.collection('Members').doc(id).delete();
-           alert("You had sucessfully delete the item from system! Please refresh the table!");
+        db.collection('Members').doc(id).delete();//then(location.reload(true));
+           //alert("You had sucessfully delete the item from system! Please refresh the table!");
     })
+    
+//    Edit_Form.addEventListener('click', (e) => {
+//        e.stopPropagation();
+//        let id = e.target.parentElement.getAttribute('data-id');
+//        db.collection('Members').doc(id).update({
+//        Member_Name: Edit_Form.M_name.value,
+//        
+//        Member_ID: Edit_Form.M_id.value,
+//        
+//        Member_Email: Edit_Form.M_email.value,
+//        
+//        Member_Phone: Edit_Form.M_phone.value
+//        })
+//        console.log(M_name.value);
+//    })
+//
+//    
         
 }
 
 //render the table to the web UI
 db.collection('Members').orderBy("Member_Name","desc").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
-        renderList(doc);
+        renderTable(doc);
     })
 })
 
@@ -93,6 +126,9 @@ form.addEventListener('submit', (e) => {
                
     })
 })
+
+
+
 
 
 
