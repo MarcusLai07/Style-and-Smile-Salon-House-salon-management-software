@@ -71,7 +71,9 @@
       <div class="container-fluid">
         <h1 class="mt-4">Customer Membership</h1>
         <div class="container">
-            <a href="#" class="addbutton btn btn-outline-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new membership</a>
+            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new membership</a>
+              <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                
              <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
@@ -94,6 +96,30 @@
                         </div>
                         </div>
                     </div>
+            
+<!--            form for editing existing members-->
+             <div id="myModal_E" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Edit member detail</h2>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                                <form id="edit-membership-form"form action="#">
+                                    Membership Name:<br>
+                                    <input type="text" name="M_name" placeholder="Membership name"><br>
+                                    Membership ID:<br>
+                                    <input type="text" name="M_id" placeholder="Membership ID"><br>
+                                    Phone Number<br>
+                                    <input type="text" name="M_phone" placeholder="Membership phone number"><br>
+                                    Email Address:<br>
+                                    <input type="text" name="M_email" placeholder="Email address"><br><br>
+                                    <button>Update</button>
+                                  </form>
+                        </div>
+                        </div>
+                    </div>
       <div class="row col-md-12 col-md-offset-2 custyle">
        
                 <div class="row col-md-12 col-md-offset-2 custyle">
@@ -107,8 +133,8 @@
                     <th>Member Name</th>
                     <th>Phone Number</th>
                     <th>Email Address</th>
+<!--                <th><button class="btn btn-light" id="refreshBtn" onClick="document.location.reload(true)">Refresh icon insert here</button></th>-->
                     <th class="text-center">Action</th>
-<!--                    <th><button class="btn btn-light" id="refreshBtn" onClick="document.location.reload(true)">Refresh icon insert here</button></th>-->
                 </tr>
             </thead>
             <tbody id="M_Content">
@@ -136,9 +162,9 @@
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
 
       </div>
-
-  <script src="frameworks/js/modal.js"></script>
   <script src="frameworks/js/myApp.js"></script>
+  <script src="frameworks/js/modal.js"></script>
+
   </div>      
     
 <!--

@@ -1,6 +1,5 @@
-.addbutton{
-    margin-left:80%;    
-
+.btnAddandRefresh{
+    display:inline-block;
 }
 .custab{
     border: 1px solid #ccc;

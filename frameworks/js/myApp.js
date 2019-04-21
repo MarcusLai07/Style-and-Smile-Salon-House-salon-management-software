@@ -16,10 +16,11 @@
 
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
-
+const Edit_Form = document.querySelector('#edit-membership-form');
+var modal_E = document.getElementById('myModal_E');
 
 // populate the membership table with the data in the database
-function renderList(doc){
+function renderTable(doc){
     let tr = document.createElement('tr');
     tr.className="text-center"
     
@@ -27,10 +28,12 @@ function renderList(doc){
     let M_name = document.createElement('td');
     let M_phone = document.createElement('td');
     let M_email = document.createElement('td');
-    //let btn_Refresh=document.createElement('td');
+    
+    //creating button
     var btn=document.createElement("BUTTON");
     btn.innerHTML="Edit"
     btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
@@ -50,24 +53,70 @@ function renderList(doc){
     tr.appendChild(M_email);
     tr.appendChild(btn);
     tr.appendChild(btn2);
-   // tr.appendChild(btn_Refresh);
+
     
     MembershipList.append(tr); 
     
-       btn2.addEventListener('click', (e) => {
+var span2 = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal_E.style.display = "block";
+}
+
+
+span2.onclick = function() {
+  modal.style.display = "none";
+}
+
+
+
+
+    
+    btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         db.collection('Members').doc(id).delete();
-           alert("You had sucessfully delete the item from system! Please refresh the table!");
+           alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })
+    
+    Edit_Form.addEventListener('update', (e) => {
+        e.preventDefault();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('Members').doc(id).update({
+        Member_Name: Edit_Form.M_name.value,
+        
+        Member_ID: Edit_Form.M_id.value,
+        
+        Member_Email: Edit_Form.M_email.value,
+        
+        Member_Phone: Edit_Form.M_phone.value
+        })
+        console.log(M_name.value);
+    })
+
+    
         
 }
 
 //render the table to the web UI
-db.collection('Members').orderBy("Member_Name","desc").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        renderList(doc);
+//db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
+//    snapshot.docs.forEach(doc => {
+//        renderTable(doc);
+//        //console.log(doc);
+//    })
+//})
+
+db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderTable(change.doc)
+        }else if (change.type=='removed'){
+            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
+            MembershipList.removeChild(tr);
+        }
     })
+            
+            
 })
 
 /*db.collection('Staffs').get().then((snapshot) => {
@@ -89,10 +138,12 @@ form.addEventListener('submit', (e) => {
         Member_Email: form.M_email.value,
         
         Member_Phone: form.M_phone.value
-        
                
     })
 })
+
+
+
 
 
 
