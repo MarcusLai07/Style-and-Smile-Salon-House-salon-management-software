@@ -57,7 +57,7 @@ function renderTable(doc){
     
     MembershipList.append(tr); 
     
-var span2 = document.getElementsByClassName("close1")[0];
+var span2 = document.getElementsByClassName("close")[0];
 btn.onclick = function() {
   modal_E.style.display = "block";
 }
@@ -75,34 +75,48 @@ span2.onclick = function() {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         db.collection('Members').doc(id).delete();
-           confirm("You had sucessfully delete the item from system! Please refresh the table!");
+           alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })
     
-//    Edit_Form.addEventListener('click', (e) => {
-//        e.stopPropagation();
-//        let id = e.target.parentElement.getAttribute('data-id');
-//        db.collection('Members').doc(id).update({
-//        Member_Name: Edit_Form.M_name.value,
-//        
-//        Member_ID: Edit_Form.M_id.value,
-//        
-//        Member_Email: Edit_Form.M_email.value,
-//        
-//        Member_Phone: Edit_Form.M_phone.value
-//        })
-//        console.log(M_name.value);
-//    })
-//
-//    
+    Edit_Form.addEventListener('update', (e) => {
+        e.preventDefault();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('Members').doc(id).update({
+        Member_Name: Edit_Form.M_name.value,
+        
+        Member_ID: Edit_Form.M_id.value,
+        
+        Member_Email: Edit_Form.M_email.value,
+        
+        Member_Phone: Edit_Form.M_phone.value
+        })
+        console.log(M_name.value);
+    })
+
+    
         
 }
 
 //render the table to the web UI
-db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        renderTable(doc);
-        console.log(doc);
+//db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
+//    snapshot.docs.forEach(doc => {
+//        renderTable(doc);
+//        //console.log(doc);
+//    })
+//})
+
+db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderTable(change.doc)
+        }else if (change.type=='removed'){
+            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
+            MembershipList.removeChild(tr);
+        }
     })
+            
+            
 })
 
 /*db.collection('Staffs').get().then((snapshot) => {
