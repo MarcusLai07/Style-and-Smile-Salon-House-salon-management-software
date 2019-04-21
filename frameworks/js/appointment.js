@@ -11,11 +11,20 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = String(today.getFullYear());
 
+	today = dd + '/' + mm + '/' + yyyy ;
+	
+	
+	console.log(today);
+	
 
 const AppointmentList = document.querySelector('#all_content');
 const form = document.querySelector('#add-appointment-form');
-
+	
  
 function renderAppointment(doc){
     let tr = document.createElement('tr');
@@ -35,19 +44,21 @@ function renderAppointment(doc){
     tr.appendChild(A_time);
     tr.appendChild(A_date);
 	
-	
+
     
     AppointmentList.append(tr);
      
 }
 
 
-db.collection('Appointment').orderBy("date", "desc").get().then((snapshot) => {
+db.collection('Appointment').orderBy('date').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderAppointment(doc);
+		
+		
     })
-})
+});
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -62,13 +73,14 @@ form.addEventListener('submit', (e) => {
 		date: form.A_date.value
 		
 		
-	})
+	});
 })
 
 
 const TodayAppointmentList = document.querySelector('#today_content');
 
 function renderTodayAppointment(doc){
+	
     let tr = document.createElement('tr');
     let A_name = document.createElement('td');
     let A_services = document.createElement('td');
@@ -80,6 +92,7 @@ function renderTodayAppointment(doc){
     A_services.textContent = doc.data().services;
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
+	
     
     tr.appendChild(A_name);
     tr.appendChild(A_services);
@@ -93,12 +106,12 @@ function renderTodayAppointment(doc){
 }
 
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').where('date', '==', '21/04/2019').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderTodayAppointment(doc);
     })
-})
+});
 
 const PreviousAppointmentList = document.querySelector('#previous_content');
 
@@ -127,12 +140,12 @@ function renderPreviousAppointment(doc){
 }
 
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').where('date', '<', '21/04/2019').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderPreviousAppointment(doc);
     })
-})
+});
 
 
 const UpcomingAppointmentList = document.querySelector('#upcoming_content');
@@ -162,10 +175,10 @@ function renderUpcomingAppointment(doc){
 }
 
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').where('date', '>', '21/04/2019').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderUpcomingAppointment(doc);
     })
-})
+});
 
