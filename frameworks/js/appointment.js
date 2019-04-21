@@ -69,12 +69,9 @@ function renderAppointment(doc){
 }
 
 
-
-db.collection('Appointment').orderBy('date').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
        
 
-db.collection('Appointment').orderBy("date", "desc").get().then((snapshot) => {
+db.collection('Appointment').orderBy("date").get().then((snapshot) => {
     snapshot.docs.forEach(doc => { 
 
 		renderAppointment(doc);
@@ -130,11 +127,9 @@ function renderTodayAppointment(doc){
 
 
 
-db.collection('Appointment').where('date', '==', '21/04/2019').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
        
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').where('date', '==', '21/04/2019').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {  
 
 		renderTodayAppointment(doc);
@@ -165,11 +160,9 @@ function renderPreviousAppointment(doc){
 }
 
 
-db.collection('Appointment').where('date', '<', '21/04/2019').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
        
 
-db.collection('Appointment').get().then((snapshot) => {
+db.collection('Appointment').where('date', '<', '21/04/2019').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {       
 
 		renderPreviousAppointment(doc);
