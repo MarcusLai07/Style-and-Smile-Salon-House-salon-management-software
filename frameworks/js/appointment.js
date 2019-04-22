@@ -47,6 +47,15 @@ function renderAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    //creating button
+    var btn=document.createElement("BUTTON");
+    btn.innerHTML="Edit"
+    btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
+    
+    var btn2=document.createElement("BUTTON");
+    btn2.innerHTML="Delete"
+    btn2.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -58,12 +67,8 @@ function renderAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
-
-	
-
-    
-
-
+    tr.appendChild(btn);
+    tr.appendChild(btn2);
 
     AppointmentList.append(tr);
 }
@@ -75,8 +80,6 @@ db.collection('Appointment').orderBy("date").get().then((snapshot) => {
     snapshot.docs.forEach(doc => { 
 
 		renderAppointment(doc);
-		
-		
     })
 });
 
@@ -109,6 +112,15 @@ function renderTodayAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    //creating button
+    var btn=document.createElement("BUTTON");
+    btn.innerHTML="Edit"
+    btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
+    
+    var btn2=document.createElement("BUTTON");
+    btn2.innerHTML="Delete"
+    btn2.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -121,6 +133,8 @@ function renderTodayAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(btn);
+    tr.appendChild(btn2);
 
     TodayAppointmentList.append(tr);
 }
@@ -144,6 +158,15 @@ function renderPreviousAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    //creating button
+    var btn=document.createElement("BUTTON");
+    btn.innerHTML="Edit"
+    btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
+    
+    var btn2=document.createElement("BUTTON");
+    btn2.innerHTML="Delete"
+    btn2.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -155,6 +178,8 @@ function renderPreviousAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(btn);
+    tr.appendChild(btn2);
 
     PreviousAppointmentList.append(tr);
 }
@@ -177,6 +202,15 @@ function renderUpcomingAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    //creating button
+    var btn=document.createElement("BUTTON");
+    btn.innerHTML="Edit"
+    btn.className="btn btn-outline-info btn-xs"
+    btn.id= "M_Edit";
+    
+    var btn2=document.createElement("BUTTON");
+    btn2.innerHTML="Delete"
+    btn2.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -188,8 +222,11 @@ function renderUpcomingAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(btn);
+    tr.appendChild(btn2);
 
     UpcomingAppointmentList.append(tr);
+
 }
 
 
