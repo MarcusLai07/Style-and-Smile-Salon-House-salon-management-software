@@ -16,7 +16,7 @@
 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = String(today.getFullYear());
 
-	today = dd + '/' + mm + '/' + yyyy ;
+	var datetoday = dd + '/' + mm + '/' + yyyy ;
 	
 	
 	console.log(today);
@@ -129,7 +129,7 @@ function renderTodayAppointment(doc){
 
        
 
-db.collection('Appointment').where('date', '==', '21/04/2019').get().then((snapshot) => {
+db.collection('Appointment').where('date', '==', datetoday).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {  
 
 		renderTodayAppointment(doc);
@@ -162,7 +162,7 @@ function renderPreviousAppointment(doc){
 
        
 
-db.collection('Appointment').where('date', '<', '21/04/2019').get().then((snapshot) => {
+db.collection('Appointment').where('date', '<', datetoday).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {       
 
 		renderPreviousAppointment(doc);
@@ -194,7 +194,7 @@ function renderUpcomingAppointment(doc){
 
 
 
-db.collection('Appointment').where('date', '>', '21/04/2019').get().then((snapshot) => {
+db.collection('Appointment').where("date", ">", datetoday).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderUpcomingAppointment(doc);
