@@ -1,9 +1,11 @@
 // Modal script
 // Get the modal
 var modal = document.getElementById('myModal');
+//var modal2=document.getElementById('myModal2');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
+//var btn2 = document.getElementById("myBtnEdit");
 
 
 // Get the <span> element that closes the modal
@@ -25,9 +27,3 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-//Menu Toggle Script
-$("#menu-toggle").click(function(e) {
-  e.preventDefault();
-  $("#wrapper").toggleClass("toggled");
-});

@@ -12,15 +12,39 @@
         db.settings({timestampsInSnapshots: true})
 
 
+
+
+
+//get real time database, if changes made, refresh automatically
+db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderTable(change.doc)
+        }else if (change.type=='removed'){
+            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
+            MembershipList.removeChild(tr);
+        }
+    })
+            
+            
+})
+
 //Select table and form from the html file.
 
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
-const Edit_Form = document.querySelector('#edit-membership-form');
-var modal_E = document.getElementById('myModal_E');
+
+
+var modal_Edit=document.getElementById('myModal2');
+var form2 = document.querySelector('#edit-membership-form');
+var span = document.getElementById("close");
+var selectedID;
 
 // populate the membership table with the data in the database
 function renderTable(doc){
+    
+    
     let tr = document.createElement('tr');
     tr.className="text-center"
     
@@ -30,10 +54,12 @@ function renderTable(doc){
     let M_email = document.createElement('td');
     
     //creating button
-    var btn=document.createElement("BUTTON");
-    btn.innerHTML="Edit"
-    btn.className="btn btn-outline-info btn-xs"
-    btn.id= "M_Edit";
+    
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit";
+    btnEdit.className="btn btn-outline-info btn-xs";
+    
+    
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
@@ -51,80 +77,47 @@ function renderTable(doc){
     tr.appendChild(M_name);
     tr.appendChild(M_phone);
     tr.appendChild(M_email);
-    tr.appendChild(btn);
     tr.appendChild(btn2);
+    tr.appendChild(btnEdit);
 
     
     MembershipList.append(tr); 
     
-var span2 = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal_E.style.display = "block";
-}
-
-
-span2.onclick = function() {
-  modal.style.display = "none";
-}
-
-
-
+     btnEdit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute('data-id');
+        console.log("heres your id that you selected: "+ id);
+         selectedID=id;
+         console.log(selectedID);
+         modal_Edit.style.display="block";
+         span.onclick=function()
+         {
+             modal_Edit.style.display="none";
+         }
+         window.onclick=function(event)
+         {
+             if(event.target==modal_Edit)
+                 {
+                     modal_Edit.style.display="none";
+                 }
+         }
+    })
+    
+ 
 
     
     btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
+        console.log("heres your id that you selected: "+ id);
         db.collection('Members').doc(id).delete();
            alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })
     
-    Edit_Form.addEventListener('update', (e) => {
-        e.preventDefault();
-        let id = e.target.parentElement.getAttribute('data-id');
-        db.collection('Members').doc(id).update({
-        Member_Name: Edit_Form.M_name.value,
-        
-        Member_ID: Edit_Form.M_id.value,
-        
-        Member_Email: Edit_Form.M_email.value,
-        
-        Member_Phone: Edit_Form.M_phone.value
-        })
-        console.log(M_name.value);
-    })
 
-    
+
         
 }
-
-//render the table to the web UI
-//db.collection('Members').orderBy("Member_ID").get().then((snapshot) => {
-//    snapshot.docs.forEach(doc => {
-//        renderTable(doc);
-//        //console.log(doc);
-//    })
-//})
-
-db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
-    let changes=snapshot.docChanges();
-    changes.forEach(change=>{
-        if(change.type=='added'){
-            renderTable(change.doc)
-        }else if (change.type=='removed'){
-            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
-            MembershipList.removeChild(tr);
-        }
-    })
-            
-            
-})
-
-/*db.collection('Staffs').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        console.log(doc.data())
-    })
-})*/
-
 
 
 form.addEventListener('submit', (e) => {
@@ -140,13 +133,31 @@ form.addEventListener('submit', (e) => {
         Member_Phone: form.M_phone.value
                
     })
+    
+    console.log("you added the new item!");
+})
+
+form2.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log("you edit the item!");
+    //store field values to a new empty string.
+    
+    db.collection('Members').doc(selectedID).update({
+       
+        Member_Name: form2.Edit_name.value,
+        
+        Member_ID: form2.Edit_id.value,
+        
+        Member_Email: form2.Edit_email.value,
+        
+        Member_Phone: form2.Edit_phone.value
+    })
+   
 })
 
 
 
-
-
-
+        
 
 ////refresh page function
 //

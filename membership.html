@@ -49,7 +49,6 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Menu</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -71,6 +70,7 @@
       <div class="container-fluid">
         <h1 class="mt-4">Customer Membership</h1>
         <div class="container">
+<!--             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtnEdit"><b>+</b> Edit</a>-->
             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new membership</a>
               <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
                 
@@ -98,29 +98,29 @@
                     </div>
             
 <!--            form for editing existing members-->
-             <div id="myModal_E" class="modal">
+             <div id="myModal2" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
                         <div class="modal-header">
                             <h2>Edit member detail</h2>
-                            <span class="close">&times;</span>
+                            <span class="close" id="exit">&times;</span>
                         </div>
                         <div class="modal-body">
                                 <form id="edit-membership-form"form action="#">
                                     Membership Name:<br>
-                                    <input type="text" name="M_name" placeholder="Membership name"><br>
+                                    <input type="text" name="Edit_name" placeholder="Membership name"><br>
                                     Membership ID:<br>
-                                    <input type="text" name="M_id" placeholder="Membership ID"><br>
+                                    <input type="text" name="Edit_id" placeholder="Membership ID"><br>
                                     Phone Number<br>
-                                    <input type="text" name="M_phone" placeholder="Membership phone number"><br>
+                                    <input type="text" name="Edit_phone" placeholder="Membership phone number"><br>
                                     Email Address:<br>
-                                    <input type="text" name="M_email" placeholder="Email address"><br><br>
-                                    <button>Update</button>
+                                    <input type="text" name="Edit_email" placeholder="Email address"><br><br>
+                                    <button>submit</button>
                                   </form>
                         </div>
                         </div>
                     </div>
-      <div class="row col-md-12 col-md-offset-2 custyle">
+                <div class="row col-md-12 col-md-offset-2 custyle">
        
                 <div class="row col-md-12 col-md-offset-2 custyle">
         
@@ -133,18 +133,10 @@
                     <th>Member Name</th>
                     <th>Phone Number</th>
                     <th>Email Address</th>
-<!--                <th><button class="btn btn-light" id="refreshBtn" onClick="document.location.reload(true)">Refresh icon insert here</button></th>-->
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody id="M_Content">
-<!--
-                    <td class="text-center">
-                        <button class='btn btn-outline-info btn-xs' href="#" id="btnEdit"> Edit</button> 
-                        <button href="#" class="btn btn-outline-danger btn-xs" id="btnDel"> Del</button>
-                    </td>
--->
-
             </tbody>
     </table>
     </div>
