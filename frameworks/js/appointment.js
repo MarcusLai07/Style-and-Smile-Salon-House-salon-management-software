@@ -16,18 +16,14 @@
 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = String(today.getFullYear());
 
-	var datetoday = dd + '/' + mm + '/' + yyyy ;
+	var today = dd + '/' + mm + '/' + yyyy ;
 	
 	
-	console.log(today);
+	
 	
 
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
-
-	
- 
-
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	db.collection('Appointment').add({
@@ -36,7 +32,7 @@ form.addEventListener('submit', (e) => {
 		time: form.A_time.value,
 		date: form.A_date.value
 	})
-})
+});
 
 //Render all appoinments
 const AppointmentList = document.querySelector('#all_content');
@@ -76,30 +72,12 @@ function renderAppointment(doc){
 
        
 
-db.collection('Appointment').orderBy("date").get().then((snapshot) => {
+db.collection('Appointment').orderBy('date').orderBy('time').get().then((snapshot) => {
     snapshot.docs.forEach(doc => { 
 
 		renderAppointment(doc);
     })
 });
-
-
-form.addEventListener('submit', (e) => {
-	e.preventDefault();
-	db.collection('Appointment').add({
-		
-		customer_name: form.A_name.value,
-		
-		services: form.A_services.value,
-		
-		time: form.A_time.value,
-		
-		date: form.A_date.value
-		
-		
-	});
-})
-
 
 
 //Render today appoinments
@@ -143,7 +121,7 @@ function renderTodayAppointment(doc){
 
        
 
-db.collection('Appointment').where('date', '==', datetoday).get().then((snapshot) => {
+db.collection('Appointment').where('date', '==', today).orderBy('time').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {  
 
 		renderTodayAppointment(doc);
@@ -187,7 +165,7 @@ function renderPreviousAppointment(doc){
 
        
 
-db.collection('Appointment').where('date', '<', datetoday).get().then((snapshot) => {
+db.collection('Appointment').where('date', '<', today).orderBy('date').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {       
 
 		renderPreviousAppointment(doc);
@@ -231,7 +209,7 @@ function renderUpcomingAppointment(doc){
 
 
 
-db.collection('Appointment').where("date", ">", datetoday).get().then((snapshot) => {
+db.collection('Appointment').where('date', '>', today).orderBy('date').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
        
 		renderUpcomingAppointment(doc);
