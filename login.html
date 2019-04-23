@@ -6,8 +6,11 @@
  <!-- Bootstrap -->
  <link rel="stylesheet" type="text/css" href="css/login.css">
  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
-<script src="frameworks/jquery/jquery.min.js"></script>
+ <!-- Firebse library -->
+ <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+ <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
+ <script src="frameworks/jquery/jquery.min.js"></script>
  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
  <!--[if lt IE 9]>
@@ -16,11 +19,6 @@
  <![endif]-->
 </head>
 <body>
-
-
-
-
-
 
 <div class="sidenav">
          <div class="login-main-text">
@@ -34,18 +32,32 @@
                <form>
                   <div class="form-group">
                      <label>User Name</label>
-                     <input type="text" class="form-control" placeholder="User Name">
+                     <input type="email" class="form-control" placeholder="Email" id="email_field">
                   </div>
                   <div class="form-group">
                      <label>Password</label>
-                     <input type="password" class="form-control" placeholder="Password">
+                     <input type="password" class="form-control" placeholder="Password" id="password_field">
                   </div>
-                  <button type="submit" class="btn btn-black">Login</button>
+                  <button type="submit" class="btn btn-black" id="Loginbtn">Login</button>
                   
                </form>
             </div>
          </div>
       </div>
-      
+      <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+      <script>
+      // Initialize Firebase
+      var config = {
+         apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
+         authDomain: "style-and-smile-salon-house.firebaseapp.com",
+         databaseURL: "https://style-and-smile-salon-house.firebaseio.com",
+         projectId: "style-and-smile-salon-house",
+         storageBucket: "style-and-smile-salon-house.appspot.com",
+         messagingSenderId: "1030007772704"
+      };
+      firebase.initializeApp(config);
+      </script>
+      <script src="frameworks/js/modal.js"></script>
+      <script src="frameworks/js/login.js"></script>
      </body>
 </html>
