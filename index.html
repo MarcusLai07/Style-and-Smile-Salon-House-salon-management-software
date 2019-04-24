@@ -10,8 +10,8 @@
 
   <title>Style and Smile Saloon House</title>
   <!-- Firebse library -->
+  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,11 +21,9 @@
 
   <!-- Custom styles for this page -->
   <link href="css/index.css" rel="stylesheet">
-
 </head>
 
 <body>
-
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -58,7 +56,7 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
              
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="#" onclick="inDex.logOut()">
                  <img src="images/logout.png" alt="logout" class="button"> 
               </a>
               
@@ -68,18 +66,6 @@
           </ul>
       </div>
 
-<!--              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
-<!--                <a class="dropdown-item" href="#">Action</a>-->
-<!--                <a class="dropdown-item" href="#">Another action</a>-->
-<!--                <div class="dropdown-divider"></div>-->
-<!--                <a class="dropdown-item" href="#">Something else here</a>-->
-<!--              </div>-->
-<!--
-            </li>
-          </ul>
-        </div>
-      </nav>
--->
         </nav>
       <div class="container-fluid">
 
@@ -205,6 +191,7 @@
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <script src="frameworks/js/login.js"></script>
+  <script src="frameworks/js/index.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
