@@ -11,67 +11,49 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                console.log("you have signed in")
-                //get user information
-                var uid;
-                uid = user.uid;
-                console.log("User ID: " + user.uid);
-        
-                if (user.email == "admin@gmail.com") {    //if the user is the manager
-                    var content = '<ul class="nav flex-column nav-pills"><h5 class="sidebar-heading mt-5 px-3 py-3"><span>Reports & Analytics</span></h5><li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html"><i class="fas fa-file-invoice mr-3"></i>Generate Report</a></li><li class="nav-item"><a class="nav-link text-white" href="Generate_Forecast.html"><i class="fas fa-file-contract mr-3"></i>Generate Analytics</a></li></ul>';
-                    document.getElementById("LogButton").innerHTML = "Manager Log Out";
-                    $('#navigationSide').append(content);
-                }
-                if (user.email != "admin@gmail.com") {  //if the user is the staff or not manager       
-                    document.getElementById("LogButton").innerHTML = "Staff Log Out"
-                }
-            } else {
-                console.log("Signed off");
-                window.location.replace("login.html")
-            }
-        })
-
 
 
 //get real time database, if changes made, refresh automatically
-db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
+db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
         if(change.type=='added'){
             renderTable(change.doc)
         }else if (change.type=='removed'){
-            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
-            MembershipList.removeChild(tr);
+            let tr = StaffList.querySelector('[data-id=' + change.doc.id +']');
+            StaffList.removeChild(tr);
         }
     })
+    console.log("you gain some data")
             
             
 })
 
 //Select table and form from the html file.
 
-const MembershipList = document.querySelector('#M_Content');
-const form = document.querySelector('#add-membership-form');
+const StaffList = document.querySelector('#data_content');
+const Add_Form = document.querySelector('#add-staff-form');
 
 
 var modal_Edit=document.getElementById('myModal2');
-var form2 = document.querySelector('#edit-membership-form');
+var Edit_Form = document.querySelector('#edit-staff-form');
 var span = document.getElementById("close");
 var selectedID;
 
 // populate the membership table with the data in the database
 function renderTable(doc){
+    console.log("you just run me");
     
     
     let tr = document.createElement('tr');
     tr.className="text-center"
     
-    let M_id = document.createElement('td');
-    let M_name = document.createElement('td');
-    let M_phone = document.createElement('td');
-    let M_email = document.createElement('td');
+    let Staff_id = document.createElement('td');
+    let Staff_Name = document.createElement('td');
+    let Staff_Gender = document.createElement('td');
+    let Staff_PNumb = document.createElement('td');
+    let Staff_Pos = document.createElement('td');
+    let Staff_Sly = document.createElement('td');
     
     //creating button
     
@@ -81,27 +63,31 @@ function renderTable(doc){
     
     
     
-    var btn2=document.createElement("BUTTON");
-    btn2.innerHTML="Delete"
-    btn2.className="btn btn-outline-danger btn-xs"
+    var btnDelete=document.createElement("BUTTON");
+    btnDelete.innerHTML="Delete"
+    btnDelete.className="btn btn-outline-danger btn-xs"
     
     
 
     tr.setAttribute('data-id', doc.id);
-    M_id.textContent = doc.data().Member_ID;
-    M_name.textContent=doc.data().Member_Name;
-    M_phone.textContent=doc.data().Member_Phone;
-    M_email.textContent=doc.data().Member_Email;
+    Staff_id.textContent = doc.data().Staff_ID;
+    Staff_Name.textContent=doc.data().Staff_Name;
+    Staff_Gender.textContent=doc.data().Staff_Gender;
+    Staff_PNumb.textContent=doc.data().Staff_PNum;
+    Staff_Pos.textContent=doc.data().Staff_Position;
+    Staff_Sly.textContent=doc.data().Staff_Salary;
     
-    tr.appendChild(M_id);
-    tr.appendChild(M_name);
-    tr.appendChild(M_phone);
-    tr.appendChild(M_email);
-    tr.appendChild(btn2);
+    tr.appendChild(Staff_id);
+    tr.appendChild(Staff_Name);
+    tr.appendChild(Staff_Gender);
+    tr.appendChild(Staff_PNumb);
+    tr.appendChild(Staff_Pos);
+    tr.appendChild(Staff_Sly);
     tr.appendChild(btnEdit);
+    tr.appendChild(btnDelete);
 
     
-    MembershipList.append(tr); 
+    StaffList.append(tr); 
     
      btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -110,27 +96,16 @@ function renderTable(doc){
          selectedID=id;
          console.log(selectedID);
          modal_Edit.style.display="block";
-         span.onclick=function()
-         {
-             modal_Edit.style.display="none";
-         }
-         window.onclick=function(event)
-         {
-             if(event.target==modal_Edit)
-                 {
-                     modal_Edit.style.display="none";
-                 }
-         }
     })
     
  
 
     
-    btn2.addEventListener('click', (e) => {
+    btnDelete.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         console.log("heres your id that you selected: "+ id);
-        db.collection('Members').doc(id).delete();
+        db.collection('Staffs').doc(id).delete();
            alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })
     
@@ -140,56 +115,48 @@ function renderTable(doc){
 }
 
 
-form.addEventListener('submit', (e) => {
+Add_Form.addEventListener('submit', (e) => {
     e.preventDefault();
-    db.collection('Members').add({
+    db.collection('Staffs').add({
         
-        Member_Name: form.M_name.value,
+        Staff_ID: Add_Form.ID.value,
         
-        Member_ID: form.M_id.value,
+        Staff_Name: Add_Form.Name.value,
         
-        Member_Email: form.M_email.value,
+        Staff_Gender: Add_Form.Gender.value,
         
-        Member_Phone: form.M_phone.value
+        Staff_PNum: Add_Form.PNum.value,
+        
+        Staff_Position: Add_Form.Pos.value,
+        
+        Staff_Salary: Add_Form.Salary.value
                
     })
     
-    console.log("you added the new item!");
+    console.log("you added the new item!" +Add_Form.ID.value);
 })
 
-form2.addEventListener('submit', (e) => {
+Edit_Form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log("you edit the item!");
     //store field values to a new empty string.
     
-    db.collection('Members').doc(selectedID).update({
+    db.collection('Staffs').doc(selectedID).update({
        
-        Member_Name: form2.Edit_name.value,
+        Staff_ID: Edit_Form.ID.value,
         
-        Member_ID: form2.Edit_id.value,
+        Staff_Name: Edit_Form.Name.value,
         
-        Member_Email: form2.Edit_email.value,
+        Staff_Gender: Edit_Form.Gender.value,
         
-        Member_Phone: form2.Edit_phone.value
+        Staff_PNum: Edit_Form.PNum.value,
+        
+        Staff_Position: Edit_Form.Pos.value,
+        
+        Staff_Salary: Edit_Form.Salary.value
     })
    
 })
-
-
-
-        
-
-////refresh page function
-//
-//function refreshPage()
-//{
-//    var x = confirm("You had sucessfully delete the item from the System!");
-//    if(x==true)
-//        {
-//            document.location.reload(true);
-//        }
-//}
-
 
 
 

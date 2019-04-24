@@ -49,7 +49,6 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Menu</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -76,9 +75,10 @@
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
          <div class="addbutton">
-            <a href="#" class="btn btn-primary btn-xs pull-right" id="myBtn"><b>+</b> Add new Staff</a>
+                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new Staff</a>
+            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
         </div>
-        <!-- The Modal -->
+        <!-- Add new staff Modal -->
         <div id="myModal" class="modal">
           <!-- Modal content -->
           <div class="modal-content">
@@ -87,80 +87,68 @@
               <span class="close">&times;</span>
           </div>
           <div class="modal-body">
-                  <form action="">
-                      First Name:<br>
-                      <input type="text" name="customer_name" value=""><br>
-                      Last Name:<br>
-                      <input type="text" name="services" value=""><br>
+                  <form id="add-staff-form">
+                      Staff ID:<br>
+                      <input type="text" name="ID" placeholder="Staff ID"><br>
+                      Name:<br>
+                      <input type="text" name="Name" placeholder="Name"><br>
                       Gender:<br>
-                      <input type="text" name="date" value=""><br>
+                      <input type="text" name="Gender" placeholder="Gender"><br>
                       Phone Number:<br>
-                      <input type="text" name="time" value=""><br>
-                      Address:<br>
-                      <input type="text" name="date" value=""><br>
-                      Date of hired:<br>
-                      <input type="text" name="date" value=""><br>
+                      <input type="text" name="PNum" placeholder="Phone Number"><br>
                       Position:<br>
-                      <input type="text" name="date" value=""><br>
+                      <input type="text" name="Pos" placeholder="Position"><br>
                       Salary:<br>
-                      <input type="text" name="date" value=""><br><br>
-                      <input type="submit" class="btn btn-success" value="Submit">
+                      <input type="text" name="Salary" placeholder="Salary"><br><br>
+                      <button>Submit</button>
+                    </form>
+          </div>
+          </div>
+        </div>
+         
+              <!-- Edit Staff Modal -->
+        <div id="myModal2" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+          <div class="modal-header">
+              <h2>Edit Staff Details</h2>
+              <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+                  <form id="edit-staff-form">
+                      Staff ID:<br>
+                      <input type="text" name="ID" placeholder="Staff ID"><br>
+                      Name:<br>
+                      <input type="text" name="Name" placeholder="Name"><br>
+                      Gender:<br>
+                      <input type="text" name="Gender" placeholder="Gender"><br>
+                      Phone Number:<br>
+                      <input type="text" name="PNum" placeholder="Phone Number"><br>
+                      Position:<br>
+                      <input type="text" name="Pos" placeholder="Position"><br>
+                      Salary:<br>
+                      <input type="text" name="Salary" placeholder="Salary"><br><br>
+                      <button>Submit</button>
                     </form>
           </div>
           </div>
         </div>
           
-        <table class="table table-striped custab">
+        <table class="table table-striped custab" id="data-table2">
+        <thead>
+            <tr>
+                <th>Staff ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Phone Number</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody id="data_content">
+        </tbody>
         
-        <tr>
-            <th>Staff ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Position</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Date of hired</th>
-            <th>Gender</th>
-            <th>Salary</th>
-            <th class="text-center">Action</th>
-        </tr>
-  
-            <tr>
-                <td>A0001</td>
-                <td>Daniel Yun Sieng</td>
-                <td>Wong</td>
-                <td>Stylist</td>
-                <td>BDC 123 Taman ABC</td>
-                <td>012456789</td>
-                <td>28/03/2017</td>
-                <td>Male</td>
-                <td>RM2000</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>A0002</td>
-                <td>Chuan Hek</td>
-                <td>Tok</td>
-                <td>Stylist</td>
-                <td>BDC 456 Taman ABC</td>
-                <td>0124448889</td>
-                <td>28/03/2015</td>
-                <td>Male</td>
-                <td>RM2000</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>A0003</td>
-                <td>Marcus Min Kiet</td>
-                <td>Lai</td>
-                <td>Senior Stylist</td>
-                <td>BDC 123 Taman ABC</td>
-                <td>012888888</td>
-                <td>28/03/2014</td>
-                <td>Male</td>
-                <td>RM3000</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
     </table>
     </div>
     </div>
@@ -174,36 +162,11 @@
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-//      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-      
-<!--
-          <script>
-        // Initialize Firebase
-        var config = {
-        apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
-        authDomain: "style-and-smile-salon-house.firebaseapp.com",
-        databaseURL: "https://style-and-smile-salon-house.firebaseio.com",
-        projectId: "style-and-smile-salon-house",
-        storageBucket: "style-and-smile-salon-house.appspot.com",
-        messagingSenderId: "1030007772704"
-        };
-        firebase.initializeApp(config);
-        const db = firebase.firestore();
-        db.settings({timestampsInSnapshots: true})
-    </script> 
--->
-    <script src="frameworks/js/myApp.js"></script>
+  <script src="frameworks/js/modal.js"></script>
+  <script src="frameworks/js/staff.js"></script> 
         </div> 
 
-  <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/myApp.js"></script>   
+  
  
 
 </body>
