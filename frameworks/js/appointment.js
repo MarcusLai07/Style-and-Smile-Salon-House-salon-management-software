@@ -19,7 +19,7 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
     changes.forEach(change=>{
         if(change.type=='added'){
             renderAppointment(change.doc)
-		
+		    
 			
         }else if (change.type=='removed'){
             let tr = AppointmentList.querySelector('[data-id=' + change.doc.id +']');
@@ -27,11 +27,13 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
         }
     })
 	
+});
+	
 	
 
             
             
-});
+
 
 //Declare a variable to keep track on today's date
 	var today = new Date();
@@ -89,14 +91,6 @@ function renderAppointment(doc){
 
     AppointmentList.append(tr);
 
-
-
-// db.collection('Appointment').orderBy('date').orderBy('time').get().then((snapshot) => {
-//    snapshot.docs.forEach(doc => { 
-//
-//		renderAppointment(doc);
-//    })
-//});
 
 btnEdit.addEventListener('click', (e) => {
 		e.stopPropagation();
@@ -198,14 +192,83 @@ function renderTodayAppointment(doc){
 	});
 }
 
-
-
-       
-
 db.collection('Appointment').where('date', '==', today).orderBy('time').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {  
 
 		renderTodayAppointment(doc);
+    })
+});
+
+//Render upcoming appoinments
+const UpcomingAppointmentList = document.querySelector('#upcoming_content');
+function renderUpcomingAppointment(doc){
+    let tr = document.createElement('tr');
+    let A_name = document.createElement('td');
+    let A_services = document.createElement('td');
+    let A_date = document.createElement('td');
+    let A_time = document.createElement('td');
+    //creating button
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit"
+    btnEdit.className="btn btn-outline-info btn-xs"
+   
+    
+    var btnDel=document.createElement("BUTTON");
+    btnDel.innerHTML="Delete"
+    btnDel.className="btn btn-outline-danger btn-xs"
+    
+    tr.setAttribute('data-id', doc.id);
+    A_name.textContent = doc.data().customer_name;
+    A_services.textContent = doc.data().services;
+    A_time.textContent = doc.data().time;
+    A_date.textContent = doc.data().date;
+    
+    tr.appendChild(A_name);
+    tr.appendChild(A_services);
+    tr.appendChild(A_time);
+    tr.appendChild(A_date);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDel);
+
+    UpcomingAppointmentList.append(tr);
+	
+	btnEdit.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:"+ id);
+		selectedID = id;
+		console.log(selectedID);
+		modal_Edit.style.display="block";
+		span.onclick = function()
+		{
+			modal_Edit.style.display="none";
+		}
+		window.onclick=function(event)
+		{
+			if(event.target == modal_Edit)
+				{
+					modal_Edit.style.display="none";
+					
+				}
+		}
+	});
+	
+	btnDel.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:" +id);
+		db.collection('Appointment').doc(id).delete();
+			alert("You had successfully delete the item from system! Your table will now be updated!");
+	});
+
+}
+
+
+
+db.collection('Appointment').where('date', '>', today).orderBy('date').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+       
+		renderUpcomingAppointment(doc);
     })
 });
 
@@ -242,11 +305,37 @@ function renderPreviousAppointment(doc){
 
     PreviousAppointmentList.append(tr);
 	
+	btnEdit.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:"+ id);
+		selectedID = id;
+		console.log(selectedID);
+		modal_Edit.style.display="block";
+		span.onclick=function()
+		{
+			modal_Edit.style.display="none";
+		}
+		window.onclick=function(event)
+		{
+			if(event.target == modal_Edit)
+				{
+					modal_Edit.style.display="none";
+					
+				}
+		}
+	});
 	
-}
-
-
-       
+	btnDel.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:" +id);
+		db.collection('Appointment').doc(id).delete();
+			alert("You had successfully delete the item from system! Your table will now be updated!");
+	});
+	
+	
+} 
 
 db.collection('Appointment').where('date', '<', today).orderBy('date').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {       
@@ -255,51 +344,9 @@ db.collection('Appointment').where('date', '<', today).orderBy('date').get().the
     })
 });
 
-//Render upcoming appoinments
-const UpcomingAppointmentList = document.querySelector('#upcoming_content');
-function renderUpcomingAppointment(doc){
-    let tr = document.createElement('tr');
-    let A_name = document.createElement('td');
-    let A_services = document.createElement('td');
-    let A_date = document.createElement('td');
-    let A_time = document.createElement('td');
-    //creating button
-    var btnEdit=document.createElement("BUTTON");
-    btnEdit.innerHTML="Edit"
-    btnEdit.className="btn btn-outline-info btn-xs"
-   
-    
-    var btnDel=document.createElement("BUTTON");
-    btnDel.innerHTML="Delete"
-    btnDel.className="btn btn-outline-danger btn-xs"
-    
-    tr.setAttribute('data-id', doc.id);
-    A_name.textContent = doc.data().customer_name;
-    A_services.textContent = doc.data().services;
-    A_time.textContent = doc.data().time;
-    A_date.textContent = doc.data().date;
-    
-    tr.appendChild(A_name);
-    tr.appendChild(A_services);
-    tr.appendChild(A_time);
-    tr.appendChild(A_date);
-    tr.appendChild(btnEdit);
-    tr.appendChild(btnDel);
-
-    UpcomingAppointmentList.append(tr);
-
-}
 
 
-
-db.collection('Appointment').where('date', '>', today).orderBy('date').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-       
-		renderUpcomingAppointment(doc);
-    })
-});
-
-
+//form is to add appointment to the table
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	db.collection('Appointment').add({
@@ -310,18 +357,23 @@ form.addEventListener('submit', (e) => {
 	})
 });
 
+
+//form 2 is pop out for edit information
 form2.addEventListener('submit', (e) => {
 	e.preventDefault();
 	
 	db.collection('Appointment').doc(selectedID).update({
-		customer_name: Editform.EditA_name.value,
+		customer_name: form2.EditA_name.value,
 		
-		services: Editform.EditA_services.value,
+		services: form2.EditA_services.value,
 		
-		time: Editform.EditA_time.value,
+		time: form2.EditA_time.value,
 		
-		date: Editform.EditA_date.value
+		date: form2.EditA_date.value
 	})
+	
+	confirm("You had made the changes on the details! Please refresh the page!");
+	console.log("you edited the item!");
 	
 });
 
