@@ -11,28 +11,49 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+
+
+//get real time database, if changes made, refresh automatically
+db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderAppointment(change.doc)
+		
+			
+        }else if (change.type=='removed'){
+            let tr = AppointmentList.querySelector('[data-id=' + change.doc.id +']');
+            AppointmentList.removeChild(tr);
+        }
+    })
+	
+	
+
+            
+            
+});
+
+//Declare a variable to keep track on today's date
 	var today = new Date();
 	var dd = String(today.getDate()).padStart(2, '0');
 	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 	var yyyy = String(today.getFullYear());
 
 	var today = dd + '/' + mm + '/' + yyyy ;
-	
+
+var modal_Edit = document.getElementById('myModal2');
+
+var span = document.getElementById('close');
+var selectedID;
+
+
 	
 	
 	
 
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
-form.addEventListener('submit', (e) => {
-	e.preventDefault();
-	db.collection('Appointment').add({
-		customer_name: form.A_name.value,
-		services: form.A_services.value,
-		time: form.A_time.value,
-		date: form.A_date.value
-	})
-});
+const form2 = document.querySelector('#edit-appointment-form');
 
 //Render all appoinments
 const AppointmentList = document.querySelector('#all_content');
@@ -44,14 +65,14 @@ function renderAppointment(doc){
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
     //creating button
-    var btn=document.createElement("BUTTON");
-    btn.innerHTML="Edit"
-    btn.className="btn btn-outline-info btn-xs"
-    btn.id= "M_Edit";
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit"
+    btnEdit.className="btn btn-outline-info btn-xs"
+
     
-    var btn2=document.createElement("BUTTON");
-    btn2.innerHTML="Delete"
-    btn2.className="btn btn-outline-danger btn-xs"
+    var btnDel=document.createElement("BUTTON");
+    btnDel.innerHTML="Delete"
+    btnDel.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -63,21 +84,52 @@ function renderAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
-    tr.appendChild(btn);
-    tr.appendChild(btn2);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDel);
 
     AppointmentList.append(tr);
+
+
+
+// db.collection('Appointment').orderBy('date').orderBy('time').get().then((snapshot) => {
+//    snapshot.docs.forEach(doc => { 
+//
+//		renderAppointment(doc);
+//    })
+//});
+
+btnEdit.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:"+ id);
+		selectedID = id;
+		console.log(selectedID);
+		modal_Edit.style.display="block";
+		span.onclick=function()
+		{
+			modal_Edit.style.display="none";
+		}
+		window.onclick=function(event)
+		{
+			if(event.target == modal_Edit)
+				{
+					modal_Edit.style.display="none";
+					
+				}
+		}
+	});
+	
+	btnDel.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:" +id);
+		db.collection('Appointment').doc(id).delete();
+			alert("You had successfully delete the item from system! Your table will now be updated!");
+	});
 }
 
 
-       
 
-db.collection('Appointment').orderBy('date').orderBy('time').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => { 
-
-		renderAppointment(doc);
-    })
-});
 
 
 //Render today appoinments
@@ -91,14 +143,14 @@ function renderTodayAppointment(doc){
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
     //creating button
-    var btn=document.createElement("BUTTON");
-    btn.innerHTML="Edit"
-    btn.className="btn btn-outline-info btn-xs"
-    btn.id= "M_Edit";
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit"
+    btnEdit.className="btn btn-outline-info btn-xs"
+   
     
-    var btn2=document.createElement("BUTTON");
-    btn2.innerHTML="Delete"
-    btn2.className="btn btn-outline-danger btn-xs"
+    var btnDel=document.createElement("BUTTON");
+    btnDel.innerHTML="Delete"
+    btnDel.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -111,10 +163,39 @@ function renderTodayAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
-    tr.appendChild(btn);
-    tr.appendChild(btn2);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDel);
 
     TodayAppointmentList.append(tr);
+	
+	btnEdit.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:"+ id);
+		selectedID = id;
+		console.log(selectedID);
+		modal_Edit.style.display="block";
+		span.onclick=function()
+		{
+			modal_Edit.style.display="none";
+		}
+		window.onclick=function(event)
+		{
+			if(event.target == modal_Edit)
+				{
+					modal_Edit.style.display="none";
+					
+				}
+		}
+	});
+	
+	btnDel.addEventListener('click', (e) => {
+		e.stopPropagation();
+		let id = e.target.parentElement.getAttribute('data-id');
+		console.log("heres your id that you selected:" +id);
+		db.collection('Appointment').doc(id).delete();
+			alert("You had successfully delete the item from system! Your table will now be updated!");
+	});
 }
 
 
@@ -137,14 +218,14 @@ function renderPreviousAppointment(doc){
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
     //creating button
-    var btn=document.createElement("BUTTON");
-    btn.innerHTML="Edit"
-    btn.className="btn btn-outline-info btn-xs"
-    btn.id= "M_Edit";
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit"
+    btnEdit.className="btn btn-outline-info btn-xs"
+   
     
-    var btn2=document.createElement("BUTTON");
-    btn2.innerHTML="Delete"
-    btn2.className="btn btn-outline-danger btn-xs"
+    var btnDel=document.createElement("BUTTON");
+    btnDel.innerHTML="Delete"
+    btnDel.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -156,10 +237,12 @@ function renderPreviousAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
-    tr.appendChild(btn);
-    tr.appendChild(btn2);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDel);
 
     PreviousAppointmentList.append(tr);
+	
+	
 }
 
 
@@ -181,14 +264,14 @@ function renderUpcomingAppointment(doc){
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
     //creating button
-    var btn=document.createElement("BUTTON");
-    btn.innerHTML="Edit"
-    btn.className="btn btn-outline-info btn-xs"
-    btn.id= "M_Edit";
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit"
+    btnEdit.className="btn btn-outline-info btn-xs"
+   
     
-    var btn2=document.createElement("BUTTON");
-    btn2.innerHTML="Delete"
-    btn2.className="btn btn-outline-danger btn-xs"
+    var btnDel=document.createElement("BUTTON");
+    btnDel.innerHTML="Delete"
+    btnDel.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
     A_name.textContent = doc.data().customer_name;
@@ -200,8 +283,8 @@ function renderUpcomingAppointment(doc){
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
-    tr.appendChild(btn);
-    tr.appendChild(btn2);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDel);
 
     UpcomingAppointmentList.append(tr);
 
@@ -215,6 +298,33 @@ db.collection('Appointment').where('date', '>', today).orderBy('date').get().the
 		renderUpcomingAppointment(doc);
     })
 });
+
+
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	db.collection('Appointment').add({
+		customer_name: form.A_name.value,
+		services: form.A_services.value,
+		time: form.A_time.value,
+		date: form.A_date.value
+	})
+});
+
+form2.addEventListener('submit', (e) => {
+	e.preventDefault();
+	
+	db.collection('Appointment').doc(selectedID).update({
+		customer_name: Editform.EditA_name.value,
+		
+		services: Editform.EditA_services.value,
+		
+		time: Editform.EditA_time.value,
+		
+		date: Editform.EditA_date.value
+	})
+	
+});
+
 
 
 
