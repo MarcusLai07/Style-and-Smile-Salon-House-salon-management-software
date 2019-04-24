@@ -50,14 +50,6 @@ body {
         top: 0;
         left: 0;
     }
-
-    .login-form{
-        margin-top: 50%;
-    }
-
-    .register-form{
-        margin-top: 30%;
-    }
 }
 
 
@@ -69,9 +61,4 @@ body {
 
 .login-main-text h2{
     font-weight: 700;
-}
-
-.btn-black{
-    background-color: grey !important;
-    color: #000;
 }
