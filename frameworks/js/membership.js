@@ -12,9 +12,6 @@
         db.settings({timestampsInSnapshots: true})
 
 
-
-
-
 //get real time database, if changes made, refresh automatically
 db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
     let changes=snapshot.docChanges();
@@ -31,10 +28,8 @@ db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
 })
 
 //Select table and form from the html file.
-
 const MembershipList = document.querySelector('#M_Content');
 const form = document.querySelector('#add-membership-form');
-
 
 var modal_Edit=document.getElementById('myModal2');
 var form2 = document.querySelector('#edit-membership-form');
@@ -43,7 +38,6 @@ var selectedID;
 
 // populate the membership table with the data in the database
 function renderTable(doc){
-    
     
     let tr = document.createElement('tr');
     tr.className="text-center"
@@ -54,19 +48,14 @@ function renderTable(doc){
     let M_email = document.createElement('td');
     
     //creating button
-    
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit";
     btnEdit.className="btn btn-outline-info btn-xs";
-    
-    
     
     var btn2=document.createElement("BUTTON");
     btn2.innerHTML="Delete"
     btn2.className="btn btn-outline-danger btn-xs"
     
-    
-
     tr.setAttribute('data-id', doc.id);
     M_id.textContent = doc.data().Member_ID;
     M_name.textContent=doc.data().Member_Name;
@@ -80,8 +69,6 @@ function renderTable(doc){
     tr.appendChild(btnEdit);
     tr.appendChild(btn2);
    
-
-    
     MembershipList.append(tr); 
     
      btnEdit.addEventListener('click', (e) => {
@@ -103,54 +90,35 @@ function renderTable(doc){
                  }
          }
     })
-    
- 
 
-    
     btn2.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
         console.log("heres your id that you selected: "+ id);
         db.collection('Members').doc(id).delete();
            alert("You had sucessfully delete the item from system! Your table will now be updated!");
-    })
-    
-
-
-        
+    })  
 }
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('Members').add({
-        
         Member_Name: form.M_name.value,
-        
         Member_ID: form.M_id.value,
-        
         Member_Email: form.M_email.value,
-        
-        Member_Phone: form.M_phone.value
-               
+        Member_Phone: form.M_phone.value  
     })
-    
     console.log("you added the new item!");
 })
 
 form2.addEventListener('submit', (e) => {
     e.preventDefault();
- 
     //store field values to a new empty string.
-    
     db.collection('Members').doc(selectedID).update({
-       
         Member_Name: form2.Edit_name.value,
-        
         Member_ID: form2.Edit_id.value,
-        
         Member_Email: form2.Edit_email.value,
-        
         Member_Phone: form2.Edit_phone.value
     })
    
