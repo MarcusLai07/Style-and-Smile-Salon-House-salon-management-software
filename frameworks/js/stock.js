@@ -13,7 +13,7 @@
 
 
 //get real time database, if changes made, refresh automatically
-db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
+db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot =>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
         if(change.type=='added'){
@@ -26,26 +26,28 @@ db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
             
             
 })
-
-//Select table and form from the html file.
-const MembershipList = document.querySelector('#M_Content');
-const form = document.querySelector('#add-membership-form');
+//
+////Select table and form from the html file.
+const StockList = document.querySelector('#S_Content');
+const form = document.querySelector('#add-stock-form');
 
 var modal_Edit=document.getElementById('myModal2');
 var form2 = document.querySelector('#edit-membership-form');
 var span = document.getElementById("close");
 var selectedID;
 
-// populate the membership table with the data in the database
+//// populate the stock table with the data in the database
 function renderTable(doc){
     
     let tr = document.createElement('tr');
     tr.className="text-center"
     
-    let M_id = document.createElement('td');
-    let M_name = document.createElement('td');
-    let M_phone = document.createElement('td');
-    let M_email = document.createElement('td');
+    let SKU = document.createElement('td');
+    let Category = document.createElement('td');
+    let S_Name = document.createElement('td');
+    let S_Quantity = document.createElement('td');
+    let Retail_Price = document.createElement('td');
+    let Ori_Price = document.createElement('td');
     
     //creating button
     var btnEdit=document.createElement("BUTTON");
@@ -57,19 +59,23 @@ function renderTable(doc){
     btnDelete.className="btn btn-outline-danger btn-xs"
     
     tr.setAttribute('data-id', doc.id);
-    M_id.textContent = doc.data().Member_ID;
-    M_name.textContent=doc.data().Member_Name;
-    M_phone.textContent=doc.data().Member_Phone;
-    M_email.textContent=doc.data().Member_Email;
+    SKU.textContent = doc.data().SKU;
+    Category.textContent=doc.data().Category;
+    S_Name.textContent=doc.data().Stock_Name;
+    S_Quantity.textContent=doc.data().Stock_Quantity;
+    Retail_Price.textContent=doc.data().Retail_Price;
+    Ori_Price.textContent=doc.data().Stock_Price;
     
-    tr.appendChild(M_id);
-    tr.appendChild(M_name);
-    tr.appendChild(M_phone);
-    tr.appendChild(M_email);
+    tr.appendChild(SKU);
+    tr.appendChild(Category);
+    tr.appendChild(S_Name);
+    tr.appendChild(S_Quantity);
+    tr.appendChild(Retail_Price);
+    tr.appendChild(Ori_Price);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDelete);
    
-    MembershipList.append(tr); 
+    StockList.append(tr); 
     
      btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -94,8 +100,8 @@ function renderTable(doc){
     btnDelete.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
-        console.log("heres your id that you selected: "+ id);
-        db.collection('Members').doc(id).delete();
+//        console.log("heres your id that you selected: "+ id);
+        db.collection('Stocks').doc(id).delete();
            alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })  
 }
@@ -125,7 +131,3 @@ form2.addEventListener('submit', (e) => {
     confirm("You had made the changes on the details! Please refresh the page!");
     console.log("you edit the item!");
 })
-
-
-
-

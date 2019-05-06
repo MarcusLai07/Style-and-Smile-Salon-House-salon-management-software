@@ -71,21 +71,21 @@
         
  
       <div class="container-fluid">
-        <h1 class="mt-4">Customer Membership</h1>
+        <h1 class="mt-4">Stocks</h1>
         <br>
         <div class="container">
-            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new membership</a>
+            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new stock</a>
               <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
                 
              <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h2>Create new Membership</h2>
+                            <h2>Add New Stock</h2>
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-membership-form">
+                                <form id="add-stock-form">
                                     Membership Name:<br>
                                     <input type="text" name="M_name" placeholder="Membership name"><br>
                                     Membership ID:<br>
@@ -109,7 +109,7 @@
                             <span class="close" id="exit">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="edit-membership-form"form action="#">
+                                <form id="edit-stock-form" form action="#">
                                     Membership Name:<br>
                                     <input type="text" name="Edit_name" placeholder="Membership name"><br>
                                     Membership ID:<br>
@@ -132,14 +132,16 @@
         <table class="table table-striped custab" id="data-table">
             <thead>
                 <tr class="text-center">
-                    <th>Membership ID</th>
-                    <th>Member Name</th>
-                    <th>Phone Number</th>
-                    <th>Email Address</th>
+                    <th>SKU Code</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Retail Price</th>
+                    <th>Stock Price</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
-            <tbody id="M_Content">
+            <tbody id="S_Content">
             </tbody>
     </table>
     </div>
@@ -156,7 +158,7 @@
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/membership.js"></script>
+  <script src="frameworks/js/stock.js"></script>
 
       </div>
 
