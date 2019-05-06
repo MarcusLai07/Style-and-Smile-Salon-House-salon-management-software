@@ -19,8 +19,8 @@ db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot =>{
         if(change.type=='added'){
             renderTable(change.doc)
         }else if (change.type=='removed'){
-            let tr = MembershipList.querySelector('[data-id=' + change.doc.id +']');
-            MembershipList.removeChild(tr);
+            let tr = StockList.querySelector('[data-id=' + change.doc.id +']');
+            StockList.removeChild(tr);
         }
     })
             
@@ -32,7 +32,7 @@ const StockList = document.querySelector('#S_Content');
 const form = document.querySelector('#add-stock-form');
 
 var modal_Edit=document.getElementById('myModal2');
-var form2 = document.querySelector('#edit-membership-form');
+var form2 = document.querySelector('#edit-stock-form');
 var span = document.getElementById("close");
 var selectedID;
 
@@ -100,20 +100,22 @@ function renderTable(doc){
     btnDelete.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
-//        console.log("heres your id that you selected: "+ id);
+        console.log("heres your id that you selected: "+ id);
         db.collection('Stocks').doc(id).delete();
-           alert("You had sucessfully delete the item from system! Your table will now be updated!");
+          alert("You had sucessfully delete the item from system! Your table will now be updated!");
     })  
 }
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    db.collection('Members').add({
-        Member_Name: form.M_name.value,
-        Member_ID: form.M_id.value,
-        Member_Email: form.M_email.value,
-        Member_Phone: form.M_phone.value  
+    db.collection('Stocks').add({
+        SKU: form.SKUCode.value,
+        Category: form.Category.value,
+        Stock_Name: form.S_name.value,
+        Stock_Quantity: form.S_Qty.value,
+        Retail_Price: form.RPrice.value,
+        Stock_Price: form.SPrice.value
     })
     console.log("you added the new item!");
 })
