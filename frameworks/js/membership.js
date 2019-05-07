@@ -53,8 +53,8 @@ function renderTable(doc){
     btnEdit.className="btn btn-outline-info btn-xs";
     
     var btnDelete=document.createElement("BUTTON");
-    btnDelete.innerHTML="Delete"
-    btnDelete.className="btn btn-outline-danger btn-xs"
+    btnDelete.innerHTML="Delete";
+    btnDelete.className="btn btn-outline-danger btn-xs";
     
     tr.setAttribute('data-id', doc.id);
     M_id.textContent = doc.data().Member_ID;
