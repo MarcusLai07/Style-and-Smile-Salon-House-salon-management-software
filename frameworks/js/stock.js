@@ -11,16 +11,20 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+//   $(document).ready( function () {
+//    $('#data-table').DataTable();
+//} )
 
 //get real time database, if changes made, refresh automatically
 db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot =>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
-        if(change.type=='added'){
+        if(change.type=='added' || change.type=='modified'){
             renderTable(change.doc)
         }else if (change.type=='removed'){
             let tr = StockList.querySelector('[data-id=' + change.doc.id +']');
             StockList.removeChild(tr);
+//            $('#data-table').removeChild(tr);
         }
     })
             
@@ -40,7 +44,7 @@ var selectedID;
 function renderTable(doc){
     
     let tr = document.createElement('tr');
-    tr.className="text-center"
+    tr.className="text-center";
     
     let SKU = document.createElement('td');
     let Category = document.createElement('td');
@@ -58,6 +62,8 @@ function renderTable(doc){
     btnDelete.innerHTML="Delete"
     btnDelete.className="btn btn-outline-danger btn-xs"
     
+    //var content = "";
+    
     tr.setAttribute('data-id', doc.id);
     SKU.textContent = doc.data().SKU;
     Category.textContent=doc.data().Category;
@@ -65,7 +71,15 @@ function renderTable(doc){
     S_Quantity.textContent=doc.data().Stock_Quantity;
     Retail_Price.textContent=doc.data().Retail_Price;
     Ori_Price.textContent=doc.data().Stock_Price;
-    
+//    
+//    content += tr;
+//    content += SKU;
+//    content += Category;
+//    content += S_Name;
+//    content += S_Quantity;
+//    content += Retail_Price;
+//    content += Ori_Price;
+//    
     tr.appendChild(SKU);
     tr.appendChild(Category);
     tr.appendChild(S_Name);
@@ -74,7 +88,7 @@ function renderTable(doc){
     tr.appendChild(Ori_Price);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDelete);
-   
+
     StockList.append(tr); 
     
      btnEdit.addEventListener('click', (e) => {
@@ -103,7 +117,7 @@ function renderTable(doc){
         console.log("heres your id that you selected: "+ id);
         db.collection('Stocks').doc(id).delete();
           alert("You had sucessfully delete the item from system! Your table will now be updated!");
-    })  
+    }) 
 }
 
 
@@ -123,13 +137,14 @@ form.addEventListener('submit', (e) => {
 form2.addEventListener('submit', (e) => {
     e.preventDefault();
     //store field values to a new empty string.
-    db.collection('Members').doc(selectedID).update({
-        Member_Name: form2.Edit_name.value,
-        Member_ID: form2.Edit_id.value,
-        Member_Email: form2.Edit_email.value,
-        Member_Phone: form2.Edit_phone.value
-    })
+    db.collection('Stocks').doc(selectedID).update({
+        SKU: form2.Edit_SKUCode.value,
+        Category: form2.Edit_Category.value,
+        Stock_Name: form2.Edit_S_name.value,
+        Stock_Quantity: form2.Edit_S_Qty.value,
+        Retail_Price: form2.Edit_RPrice.value,
+        Stock_Price: form2.Edit_SPrice.value
+    });
    
-    confirm("You had made the changes on the details! Please refresh the page!");
-    console.log("you edit the item!");
+    confirm("You had made the changes on the details!");
 })

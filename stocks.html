@@ -23,7 +23,9 @@
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <link href="css/animated-modalbox.css" rel="stylesheet">
-
+    
+<!--  datatable  -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 </head>
 
@@ -117,15 +119,23 @@
                             <span class="close" id="exit">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="edit-stock-form" form action="#">
-                                    Membership Name:<br>
-                                    <input type="text" name="Edit_name" placeholder="Membership name"><br>
-                                    Membership ID:<br>
-                                    <input type="text" name="Edit_id" placeholder="Membership ID"><br>
-                                    Phone Number<br>
-                                    <input type="text" name="Edit_phone" placeholder="Membership phone number"><br>
-                                    Email Address:<br>
-                                    <input type="text" name="Edit_email" placeholder="Email address"><br><br>
+                                <form id="edit-stock-form">
+                                    SKU Code:<br>
+                                    <input type="text" name="Edit_SKUCode" placeholder="SKU"><br>
+                                    Category:<br>
+                                    <select name="Edit_Category">
+                                        <option value="Shampoo">Shampoo</option>
+                                        <option value="Treatment">Treament</option>
+                                        <option value="Styling">Styling</option>
+                                    </select><br>
+                                    Name:<br>
+                                    <input type="text" name="Edit_S_name" placeholder="Name"><br>
+                                    Quantity:<br>
+                                    <input type="number" name="Edit_S_Qty" placeholder="Quantiy"><br>
+                                    Retail Price:<br>
+                                    <input type="number" name="Edit_RPrice" placeholder="Retail Price"><br>
+                                    Stock Price:<br>
+                                    <input type="number" name="Edit_SPrice" placeholder="Stock Price"><br><br>
                                     <button>submit</button>
                                   </form>
                         </div>
@@ -149,8 +159,8 @@
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
-            <tbody id="S_Content">
-            </tbody>
+            <tbody id="S_Content"></tbody>
+<!--            <tbody></tbody>-->
     </table>
     </div>
                 
@@ -163,10 +173,12 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="frameworks/jquery/jquery.min.js"></script>
-  <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/stock.js"></script>
+        <script src="frameworks/jquery/jquery.min.js"></script>
+        <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="frameworks/js/modal.js"></script>
+        <script src="frameworks/js/stock.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
       </div>
 
