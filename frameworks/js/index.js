@@ -9,6 +9,25 @@ $(document).ready(function() {
     });
 });
 
+// SideNav Button Initialization
+$(".button-collapse").sideNav();
+// SideNav Scrollbar Initialization
+var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+var ps = new PerfectScrollbar(sideNavScrollbar);
+
+function GetServices() {
+    var services = document.getElementById("services");
+    var selectedText = services.options[services.selectedIndex].innerHTML;
+    var selectedValue = services.value;
+    alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+}
+function GetItems() {
+    var items = document.getElementById("items");
+    var selectedText = items.options[items.selectedIndex].innerHTML;
+    var selectedValue = items.value;
+    alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+}
+
 //logout module
 var firebase = app_fireBase;
 var uid = null;
