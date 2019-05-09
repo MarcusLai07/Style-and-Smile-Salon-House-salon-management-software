@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="myChart">
 
 <head>
 
@@ -73,12 +73,12 @@
         
 <!--    Main content    -->
        <div class="container-fluid">
-        <h1 class="mt-4">Staff Management</h1>
+        <h1 class="mt-4">Sales Report</h1>
           <br>
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
          <div class="addbutton">
-                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new Staff</a>
+                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
         </div>
         <!-- Add new staff Modal -->
@@ -86,75 +86,51 @@
           <!-- Modal content -->
           <div class="modal-content">
           <div class="modal-header">
-              <h2>Add New Staff</h2>
+              <h2>Generate Report</h2>
               <span class="close">&times;</span>
           </div>
           <div class="modal-body">
-                  <form id="add-staff-form">
-                      Staff ID:<br>
-                      <input type="text" name="ID" placeholder="Staff ID"><br>
-                      Name:<br>
-                      <input type="text" name="Name" placeholder="Name"><br>
-                      Gender:<br>
-                      <input type="text" name="Gender" placeholder="Gender"><br>
-                      Phone Number:<br>
-                      <input type="text" name="PNum" placeholder="Phone Number"><br>
-                      Position:<br>
-                      <input type="text" name="Pos" placeholder="Position"><br>
-                      Salary:<br>
-                      <input type="text" name="Salary" placeholder="Salary"><br><br>
+                  <form id="durationReport">
+                          <br>
+                           <label for="sel1">Duration(select one):</label>
+                              <select class="form-control" id="sel1">
+                               <option>Daily</option>
+                               <option>Weekly</option>
+                                <option>Fortnightly</option>
+                                <option>Current Months</option>
+                                <option>Current Year</option>
+                              </select>
+                               <br>
                       <button>Submit</button>
                     </form>
           </div>
           </div>
         </div>
-         
-              <!-- Edit Staff Modal -->
-        <div id="myModal2" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-          <div class="modal-header">
-              <h2>Edit Staff Details</h2>
-              <span class="close">&times;</span>
-          </div>
-          <div class="modal-body">
-                  <form id="edit-staff-form">
-                      Staff ID:<br>
-                      <input type="text" name="ID" placeholder="Staff ID"><br>
-                      Name:<br>
-                      <input type="text" name="Name" placeholder="Name"><br>
-                      Gender:<br>
-                      <input type="text" name="Gender" placeholder="Gender"><br>
-                      Phone Number:<br>
-                      <input type="text" name="PNum" placeholder="Phone Number"><br>
-                      Position:<br>
-                      <input type="text" name="Pos" placeholder="Position"><br>
-                      Salary:<br>
-                      <input type="text" name="Salary" placeholder="Salary"><br><br>
-                      <button>Submit</button>
-                    </form>
-          </div>
-          </div>
-        </div>
+        
           
-        <table class="table table-striped custab" id="data-table2">
+        <table class="table table-striped custab">
         <thead>
             <tr>
-                <th>Staff ID</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Phone Number</th>
-                <th>Position</th>
-                <th>Salary</th>
-                <th class="text-center">Action</th>
+                <th>Product Name</th>
+                <th>Quantity Sold</th>
+                <th>Retail Price</th>
+                <th>Total earning (Retail price - stock price) </th>
             </tr>
         </thead>
         <tbody id="data_content">
         </tbody>
         
+        
     </table>
     </div>
     </div>
+    
+      <div id="chartContainer"ng-controller="myChart">
+           
+            <hc-pie-chart title="Chart" data="pieData"><span>&#42;</span>Generated Chart base of the result above</hc-pie-chart>
+
+        
+      </div>
     </div>
       
     <!-- /#page-content-wrapper -->
@@ -166,7 +142,9 @@
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/staff.js"></script> 
+  <script src="frameworks/js/salesChart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script> 
         </div> 
 
   
