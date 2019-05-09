@@ -14,6 +14,11 @@
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+ 
+<!-- HighChart library-->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+ <script src="https://code.highcharts.com/highcharts.src.js"></script>
+       
 
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -119,18 +124,13 @@
         </thead>
         <tbody id="data_content">
         </tbody>
-        
-        
     </table>
+          <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
     </div>
     </div>
-    
-      <div id="chartContainer"ng-controller="myChart">
-           
-            <hc-pie-chart title="Chart" data="pieData"><span>&#42;</span>Generated Chart base of the result above</hc-pie-chart>
-
-        
-      </div>
+            <div id="myChart">
+              
+            </div>
     </div>
       
     <!-- /#page-content-wrapper -->
@@ -143,8 +143,6 @@
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="frameworks/js/modal.js"></script>
   <script src="frameworks/js/salesChart.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script> 
         </div> 
 
   
