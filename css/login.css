@@ -1,8 +1,4 @@
-/*
-body {
-    font-family: "Lato", sans-serif;
-}
-*/
+
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
@@ -14,14 +10,15 @@ body {
 }
 
 .bg-image {
-  background-image: url(../images/11.jpg);
+
+  background-image: url(../images/6.jpg);
   background-size: cover;
   background-position: center;
 }
 
 .login-heading {
   font-weight: 300;
-4
+}
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
@@ -31,7 +28,7 @@ body {
 
 .form-label-group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .form-label-group>input,
