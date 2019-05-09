@@ -1,6 +1,7 @@
 .btnAddandRefresh{
     display:inline-block;
 }
+
 .custab{
     border: 1px solid #ccc;
     padding: 5px;
@@ -107,4 +108,13 @@ body {
     text-decoration: none;
     color: #333;
     font-weight: 600;
+}
+
+.title {
+	
+   padding:15px 15px;
+    margin: 1% 0;
+   
+    float:left;
+	
 }
