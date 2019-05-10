@@ -39,6 +39,13 @@ var modal_Edit=document.getElementById('myModal2');
 var form2 = document.querySelector('#edit-stock-form');
 var span = document.getElementById("close");
 var selectedID;
+var StocksArr={};
+
+db.collection('Stocks').get().then((snapshot)=>{
+    snapshot.docs.forEach(doc =>{
+        
+    })
+})
 
 //// populate the stock table with the data in the database
 function renderTable(doc){
@@ -71,7 +78,7 @@ function renderTable(doc){
     S_Quantity.textContent=doc.data().Stock_Quantity;
     Retail_Price.textContent=doc.data().Retail_Price;
     Ori_Price.textContent=doc.data().Stock_Price;
-//    
+    
 //    content += tr;
 //    content += SKU;
 //    content += Category;
@@ -79,7 +86,7 @@ function renderTable(doc){
 //    content += S_Quantity;
 //    content += Retail_Price;
 //    content += Ori_Price;
-//    
+    
     tr.appendChild(SKU);
     tr.appendChild(Category);
     tr.appendChild(S_Name);
@@ -118,6 +125,10 @@ function renderTable(doc){
         db.collection('Stocks').doc(id).delete();
           alert("You had sucessfully delete the item from system!");
     })
+}
+
+function showResult(){
+    var result = document.getElementById('Search_Input').value;
 }
 
 
