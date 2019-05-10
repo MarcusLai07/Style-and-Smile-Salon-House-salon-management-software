@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 
 <head>
@@ -18,8 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <link href="css/animated-modalbox.css" rel="stylesheet">
@@ -43,7 +43,7 @@
         <a href="#" class="list-group-item list-group-item-action dropdown-toggle bg-secondary text-light" data-toggle="dropdown">Admin</a>
                 <ul class="dropdown-menu bg-secondary">
                     <li><a class="text-light" href="staff.html">Staff Management</a></li>
-                    <li><a  class="text-light"href="salesReport.html">Sales Report</a></li>
+                    <li><a  class="text-light" href="salesReport.html">Sales Report</a></li>
                 </ul>
           </div>
       </div>
@@ -53,10 +53,13 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <h4 class="title">Stocks Management Page</h4>
 
+<!--
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+-->
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -73,12 +76,18 @@
         
  
       <div class="container-fluid">
-        <h1 class="mt-4">Stocks</h1>
+     
         <br>
         <div class="container">
-            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new stock</a>
-              <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
-                
+            <div class="row">
+                <div class="col-md-9">
+                    <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new stock</a>
+                    <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                </div>
+                <input type="text" class="border border-primary border-right-0" id="Search_Input">
+                <p id="test"></p>
+                <button type="button" class="btn btn-primary btn-xs btnAddandRefresh"><i class="fa fa-search" id="btn_Search"></i></button>
+            </div>
              <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">

@@ -116,8 +116,8 @@ function renderTable(doc){
         let id = e.target.parentElement.getAttribute('data-id');
         console.log("heres your id that you selected: "+ id);
         db.collection('Stocks').doc(id).delete();
-          alert("You had sucessfully delete the item from system! Your table will now be updated!");
-    }) 
+          alert("You had sucessfully delete the item from system!");
+    })
 }
 
 
@@ -131,7 +131,7 @@ form.addEventListener('submit', (e) => {
         Retail_Price: form.RPrice.value,
         Stock_Price: form.SPrice.value
     })
-    console.log("you added the new item!");
+    console.log("you added a new item!");
 })
 
 form2.addEventListener('submit', (e) => {
