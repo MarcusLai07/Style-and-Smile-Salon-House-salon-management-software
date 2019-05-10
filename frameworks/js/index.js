@@ -17,16 +17,29 @@ var ps = new PerfectScrollbar(sideNavScrollbar);
 
 function GetServices() {
     var services = document.getElementById("services");
-    var selectedText = services.options[services.selectedIndex].innerHTML;
     var selectedValue = services.value;
-    alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+    console.log(selectedValue);
+    //var services = document.querySelectorAll("#services li");    
+    for(var i = 0; i < services.length; i++)
+    {
+        services[i].onclick = function(){
+            var newService = document.createElement("LI");
+            var textnode = document.getElementById("summarylist").value = this.innerHTML;
+            newService.appendChild(textnode);
+            var list = document.getElementById("summarylist");
+            list.insertBefore(newItem, list.childNodes[0]);
+        };
+    }
 }
+
 function GetItems() {
     var items = document.getElementById("items");
     var selectedText = items.options[items.selectedIndex].innerHTML;
     var selectedValue = items.value;
     alert("Selected Text: " + selectedText + " Value: " + selectedValue);
 }
+
+
 
 //logout module
 var firebase = app_fireBase;

@@ -85,40 +85,48 @@
   <!--Main Layout-->
   <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Sales</h1>
-        <form>
-
-          <div class="form-group">
-            <label for="services">Services</label>
-            <select class="mdb-select md-form colorful-select dropdown-dark" id="services" onclick="getSelectValue()">
-              <option value="" disable>Select services</option>
-              <option value="0">Hair Cut</option>
-              <option value="1">Hair Coloring</option>
-              <option value="2">Perm</option>
-              <option value="3">Hair Wash</option>
-              <option value="4">Hair Care</option>
-            </select>
-            <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Services" value="Add In Services" onclick="GetServices()"/>
-          </div>
-
-          <div class="form-group">
-            <label for="items">Items</label>
-            <select class="mdb-select md-form md-outline colorful-select dropdown-dark" multiple id="items">
-              <optgroup label="Hair Wax">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </optgroup>
-              <optgroup label="team 2">
-                <option value="3">Option 3</option>
-                <option value="4">Option 4</option>
-              </optgroup>
-            </select>
-            <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Items" value="Add In Items" onclick="GetItems()"/>
-          </div>
-
-        </form>
-        
+      <div class="row">
+        <div class="col-sm">
+            <h1 class="mt-4">Sales</h1>
+            <form>
+                <div class="form-group">
+                  <label for="services">Services</label>
+                  <select class="mdb-select md-form colorful-select dropdown-dark" id="services" onclick="getSelectValue()">
+                    <option value="" disable>Select services</option>
+                    <option value="0">Hair Cut</option>
+                    <option value="1">Hair Coloring</option>
+                    <option value="2">Perm</option>
+                    <option value="3">Hair Wash</option>
+                    <option value="4">Hair Care</option>
+                  </select>
+                  <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Services" value="Add In Services" onclick="GetServices()"/>
+                </div>
+      
+                <div class="form-group">
+                  <label for="items">Items</label>
+                  <select class="mdb-select md-form md-outline colorful-select dropdown-dark" multiple id="items">
+                    <optgroup label="Hair Wax">
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                    </optgroup>
+                    <optgroup label="team 2">
+                      <option value="3">Option 3</option>
+                      <option value="4">Option 4</option>
+                    </optgroup>
+                  </select>
+                  <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Items" value="Add In Items" onclick="GetItems()"/>
+                </div>
+      
+              </form>
+        </div>
+        <div class="col-sm">
+            <ul class="list-group" id="summarylist">
+                <li class="list-group-item">Cras justo odio</li>
+              </ul>
+        </div>
       </div>
+
+    </div>
   </main>
   <!--Main Layout-->
 
