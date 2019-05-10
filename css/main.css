@@ -1,6 +1,10 @@
 .btnAddandRefresh{
     display:inline-block;
 }
+::placeholder{
+    color:dodgerblue;
+    opacity: 2;
+}
 .custab{
     border: 1px solid #ccc;
     padding: 5px;
