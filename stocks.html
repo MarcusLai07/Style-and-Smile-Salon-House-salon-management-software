@@ -3,103 +3,103 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Style and Smile Saloon House</title>
-    
+    <title>Style and Smile Saloon House</title>
+
     <!-- Firebse library -->
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
-  <!-- JQuery library-->
+    <!-- JQuery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Bootstrap core CSS -->
-  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
-  <link href="css/animated-modalbox.css" rel="stylesheet">
-    
-<!--  datatable  -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/animated-modalbox.css" rel="stylesheet">
+
+    <!--  datatable  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 </head>
 
 <body>
-<!--    #sidebar-nav-->
-  <div class="d-flex" id="wrapper">
+    <!--    #sidebar-nav-->
+    <div class="d-flex" id="wrapper">
 
-   <div class="border-right bg-dark text-light" id="sidebar-wrapper">
-      <div class="sidebar-heading">Salon and Smile </div>
-      <div class="list-group list-group-flush">
-        <a href="index.html" class="list-group-item list-group-item-action bg-secondary text-light">Sales Page</a>
-        <a href="appointment.html" class="list-group-item list-group-item-action bg-secondary text-light">Appointment</a>
-        <a href="membership.html" class="list-group-item list-group-item-action bg-secondary text-light">Membership</a>
-        <a href="stocks.html" class="list-group-item list-group-item-action bg-secondary text-light">Stock</a>
-        <a href="#" class="list-group-item list-group-item-action dropdown-toggle bg-secondary text-light" data-toggle="dropdown">Admin</a>
+        <div class="border-right bg-dark text-light" id="sidebar-wrapper">
+            <div class="sidebar-heading">Salon and Smile </div>
+            <div class="list-group list-group-flush">
+                <a href="index.html" class="list-group-item list-group-item-action bg-secondary text-light">Sales Page</a>
+                <a href="appointment.html" class="list-group-item list-group-item-action bg-secondary text-light">Appointment</a>
+                <a href="membership.html" class="list-group-item list-group-item-action bg-secondary text-light">Membership</a>
+                <a href="stocks.html" class="list-group-item list-group-item-action bg-secondary text-light">Stock</a>
+                <a href="#" class="list-group-item list-group-item-action dropdown-toggle bg-secondary text-light" data-toggle="dropdown">Admin</a>
                 <ul class="dropdown-menu bg-secondary">
                     <li><a class="text-light" href="staff.html">Staff Management</a></li>
-                    <li><a  class="text-light" href="salesReport.html">Sales Report</a></li>
+                    <li><a class="text-light" href="salesReport.html">Sales Report</a></li>
                 </ul>
-          </div>
-      </div>
-<!-- /#sidebar-wrapper -->
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <h4 class="title">Stocks Management Page</h4>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <h4 class="title">Stocks Management Page</h4>
 
-<!--
+                <!--
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 -->
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                    <a class="nav-link" href="login.html">
-                 <img src="images/logout.png" alt="logout" class="button"> 
-              </a>
-            </li>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="login.html">
+                                <img src="images/logout.png" alt="logout" class="button">
+                            </a>
+                        </li>
 
-         </ul>
-      </div>       
-    </nav>
-        
-        
- 
-      <div class="container-fluid">
-     
-        <br>
-            <div class="row">
-                <div class="col-md-9">
-                    <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new stock</a>
-                    <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                    </ul>
                 </div>
-            </div>
-        <div class="container">
+            </nav>
 
-<!--
+
+
+            <div class="container-fluid">
+
+                <br>
+                <div class="row">
+                    <div class="col-md-9">
+                        <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new stock</a>
+                        <a href="#" class="btn btn-outline-primary btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                    </div>
+                </div>
+                <div class="container">
+
+                    <!--
                 <input type="text" class="border border-primary border-right-0" id="Search_Input">
                 <button type="button" class="btn btn-primary btn-xs btnAddandRefresh" id="btn_Search" onclick="showResult()"><i class="fa fa-search"></i></button>
                 <p id="test"></p>
 -->
 
-             <div id="myModal" class="modal">
+                    <div id="myModal" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Add New Stock</h2>
-                            <span class="close">&times;</span>
-                        </div>
-                        <div class="modal-body">
+                            <div class="modal-header">
+                                <h2>Add New Stock</h2>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
                                 <form id="add-stock-form">
                                     SKU Code:<br>
                                     <input type="text" name="SKUCode" placeholder="SKU"><br>
@@ -118,20 +118,20 @@
                                     Stock Price:<br>
                                     <input type="number" name="SPrice" placeholder="Stock Price"><br><br>
                                     <button>Submit</button>
-                                  </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-            
-<!--            form for editing existing members-->
-             <div id="myModal2" class="modal">
+
+                    <!--            form for editing existing members-->
+                    <div id="myModal2" class="modal">
                         <!-- Modal content -->
                         <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Edit member detail</h2>
-                            <span class="close" id="exit">&times;</span>
-                        </div>
-                        <div class="modal-body">
+                            <div class="modal-header">
+                                <h2>Edit member detail</h2>
+                                <span class="close" id="exit">&times;</span>
+                            </div>
+                            <div class="modal-body">
                                 <form id="edit-stock-form">
                                     SKU Code:<br>
                                     <input type="text" name="Edit_SKUCode" placeholder="SKU"><br>
@@ -150,52 +150,51 @@
                                     Stock Price:<br>
                                     <input type="number" name="Edit_SPrice" placeholder="Stock Price"><br><br>
                                     <button>submit</button>
-                                  </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-       
-        
 
 
-        <table class="table table-striped custab" id="data-table">
-            <thead>
-                <tr class="text-center">
-                    <th>SKU Code</th>
-                    <th>Category</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Retail Price</th>
-                    <th>Stock Price</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-<!--        <tbody id="S_Content"></tbody>-->
-            <tbody></tbody>
-    </table>
+
+
+                    <table class="table table-striped custab" id="data-table">
+                        <thead>
+                            <tr class="text-center">
+                                <th>SKU Code</th>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Retail Price</th>
+                                <th>Stock Price</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <!--        <tbody id="S_Content"></tbody>-->
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+
+                <!-- /#page-content-wrapper -->
+            </div>
+            <!-- /#wrapper -->
+
+            <!-- Bootstrap core JavaScript -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <!--        <script src="frameworks/jquery/jquery.min.js"></script>-->
+            <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="frameworks/js/modal.js"></script>
+            <script src="frameworks/js/stock.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+        </div>
+
+
+
     </div>
-                
-         
-    <!-- /#page-content-wrapper -->
-      </div>
-  <!-- /#wrapper -->
 
-  <!-- Bootstrap core JavaScript -->
-               <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-<!--        <script src="frameworks/jquery/jquery.min.js"></script>-->
-        <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="frameworks/js/modal.js"></script>
-        <script src="frameworks/js/stock.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-      </div>
-
-  
-
-  </div>      
-    
 
 </body>
 
