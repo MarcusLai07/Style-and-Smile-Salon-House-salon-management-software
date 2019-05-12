@@ -46,6 +46,7 @@
                 <ul class="dropdown-menu bg-secondary">
                     <li><a class="text-light" href="staff.html">Staff Management</a></li>
                     <li><a  class="text-light"href="salesReport.html">Sales Report</a></li>
+                    <li><a  class="text-light"href="staffReport.html">Staffs Report</a></li>
                 </ul>
           </div>
       </div>
@@ -78,7 +79,7 @@
         
 <!--    Main content    -->
        <div class="container-fluid">
-        <h1 class="mt-4">Sales Report</h1>
+        <h1 class="mt-4">Staff Report</h1>
           <br>
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
@@ -86,9 +87,12 @@
                  <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
         </div>
-        <!-- Choose duration modal -->
+        
+        
+        <!--Modal not in use as it does not need to choose anything-->
+<!--
         <div id="myModal" class="modal">
-          <!-- Modal content -->
+           Modal content 
           <div class="modal-content">
           <div class="modal-header">
               <h2>Generate Report</h2>
@@ -111,15 +115,17 @@
           </div>
           </div>
         </div>
+-->
         
           
         <table class="table table-striped custab">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Quantity Sold</th>
-                <th>Retail Price</th>
-                <th>Total earning (Retail price - stock price) </th>
+               <th>Staff ID</th>
+                <th>Staff Name</th>
+                <th>Phone Number</th>
+                <th>Position</th>
+                <th>Total sales (sales from appointment (customers' preference), yet to implemented.) </th>
             </tr>
         </thead>
         <tbody id="data_content">
@@ -148,7 +154,7 @@
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/salesChart.js"></script>
+  <script src="frameworks/js/staffChart.js"></script>
         </div> 
 
   
