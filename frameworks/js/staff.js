@@ -24,6 +24,7 @@ db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
             StaffList.removeChild(tr);
         }
     })
+    //debugging purpose
     console.log("you gain some data")
             
             
@@ -42,6 +43,7 @@ var selectedID;
 
 // populate the membership table with the data in the database
 function renderTable(doc){
+    //debugging purpose
     console.log("you just run me");
     
     
@@ -94,6 +96,7 @@ function renderTable(doc){
         let id = e.target.parentElement.getAttribute('data-id');
         console.log("heres your id that you selected: "+ id);
          selectedID=id;
+         //debugging purpose
          console.log(selectedID);
          modal_Edit.style.display="block";
     })
@@ -133,11 +136,14 @@ Add_Form.addEventListener('submit', (e) => {
                
     })
     
+       //debugging purpose
     console.log("you added the new item!" +Add_Form.ID.value);
 })
 
 Edit_Form.addEventListener('submit', (e) => {
     e.preventDefault();
+    
+       //debugging purpose
     console.log("you edit the item!");
     //store field values to a new empty string.
     

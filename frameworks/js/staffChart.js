@@ -12,13 +12,8 @@ var chart=Highcharts.chart('myChart',{
     plotOptions:{
          series: {
          cursor: 'pointer',
-         events: {
-             click: function () {
-                    alert('666');
-                }
-            }
-        }
-    },
+    }
+   },
     
     title:{
         text:'Style and Smile Salon House Yearly Staff Performance'
@@ -45,6 +40,7 @@ var chart=Highcharts.chart('myChart',{
             name: 'Total Sales in RM',
             colorByPoint: true,
             data: [{
+                title:"Staff Name",                
                 name: 'Chuan Hek',
                 y: 11222,
                 sliced: true,
@@ -62,9 +58,35 @@ var chart=Highcharts.chart('myChart',{
                 name: 'Wong',
                 y: 77888
             }],
-        }]
+        }],
+    
+    exporting: {
+        //disable the mini menu button on top right of the chart.
+    enabled:false,
+        
+        //enable Labels
+      chartOptions:{
+      plotOptions:{
+      series:{
+      dataLabels: {
+             enabled: true
+                  }
+             }
+         }
+
+       }
+     
+//    csv: {
+//        itemDelimiter: ' ; '
+//    },
+  }
    
      
 });
+
+function downloadCSV()
+{
+    chart.downloadCSV();
+}
 
 
