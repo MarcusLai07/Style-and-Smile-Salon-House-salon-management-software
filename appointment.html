@@ -92,9 +92,10 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-appointment-form">
+                                <form id="add-appointment-form" name="appointmentform" onsubmit="return validateform()">
                                     Customer Name:<br>
-                                    <input type="text" name="A_name" placeholder=""><br>
+                                    <input type="text" onkeypress="return (event.charCode > 64 && 
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="A_name"><br>
                                     Services:<br>
                                     <input type="text" name="A_services" placeholder=""><br>
                                     Date:<br>

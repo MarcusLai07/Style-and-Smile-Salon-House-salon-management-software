@@ -11,6 +11,64 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+function validatememberform() {
+ var name = document.forms["membershipform"]["M_name"].value;
+ var id = document.forms["membershipform"]["M_id"].value;
+ var phone = document.forms["membershipform"]["M_phone"].value;
+ var email = document.forms["membershipform"]["M_email"].value;
+	
+  if (name == "") {
+    alert("Name must be filled out");
+	  name.focus();
+    return false;
+  }else
+	
+  if (id == ""){
+	  alert("Membership ID must be filled out");
+	  id.focus();
+	  return false;
+  }else
+	
+  if (phone == ""){
+	  alert("Phone Number must be filled out");
+	  phone.focus();
+	  return false;
+  }else
+	
+  if(email ==""){
+	  alert("Email address must be filled out");
+	  email.focus();
+	  return false;
+  }else
+	
+  if(email.indexOf(".", 0)< 0){
+	  alert("Please enter a valid e-mail address");
+	  email.focus();
+	  return false;
+	  
+  }else
+	
+	if(email.indexOf("@",0)<0){
+		alert("Please enter a valid e-mail address");
+		email.focus();
+		return false;
+	}
+	
+	else
+	
+	form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    db.collection('Members').add({
+        Member_Name: form.M_name.value,
+        Member_ID: form.M_id.value,
+        Member_Email: form.M_email.value,
+        Member_Phone: form.M_phone.value  
+    })
+    console.log("you added the new item!");
+})
+
+	
+};
 
 //get real time database, if changes made, refresh automatically
 db.collection('Members').orderBy("Member_ID").onSnapshot(snapshot =>{
@@ -100,7 +158,6 @@ function renderTable(doc){
     })  
 }
 
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('Members').add({
@@ -110,7 +167,7 @@ form.addEventListener('submit', (e) => {
         Member_Phone: form.M_phone.value  
     })
     console.log("you added the new item!");
-})
+});
 
 form2.addEventListener('submit', (e) => {
     e.preventDefault();

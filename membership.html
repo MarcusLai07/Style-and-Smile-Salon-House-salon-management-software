@@ -88,13 +88,14 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-membership-form">
+                                <form id="add-membership-form" name="membershipform" onsubmit="return validatememberform()">
                                     Membership Name:<br>
-                                    <input type="text" name="M_name" placeholder="Membership name"><br>
+                                    <input type="text" onkeypress="return (event.charCode > 64 && 
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="M_name" placeholder="Membership name"><br>
                                     Membership ID:<br>
                                     <input type="text" name="M_id" placeholder="Membership ID"><br>
                                     Phone Number<br>
-                                    <input type="text" name="M_phone" placeholder="Membership phone number"><br>
+                                    <input type="number" name="M_phone" placeholder="Membership phone number"><br>
                                     Email Address:<br>
                                     <input type="text" name="M_email" placeholder="Email address"><br><br>
                                     <button>Submit</button>

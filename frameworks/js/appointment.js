@@ -29,7 +29,48 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
 	
 });
 	
+function validateform() {
+  var name = document.forms["appointmentform"]["A_name"].value;
+  var services = document.forms["appointmentform"]["A_services"].value;
+	var date = document.forms["appointmentform"]["A_date"].value;
+	var time = document.forms["appointmentform"]["A_time"].value;
+  if (name == "") {
+    alert("Name must be filled out");
+	  name.focus();
+    return false;
+  } 
 	
+  if (services == ""){
+	  alert("Type of services must be provided");
+	  services.focus();
+	  return false;
+  }
+	
+  if (date == ""){
+	  alert("Please enter a date");
+	  date.focus();
+	  return false;
+  }
+	
+  if(time == ""){
+	  alert("Please enter a time");
+	  time.focus();
+	  return false;
+  }else
+	  
+	  //form is to add appointment to the table
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	db.collection('Appointment').add({
+		customer_name: form.A_name.value,
+		services: form.A_services.value,
+		time: form.A_time.value,
+		date: form.A_date.value
+	})
+})
+	
+	
+};
 
             
             
@@ -356,6 +397,7 @@ form.addEventListener('submit', (e) => {
 		date: form.A_date.value
 	})
 });
+	
 
 
 //form 2 is pop out for edit information
