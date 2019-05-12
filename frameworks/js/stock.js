@@ -98,7 +98,7 @@ db.collection("Stocks").get().then(function(querySnapshot){
 //    Ori_Price.textContent=doc.data().Stock_Price;
 
     setTimeout(paginateTable,100); 
-    $("#data-table").append(content);
+
 //    content += tr;
 //    content += SKU;
 //    content += Category;
@@ -137,6 +137,7 @@ db.collection("Stocks").get().then(function(querySnapshot){
                 //then triger a function that will delete the entire <tbody> and then reload it
             }
         })
+        $("#data-table").append(content);
     var edit = document.getElementsByClassName("btnEdit");
     for (var i=0; i<edit.length;i++){
         edit[i].addEventListener('click', (e) => {
@@ -162,18 +163,7 @@ db.collection("Stocks").get().then(function(querySnapshot){
                  }
          }
     })}
-//
-//    document.getElementsByClassName("btnDelete").addEventListener('click', (e) => {
-//        e.stopPropagation();
-//        let id = e.target.parentElement.getAttribute('data-id');
-//        console.log("heres your id that you selected: "+ id);
-//        db.collection('Stocks').doc(id).delete();
-//          alert("You had sucessfully delete the item from system!");
-//    })
-//
-//function showResult(){
-//    var result = document.getElementById('Search_Input').value;
-//}
+
 
 
 form.addEventListener('submit', (e) => {
