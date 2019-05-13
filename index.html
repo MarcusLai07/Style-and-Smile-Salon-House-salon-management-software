@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -10,184 +9,103 @@
 
   <title>Style and Smile Saloon House</title>
   <!-- Firebse library -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
   <!-- JQuery library-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="frameworks/bootstrap/css/mdb.min.css" rel="stylesheet">
-
 
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
-
-   Custom styles for this page 
-
-  <!-- Custom styles for this page -->
-
+  <link href="css/main.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
 </head>
 
-<body class="fixed-sn black-skin">
-  <!--Double navigation-->
-  <header>
-    <!-- Sidebar navigation -->
-    <div id="slide-out" class="side-nav fixed">
-      <ul class="custom-scrollbar">
-        <!-- Logo -->
-        <li>
-          <div class="logo-wrapper waves-light">
-            <a href="#">Style and Smile Saloon House</a>
+<body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="border-right bg-dark text-light" id="sidebar-wrapper">
+      <div class="sidebar-heading">Salon and Smile </div>
+      <div class="list-group list-group-flush">
+        <a href="index.html" class="list-group-item list-group-item-action bg-secondary text-light">Sales Page</a>
+        <a href="appointment.html" class="list-group-item list-group-item-action bg-secondary text-light">Appointment</a>
+        <a href="membership.html" class="list-group-item list-group-item-action bg-secondary text-light">Membership</a>
+        <a href="stocks.html" class="list-group-item list-group-item-action bg-secondary text-light">Stock</a>
+        <a href="#" class="list-group-item list-group-item-action dropdown-toggle bg-secondary text-light" data-toggle="dropdown">Admin</a>
+                <ul class="dropdown-menu bg-secondary">
+                    <li><a class="text-light" href="staff.html">Staff Management</a></li>
+                    <li><a  class="text-light"href="salesReport.html">Sales Report</a></li>
+                </ul>
           </div>
-		  </li>
-		</ul>
       </div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
+      <!-- Navigation bar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <h4 class="title">Sales Page</h4>
-
-<!--
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
--->
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <h4 class="title" id="title">Sales Page</h4>  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-             
-              <a class="nav-link" href="login.html">
-                 <img src="images/logout.png" alt="logout" class="button"> 
-              </a>
-              
-               
+              <li class="nav-item active">
+                      <a class="nav-link" href="login.html">
+                   <img src="images/logout.png" alt="logout" class="button"> 
+                </a>
+              </li>
+          </ul>
+        </div>       
+      </nav>
+      <!-- /#navigation-bar-wrapper -->
 
-        </li>
-        <!--/. Logo -->
-        <!-- Side navigation links -->
-        <li>
-          <ul class="collapsible collapsible-header waves-effect">
-            <li><a href="index.html" class="collapsible-header waves-effect">Sales Page</a>
-            </li>
-            <li><a href="appointment.html" class="collapsible-header waves-effect">Appointment</a>
-            </li>
-            <li><a href="membership.html" class="collapsible-header waves-effect">Membership</a>
-            </li>
-            <li><a href="stocks.html" class="collapsible-header waves-effect">Stock</a>
-            </li>
-            <li><a class="collapsible-header waves-effect arrow-r">Admin<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="staff.html" class="waves-effect">Staff Management</a>
-                  </li>
-                  <li><a href="salesReport.html" class="waves-effect">Staff Report</a>
-                  </li>
-                </ul>
+      <!-- Main content -->
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm">
+                <form>
+                  <div class="form-group">
+                      <label for="S_Content">Services</label></br>
+                      <select id="S_Content" name="S_Content" onchange="getSelectedService()">
+                          <option selected disabled>Select from below</option>
+                          <option value="7">HairCut (Male)</option>
+                          <option value="9">HairCut (Female)</option>
+                          <option value="30">Hair Colouring</option>
+                          <option value="7">HairCut (Male)</option>
+                          <option value="9">HairCut (Female)</option>
+                          <option value="30">Hair Colouring</option>
+                      </select>
+                  </div>
+
+                </form>               
               </div>
 
-            </li>
-          </ul>
-        </li>
-        <!--/. Side navigation links -->
-      </ul>
-      <div class="sidenav-bg mask-strong"></div>
-    </div>
-    <!--/. Sidebar navigation -->
-    <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
-      <!-- SideNav slide-out button -->
-      <div class="float-left">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+              <div class="col-sm">
+                  <ul class="list-group" id="S_List">
+                      <li class="list-group-item">Selected Summary</li>
+                  </ul>
+              </div>
+            </div>
       </div>
-
-
-        </nav>
-        
-      <div class="container-fluid">
-        <br>
-
-      <!-- Breadcrumb-->
-      <ul class="nav navbar-nav nav-flex-icons ml-auto">
-        <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Logout</span></a>
-        </li>
-      </ul>
-		  </div>
-		  
-    </nav>
-	  </div>
-    <!-- /.Navbar -->
-  </header>
-  <!--/.Double navigation-->
-
-  <!--Main Layout-->
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm">
-            <h1 class="mt-4">Sales</h1>
-            <form>
-                <div class="form-group">
-                  <label for="services">Services</label>
-                  <select class="mdb-select md-form colorful-select dropdown-dark" id="services" onclick="getSelectValue()">
-                    <option value="" disable>Select services</option>
-                    <option value="0">Hair Cut</option>
-                    <option value="1">Hair Coloring</option>
-                    <option value="2">Perm</option>
-                    <option value="3">Hair Wash</option>
-                    <option value="4">Hair Care</option>
-                  </select>
-                  <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Services" value="Add In Services" onclick="GetServices()"/>
-                </div>
-      
-                <div class="form-group">
-                  <label for="items">Items</label>
-                  <select class="mdb-select md-form md-outline colorful-select dropdown-dark" multiple id="items">
-                    <optgroup label="Hair Wax">
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                    </optgroup>
-                    <optgroup label="team 2">
-                      <option value="3">Option 3</option>
-                      <option value="4">Option 4</option>
-                    </optgroup>
-                  </select>
-                  <input type="button" class="btn btn-outline-primary btn-rounded btn-lg" id="myBtn_Items" value="Add In Items" onclick="GetItems()"/>
-                </div>
-      
-              </form>
-        </div>
-        <div class="col-sm">
-            <ul class="list-group" id="summarylist">
-                <li class="list-group-item">Cras justo odio</li>
-              </ul>
-        </div>
-      </div>
+      <!-- /#main-content-wrapper -->
 
     </div>
-  </main>
-  <!--Main Layout-->
+    <!-- /#page-content-wrapper -->
 
-  <!-- JQuery -->
-  <script src="frameworks/bootstrap/js/jquery-3.3.1.min.js"></script>
+  
   <!-- Bootstrap core JavaScript -->
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script src="frameworks/bootstrap/js/mdb.min.js"></script>
-
-   <!-- Custom page JavaScript -->
-  <script src="frameworks/js/login.js"></script>
+  <!-- Custom page JavaScript -->
+  <!-- <script src="frameworks/js/login.js"></script> -->
   <script src="frameworks/js/index.js"></script>
 
+</div>
 </body>
 
 </html>
+
+
