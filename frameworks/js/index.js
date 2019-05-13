@@ -25,6 +25,19 @@ function getSelectedService(){
     liNode.appendChild(txt);
     listNode.appendChild(liNode);
 }
+function getSelectedItem(){
+    var selectedValue = document.getElementById("I_Content").value;
+    var selectedText = document.getElementById("I_Content").options[I_Content.selectedIndex].innerHTML;
+    console.log(selectedValue + selectedText);
+
+    listNode = document.getElementById('S_List');
+    liNode = document.createElement("LI");
+    liNode.className = "list-group-item";
+    txt = document.createTextNode(selectedText + " RM" + selectedValue);
+
+    liNode.appendChild(txt);
+    listNode.appendChild(liNode);
+}
 
 //logout module
 var firebase = app_fireBase;
