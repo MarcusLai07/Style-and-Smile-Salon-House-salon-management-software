@@ -19,6 +19,7 @@ function getSelectedService(){
 
     listNode = document.getElementById('S_List');
     liNode = document.createElement("LI");
+    liNode.className = "list-group-item";
     txt = document.createTextNode(selectedText + " RM" + selectedValue);
 
     liNode.appendChild(txt);
