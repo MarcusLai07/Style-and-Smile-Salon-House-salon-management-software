@@ -112,6 +112,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     //    
     //    
 
+    //this function allow staffs to deletes a selected stock item
     $(document).on("click", ".btnDelete", function () {
         if (confirm("Proceed with Delete: click 'OK'\n")) {
             console.log("deleted button clicked"); //works
@@ -129,6 +130,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     })
     $("#data-table").append(content);
 
+    //this function allow staffs to open the edit-stock-form modal
     $(document).on("click", ".btnEdit", function () {
         var getrowIndex2 = $(this).closest('tr').attr('id');
         selectedID = IDarr[getrowIndex2];
