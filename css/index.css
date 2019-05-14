@@ -1,8 +1,17 @@
-.form-group{
-    width: 80%;
+.col-sm{
+    padding-top: 1%;
 }
 
-.md-outline.select-wrapper+label {
-    top: .5em !important;
-    z-index: 2 !important;
-    }
+label{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#S_Content{
+    width: 70%;
+    overflow: auto;
+}
+#I_Content{
+    width: 70%;
+    overflow: auto;
+}

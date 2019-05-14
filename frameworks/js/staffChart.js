@@ -76,9 +76,9 @@ var chart=Highcharts.chart('myChart',{
 
        }
      
-//    csv: {
-//        itemDelimiter: ' ; '
-//    },
+    csv: {
+        itemDelimiter: ' ; '
+    },
   }
    
      
