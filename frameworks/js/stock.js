@@ -68,6 +68,13 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         content += '<td>' + "<Button class='btn btn-outline-info btn-xs btnEdit'>Edit</Button><Button class='btn btn-outline-danger btn-xs btnDelete'>Delete</Button>" + '</td>';
         content += '</tr>';
         IDcounter++;
+        if(doc.data().Stock_Quantity<10){
+            console.log(doc.data().Stock_Name);
+            let S_Quantity = document.createElement('td');
+            S_Quantity.textContent=doc.data().Stock_Quantity;
+            S_Quantity.className="danger";
+            //console.log(IDarr);
+        }
     });
     //    let tr = document.createElement('tr');
     //    tr.className="text-center";
@@ -115,7 +122,6 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     //this function allow staffs to deletes a selected stock item
     $(document).on("click", ".btnDelete", function () {
         if (confirm("Proceed with Delete: click 'OK'\n")) {
-            console.log("deleted button clicked"); //works
             var getrowIndex = $(this).closest('tr').attr('id');
             console.log(getrowIndex); //works
             var getPID = IDarr[getrowIndex];
@@ -146,8 +152,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         }
     })
 
-
-
+    //Form that adds new stock items into the database
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         db.collection('Stocks').add({
@@ -161,10 +166,10 @@ db.collection("Stocks").get().then(function (querySnapshot) {
             window.location.href = "stocks.html";
         })
     })
-
+    
+    //Form that allow staffs to edit a certain item
     form2.addEventListener('submit', (e) => {
         e.preventDefault();
-        //store field values to a new empty string.
         db.collection('Stocks').doc(selectedID).update({
             SKU: form2.Edit_SKUCode.value,
             Category: form2.Edit_Category.value,
