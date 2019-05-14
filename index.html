@@ -81,7 +81,7 @@
                   </div>
 
                   <div class="form-group">
-                      <label for="I_Content">Services</label></br>
+                      <label for="I_Content">Items</label></br>
                       <select id="I_Content" name="I_Content" onchange="getSelectedItem()">
                           <option selected disabled>Select items from below</option>
                           <option value="17">Shampoo</option>
@@ -97,9 +97,17 @@
               </div>
 
               <div class="col-sm">
-                  <ul class="list-group" id="S_List">
-                      <li class="list-group-item">Selected Summary</li>
-                  </ul>
+                  <table class="table table-striped custab" id="summary-table">
+                      <thead>
+                          <tr class="text-center">
+                              <th>Services and Items</th>
+                              <th>Price</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody id="PurchaseSummary">
+                      </tbody>
+                  </table>
               </div>
             </div>
       </div>
