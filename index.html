@@ -71,12 +71,6 @@
                       <label for="S_Content">Services</label></br>
                       <select id="S_Content" name="S_Content" onchange="getSelectedService()">
                           <option selected disabled>Select services from below</option>
-                          <option value="7">HairCut (Male)</option>
-                          <option value="9">HairCut (Female)</option>
-                          <option value="30">Hair Colouring</option>
-                          <option value="7">HairCut (Male)</option>
-                          <option value="9">HairCut (Female)</option>
-                          <option value="30">Hair Colouring</option>
                       </select>
                   </div>
 
@@ -84,30 +78,47 @@
                       <label for="I_Content">Items</label></br>
                       <select id="I_Content" name="I_Content" onchange="getSelectedItem()">
                           <option selected disabled>Select items from below</option>
-                          <option value="17">Shampoo</option>
-                          <option value="20">Gabsty Wax</option>
-                          <option value="18">Hairdye Aliya</option>
-                          <option value="17">Shampoo</option>
-                          <option value="20">Gabsty Wax</option>
-                          <option value="18">Hairdye Aliya</option>
                       </select>
                   </div>
+                </form>
 
-                </form>               
+                <button id="showTotal" class="btn btn-outline-info btn-xss" onclick="renderTotalPrice()">Show Current Total Price</button>
+                <table class="table table-striped custab" id="summaryT-table">
+                  <thead>
+                      <tr class="text-center">
+                          <th>Total Price</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody id="TotalSummary">
+                  </tbody>
+              </table>
+                
               </div>
 
               <div class="col-sm">
-                  <table class="table table-striped custab" id="summary-table">
+                  <table class="table table-striped custab" id="summaryS-table">
                       <thead>
                           <tr class="text-center">
-                              <th>Services and Items</th>
+                              <th>Services</th>
                               <th>Price</th>
                               <th>Action</th>
                           </tr>
                       </thead>
-                      <tbody id="PurchaseSummary">
+                      <tbody id="PurchaseServicesSummary">
                       </tbody>
                   </table>
+                  <table class="table table-striped custab" id="summaryI-table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Items</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="PurchaseItemsSummary">
+                    </tbody>
+                </table>
               </div>
             </div>
       </div>
