@@ -53,7 +53,7 @@
         <div id="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <h4 class="title">Stocks Management Page</h4>
+                <h4 class="title">Stock Management Page</h4>
 
                 <!--
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@
                                     Category:<br>
                                     <select name="Category">
                                         <option value="Shampoo">Shampoo</option>
-                                        <option value="Treatment">Treament</option>
+                                        <option value="Conditioner">Conditioner</option>
                                         <option value="Styling">Styling</option>
                                     </select><br>
                                     Name:<br>
@@ -138,7 +138,7 @@
                                     Category:<br>
                                     <select name="Edit_Category">
                                         <option value="Shampoo">Shampoo</option>
-                                        <option value="Treatment">Treament</option>
+                                        <option value="Conditioner">Conditioner</option>
                                         <option value="Styling">Styling</option>
                                     </select><br>
                                     Name:<br>
@@ -155,7 +155,14 @@
                         </div>
                     </div>
 
-
+                  <table class="table">
+                      <h3 id="low-stock-indicator">Your Stocks are all mo man tai</h3>
+                      <thead>
+                          <th id="low-stock-name"></th>
+                          <th id="low-stock-quantity"></th>
+                      </thead>
+                      <tbody id="low-stock-table"></tbody>
+                    </table>
 
 
                     <table class="table table-striped custab" id="data-table">
@@ -170,7 +177,7 @@
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <!--        <tbody id="S_Content"></tbody>-->
+                        <!--<tbody id="S_Content"></tbody>-->
                         <tbody></tbody>
                     </table>
                 </div>

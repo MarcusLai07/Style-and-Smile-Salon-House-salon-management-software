@@ -69,6 +69,9 @@ body {
     width:4%;  
 }
 
+.table{
+  overflow: auto;
+}
 
 .project-tab {
     padding: 10%;

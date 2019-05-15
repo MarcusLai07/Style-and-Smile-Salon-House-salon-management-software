@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="myChart">
 
 <head>
 
@@ -14,6 +14,14 @@
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+ 
+<!-- HighChart library-->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+ <script src="https://code.highcharts.com/highcharts.src.js"></script>
+ <script src="https://code.highcharts.com/modules/data.src.js"></script>
+ <script src="https://code.highcharts.com/modules/exporting.src.js"></script>
+ <script src="https://code.highcharts.com/modules/export-data.js"></script>
+       
 
   <!-- Bootstrap core CSS -->
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -51,15 +59,10 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <h4 class="title">Staff Management Page</h4>
 
-<!--
-        not using toggle button to toggle menu. decided to always show the menu
-        for easier navigation. 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
--->
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -79,88 +82,70 @@
         
 <!--    Main content    -->
        <div class="container-fluid">
-        
+        <h1 class="mt-4">Staff Report</h1>
           <br>
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
          <div class="addbutton">
-                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn"><b>+</b> Add new Staff</a>
+                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
         </div>
-        <!-- Add new staff Modal -->
+        
+        
+        <!--Modal not in use as it does not need to choose anything-->
+<!--
         <div id="myModal" class="modal">
-          <!-- Modal content -->
+           Modal content 
           <div class="modal-content">
           <div class="modal-header">
-              <h2>Add New Staff</h2>
+              <h2>Generate Report</h2>
               <span class="close">&times;</span>
           </div>
           <div class="modal-body">
-                  <form id="add-staff-form">
-                      Staff ID:<br>
-                      <input type="text" name="ID" placeholder="Staff ID" required><br>
-                      Name:<br>
-                      <input type="text" name="Name" placeholder="Name" required><br>
-                      Gender:<br>
-                      <input type="text" name="Gender" placeholder="Gender" required><br>
-                      Phone Number:<br>
-                      <input type="text" name="PNum" placeholder="Phone Number" required><br>
-                      Position:<br>
-                      <input type="text" name="Pos" placeholder="Position" required><br>
-                      Salary:<br>
-                      <input type="text" name="Salary" placeholder="Salary" required><br><br>
+                  <form id="durationReport">
+                          <br>
+                           <label for="sel1">Duration(select one):</label>
+                              <select class="form-control" id="sel1">
+                               <option>Daily</option>
+                               <option>Weekly</option>
+                                <option>Fortnightly</option>
+                                <option>Current Months</option>
+                                <option>Current Year</option>
+                              </select>
+                               <br>
                       <button>Submit</button>
                     </form>
           </div>
           </div>
         </div>
-         
-              <!-- Edit Staff Modal -->
-        <div id="myModal2" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-          <div class="modal-header">
-              <h2>Edit Staff Details</h2>
-              <span class="close">&times;</span>
-          </div>
-          <div class="modal-body">
-                  <form id="edit-staff-form">
-                      Staff ID:<br>
-                      <input type="text" name="ID" placeholder="Staff ID" required><br>
-                      Name:<br>
-                      <input type="text" name="Name" placeholder="Name" required><br>
-                      Gender:<br>
-                      <input type="text" name="Gender" placeholder="Gender" required><br>
-                      Phone Number:<br>
-                      <input type="number" name="PNum" placeholder="Phone Number" required><br>
-                      Position:<br>
-                      <input type="text" name="Pos" placeholder="Position" required><br>
-                      Salary:<br>
-                      <input type="number" name="Salary" placeholder="Salary" required><br><br>
-                      <button>Submit</button>
-                    </form>
-          </div>
-          </div>
-        </div>
+-->
+        
           
-        <table class="table table-striped custab" id="data-table2">
+        <table class="table table-striped custab">
         <thead>
             <tr>
-                <th>Staff ID</th>
-                <th>Name</th>
-                <th>Gender</th>
+               <th>Staff ID</th>
+                <th>Staff Name</th>
                 <th>Phone Number</th>
                 <th>Position</th>
-                <th>Salary</th>
-                <th class="text-center">Action</th>
+                <th>Total sales (sales from appointment (customers' preference), yet to implemented.) </th>
             </tr>
         </thead>
         <tbody id="data_content">
         </tbody>
-        
     </table>
+  
+         
     </div>
+            <div id="myChart">
+              
+            </div>
+            <button class="btn btn-outline-primary btn-xs" onClick="downloadCSV()">Export Chart</button>
+            <br>
+             <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
+    
     </div>
+            
     </div>
       
     <!-- /#page-content-wrapper -->
@@ -172,7 +157,7 @@
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="frameworks/js/modal.js"></script>
-  <script src="frameworks/js/staff.js"></script> 
+  <script src="frameworks/js/staffChart.js"></script>
         </div> 
 
   

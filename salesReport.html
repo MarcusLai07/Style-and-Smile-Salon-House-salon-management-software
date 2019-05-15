@@ -18,6 +18,9 @@
 <!-- HighChart library-->
  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+ <script src="https://code.highcharts.com/modules/data.src.js"></script>
+ <script src="https://code.highcharts.com/modules/exporting.src.js"></script>
+ <script src="https://code.highcharts.com/modules/export-data.js"></script>
        
 
   <!-- Bootstrap core CSS -->
@@ -46,6 +49,7 @@
                 <ul class="dropdown-menu bg-secondary">
                     <li><a class="text-light" href="staff.html">Staff Management</a></li>
                     <li><a  class="text-light"href="salesReport.html">Sales Report</a></li>
+                    <li><a  class="text-light"href="staffReport.html">Staffs Report</a></li>
                 </ul>
           </div>
       </div>
@@ -86,7 +90,7 @@
                  <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
             <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
         </div>
-        <!-- Add new staff Modal -->
+        <!-- Choose duration modal -->
         <div id="myModal" class="modal">
           <!-- Modal content -->
           <div class="modal-content">
@@ -125,12 +129,19 @@
         <tbody id="data_content">
         </tbody>
     </table>
-          <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
-    </div>
+  
+         
     </div>
             <div id="myChart">
               
             </div>
+             <button class="btn btn-outline-primary btn-xs" onClick="downloadCSV()">Export Chart</button>
+            
+            <br>
+             <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
+    
+    </div>
+            
     </div>
       
     <!-- /#page-content-wrapper -->
