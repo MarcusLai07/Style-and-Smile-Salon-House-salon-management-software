@@ -12,6 +12,15 @@ var config = {
     const db = firebase.firestore();
     db.settings({timestampsInSnapshots: true})
 
+    //Declare a variable to keep track on today's date
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = String(today.getFullYear());
+
+	var today = dd + '/' + mm + '/' + yyyy ;
+    console.log(today);
+
 const SummaryS = document.querySelector('#PurchaseServicesSummary');
 const ServiceList = document.querySelector('#S_Content');
 const SummaryI = document.querySelector('#PurchaseItemsSummary');
@@ -37,13 +46,20 @@ function renderTotalPrice(){
         document.getElementById("TotalSummary").deleteRow(0);
     }
 
-    CurrentTotal = totalprice;
     Total = document.createTextNode("RM"+totalprice);
     P_total.appendChild(Total);
     tr.appendChild(P_total);
     tr.appendChild(btnEdit);
     tr.appendChild(btnConfirm);
     SummaryT.append(tr);
+
+    btnConfirm.addEventListener('click', (e) => {
+        e.preventDefault();
+        db.collection('Sales').add({
+            Services_Items: today,
+            Sum_Sales: totalprice
+        })
+    })
 }
 
 //get real time database, if changes made, refresh automatically
