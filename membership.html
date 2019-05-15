@@ -88,16 +88,16 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-membership-form" name="membershipform" onsubmit="return validatememberform()">
+                                <form id="add-membership-form">
                                     Membership Name:<br>
                                     <input type="text" onkeypress="return (event.charCode > 64 && 
-	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="M_name" placeholder="Membership name"><br>
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="M_name" placeholder="Membership name" required><br>
                                     Membership ID:<br>
-                                    <input type="text" name="M_id" placeholder="Membership ID"><br>
+                                    <input type="text" name="M_id" placeholder="Membership ID" required><br>
                                     Phone Number<br>
-                                    <input type="number" name="M_phone" placeholder="Membership phone number"><br>
+                                    <input type="number" name="M_phone" placeholder="Membership phone number" required><br>
                                     Email Address:<br>
-                                    <input type="text" name="M_email" placeholder="Email address"><br><br>
+                                    <input type="email" name="M_email" pattern=".+@gmail.com" placeholder="+@gmail.com" required><br><br>
                                     <button>Submit</button>
                                   </form>
                         </div>
@@ -115,13 +115,13 @@
                         <div class="modal-body">
                                 <form id="edit-membership-form"form action="#">
                                     Membership Name:<br>
-                                    <input type="text" name="Edit_name" placeholder="Membership name"><br>
+                                    <input type="text" name="Edit_name" placeholder="Membership name" required><br>
                                     Membership ID:<br>
-                                    <input type="text" name="Edit_id" placeholder="Membership ID"><br>
+                                    <input type="text" name="Edit_id" placeholder="Membership ID" required><br>
                                     Phone Number<br>
-                                    <input type="text" name="Edit_phone" placeholder="Membership phone number"><br>
+                                    <input type="number" name="Edit_phone" placeholder="Membership phone number" required><br>
                                     Email Address:<br>
-                                    <input type="text" name="Edit_email" placeholder="Email address"><br><br>
+                                    <input type="email" name="Edit_email"  pattern=".+@gmail.com" placeholder=".+@gmail.com" required><br><br>
                                     <button>submit</button>
                                   </form>
                         </div>

@@ -13,6 +13,7 @@
 
 
 
+
 //get real time database, if changes made, refresh automatically
 db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
     let changes=snapshot.docChanges();
@@ -27,7 +28,11 @@ db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
     console.log("you gain some data")
             
             
-})
+});
+
+
+
+
 
 //Select table and form from the html file.
 
@@ -114,7 +119,6 @@ function renderTable(doc){
         
 }
 
-
 Add_Form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('Staffs').add({
@@ -132,9 +136,8 @@ Add_Form.addEventListener('submit', (e) => {
         Staff_Salary: Add_Form.Salary.value
                
     })
-    
-    console.log("you added the new item!" +Add_Form.ID.value);
 })
+
 
 Edit_Form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -156,7 +159,8 @@ Edit_Form.addEventListener('submit', (e) => {
         Staff_Salary: Edit_Form.Salary.value
     })
    
-})
+});
+
 
 
 

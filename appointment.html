@@ -14,8 +14,11 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
     
+    
   <!-- Bootstrap core CSS -->
-  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="frameworks/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <!--
   <link href="frameworks/bootstrap/js/bootstrap.bundle.min.js" rel="stylesheet">
   <link href="frameworks/jquery/jquery.min.js" rel="stylesheet">
@@ -92,18 +95,50 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-appointment-form" name="appointmentform" onsubmit="return validateform()">
-                                    Customer Name:<br>
+                                <form id="add-appointment-form">
+                                   <div class="form-group">
+                                    <label class="col-xs-2 control-label">Customer Name</label>
+                                    <div class="input-group col-md-8">
                                     <input type="text" onkeypress="return (event.charCode > 64 && 
-	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="A_name"><br>
-                                    Services:<br>
-                                    <input type="text" name="A_services" placeholder=""><br>
-                                    Date:<br>
-                                    <input type="text" name="A_date" placeholder="dd/mm/yyyy"><br>
-                                    Time:<br>
-                                    <input type="text" name="A_time" placeholder="00:00"><br><br>
-									<button>Submit</button>
-                                  </form>
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="A_name" required><br>
+                                    
+                                   </div>
+                                   
+                                   
+									</div>
+                                   <div class="form-group">
+                                   <label class="col-xs-2 control-label">Services</label>
+                                   <div class="input-group col-md-8">
+                                    <input type="text" name="A_services" required><br>
+									   </div>
+                             
+                              
+                 </div>
+                                 
+                              <label for="dtp_input2" class="col-xs-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-4" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd-mm-yyyy">
+                    <input id="submitdate" class="form-control" size="16" name="A_date" type="text" readonly >
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+									
+                                 
+                                 
+                                   
+                <label for="dtp_input3" class="col-xs-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-4" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" name="A_time" type="text" value="" required>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+				 <button>Submit</button>
+					
+							</form>           
+                                  
+                                  
                         </div>
                         </div>
                     </div>
@@ -118,13 +153,17 @@
                         <div class="modal-body">
                                 <form id="edit-appointment-form">
                                     Customer Name:<br>
-                                    <input type="text" name="EditA_name" placeholder=""><br>
+                                    <input type="text" name="EditA_name" placeholder="" required><br>
                                     Services:<br>
-                                    <input type="text" name="EditA_services" placeholder=""><br>
+                                    <input type="text" name="EditA_services" placeholder="" required><br>
                                     Date:<br>
-                                    <input type="text" name="EditA_date" placeholder="dd/mm/yyyy"><br>
+                                    <div class="input-append date form_date" data-date="" data-link-format="dd-yy-">
+    <input size="16" type="text" value=""  name="EditA_date" required>
+    <span class="add-on"><i class="icon-remove"></i></span>
+    <span class="add-on"><i class="icon-calendar"></i></span>
+</div><br>
                                     Time:<br>
-                                    <input type="text" name="EditA_time" placeholder="00:00"><br><br>
+                                    <input type="text" name="EditA_time" placeholder="00:00" required><br><br>
 									<button>Submit</button>
                                   </form>
                         </div>
@@ -155,6 +194,8 @@
                                             <th>Time</th>
                                             <th>Date</th>
                                             <th>Action</th>
+                                            <th>Preference</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody id="today_content">
@@ -173,7 +214,7 @@
                                             <th>Time</th>
                                             <th>Date</th>
                                             <th>Action</th>
-                                            
+                                            <th>Preference</th>
                                         </tr>
                                     </thead>
                                     <tbody id="upcoming_content">
@@ -192,6 +233,7 @@
                                             <th>Time</th>
                                             <th>Date</th>
                                             <th>Action</th>
+                                            <th>Preference</th>
                                             
                                         </tr>
                                     </thead>
@@ -212,6 +254,7 @@
                                             <th>Time</th>
                                             <th>Date</th>
                                             <th>Action</th>
+                                            <th>Preference</th>
                                         </tr>
                                     </thead>
                                     <tbody id="all_content">
@@ -232,12 +275,40 @@
  
 
   <!-- Bootstrap core JavaScript -->
+  <script src="frameworks/bootstrap/js/jquery-1.8.3.min.js"></script>
   <script src="frameworks/jquery/jquery.min.js"></script>
   <script src="frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
+  
+  <script src="frameworks/bootstrap/js/bootstrap-datetimepicker.js"></script>
   <script src="frameworks/js/modal.js"></script>
   <script src="frameworks/js/appointment.js"></script>
- 
- 
+ <script type="text/javascript">
+    
+	$('.form_date').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
+
+       
         
 </body>
 
