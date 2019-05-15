@@ -36,7 +36,7 @@ function paginateTable() {
 ////Select table and form from the html file.
 //const StockList = document.querySelector('#S_Content');
 const form = document.querySelector('#add-stock-form');
-
+var low_Stock_Table = document.querySelector("#low-stock-table")
 var modal_Edit = document.getElementById('myModal2');
 var form2 = document.querySelector('#edit-stock-form');
 var span = document.getElementById("close");
@@ -56,6 +56,8 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     var IDarr = [];
     var IDcounter = 0;
     var content = "";
+
+
     querySnapshot.forEach(function (doc) {
         IDarr[IDcounter] = doc.id; //mapping the index number to ID
         content += '<tr id="' + IDcounter + '">';
@@ -68,14 +70,41 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         content += '<td>' + "<Button class='btn btn-outline-info btn-xs btnEdit'>Edit</Button><Button class='btn btn-outline-danger btn-xs btnDelete'>Delete</Button>" + '</td>';
         content += '</tr>';
         IDcounter++;
+
+        if (doc.data().Stock_Quantity < 10) {
+            console.log(doc.data().Stock_Name);
+            //var test = doc.data().Stock_Name;
+            //var low_Stock = "";
+            //            let th=document.createElement('tr');
+            //            let SName_H = document.createElement('th');
+            //            let SQty_H = document.createElement('th');
+
+            //            SName_H.textContent="Name";
+            //            SQty_H.textContent="Quantity";
+            var indicator = "These Stocks are running low!";
+             document.getElementById("low-stock-indicator").className="text-danger";
+            document.getElementById("low-stock-indicator").innerHTML = indicator;
+            document.getElementById("low-stock-name").innerHTML = "Name";
+            document.getElementById("low-stock-quantity").innerHTML = "Quantity";
+
+            let tr = document.createElement('tr');
+            let S_Name = document.createElement('td');
+            let S_Quantity = document.createElement('td');
+
+            S_Name.textContent = doc.data().Stock_Name;
+            S_Quantity.textContent = doc.data().Stock_Quantity;
+            tr.appendChild(S_Name);
+            tr.appendChild(S_Quantity);
+
+            low_Stock_Table.append(tr);
+        }
     });
     //    let tr = document.createElement('tr');
     //    tr.className="text-center";
     //    
     //    let SKU = document.createElement('td');
     //    let Category = document.createElement('td');
-    //    let S_Name = document.createElement('td');
-    //    let S_Quantity = document.createElement('td');
+    //    
     //    let Retail_Price = document.createElement('td');
     //    let Ori_Price = document.createElement('td');
     //    
@@ -115,7 +144,6 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     //this function allow staffs to deletes a selected stock item
     $(document).on("click", ".btnDelete", function () {
         if (confirm("Proceed with Delete: click 'OK'\n")) {
-            console.log("deleted button clicked"); //works
             var getrowIndex = $(this).closest('tr').attr('id');
             console.log(getrowIndex); //works
             var getPID = IDarr[getrowIndex];
@@ -146,8 +174,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         }
     })
 
-
-
+    //Form that adds new stock items into the database
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         db.collection('Stocks').add({
@@ -162,9 +189,9 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         })
     })
 
+    //Form that allow staffs to edit a certain item
     form2.addEventListener('submit', (e) => {
         e.preventDefault();
-        //store field values to a new empty string.
         db.collection('Stocks').doc(selectedID).update({
             SKU: form2.Edit_SKUCode.value,
             Category: form2.Edit_Category.value,

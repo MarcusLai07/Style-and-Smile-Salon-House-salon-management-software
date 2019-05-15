@@ -12,31 +12,183 @@ var config = {
     const db = firebase.firestore();
     db.settings({timestampsInSnapshots: true})
 
+    //Declare a variable to keep track on today's date
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = String(today.getFullYear());
+
+	var today = dd + '/' + mm + '/' + yyyy ;
+    console.log(today);
+
+const SummaryS = document.querySelector('#PurchaseServicesSummary');
+const ServiceList = document.querySelector('#S_Content');
+const SummaryI = document.querySelector('#PurchaseItemsSummary');
+const ItemList = document.querySelector('#I_Content');
+const SummaryT = document.querySelector('#TotalSummary');
+var totalprice = 0;
+
+function renderTotalPrice(){
+    let tr = document.createElement('tr');
+    tr.className = "text-center";
+    tr.id = "totalsum"
+
+    let P_total = document.createElement('td');
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit";
+    btnEdit.className="btn btn-outline-info btn-xs";
+    var btnConfirm=document.createElement("BUTTON");
+    btnConfirm.innerHTML="Confirm";
+    btnConfirm.className="btn btn-outline-primary btn-xs";
+
+    atr = document.getElementById("TotalSummary");
+    if($('#totalsum').length){
+        document.getElementById("TotalSummary").deleteRow(0);
+    }
+
+    Total = document.createTextNode("RM"+totalprice);
+    P_total.appendChild(Total);
+    tr.appendChild(P_total);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnConfirm);
+    SummaryT.append(tr);
+
+    btnConfirm.addEventListener('click', (e) => {
+        e.preventDefault();
+        db.collection('Sales').add({
+            Services_Items: today,
+            Sum_Sales: totalprice
+        })
+    })
+}
+
+//get real time database, if changes made, refresh automatically
+db.collection('Services').orderBy("Service_Name").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderServices(change.doc)
+        }else if (change.type=='removed'){
+            let tr = ServiceList.querySelector('[data-id=' + change.doc.id +']');
+            ServiceList.removeChild(tr);
+        }
+    })
+})
+function renderServices(doc){
+    let optionlist = document.createElement('option');
+    optionlist.textContent = doc.data().Service_Name;
+    optionlist.value = doc.data().Service_Price;
+    ServiceList.append(optionlist);
+}
 function getSelectedService(){
     var selectedValue = document.getElementById("S_Content").value;
     var selectedText = document.getElementById("S_Content").options[S_Content.selectedIndex].innerHTML;
-    console.log(selectedValue + selectedText);
+    var initialP = parseInt(totalprice,10);
+    var tempprice = parseInt(selectedValue,10);
+    totalprice = initialP + tempprice;
+    console.log(selectedValue + " " + selectedText);
+    console.log(totalprice);
 
-    listNode = document.getElementById('S_List');
-    liNode = document.createElement("LI");
-    liNode.className = "list-group-item";
-    txt = document.createTextNode(selectedText + " RM" + selectedValue);
+    let tr = document.createElement('tr');
+    tr.className = "text-center";
 
-    liNode.appendChild(txt);
-    listNode.appendChild(liNode);
+    let S_txt = document.createElement('td');
+    let S_value = document.createElement('td');
+
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit";
+    btnEdit.className="btn btn-outline-info btn-xs";
+
+    var btnDelete=document.createElement("BUTTON");
+    btnDelete.innerHTML="Delete";
+    btnDelete.className="btn btn-outline-danger btn-xs";
+
+    Stxt = document.createTextNode(selectedText);
+    Svalue = document.createTextNode("RM"+selectedValue);
+
+    S_txt.appendChild(Stxt);
+    S_value.appendChild(Svalue);
+    tr.appendChild(S_txt);
+    tr.appendChild(S_value);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDelete);
+
+    SummaryS.append(tr);
+
+    btnEdit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+    })
+    btnDelete.addEventListener('click', function(e){
+        // var temp = e.target.parentElement.S_value;
+        // var deltemp = parseInt(temp,10);
+        // console.log(temp);
+        e.target.parentElement.remove();
+    })
+}
+
+
+//get real time database, if changes made, refresh automatically
+db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderItems(change.doc)
+        }else if (change.type=='removed'){
+            let tr = ItemList.querySelector('[data-id=' + change.doc.id +']');
+            ItemList.removeChild(tr);
+        }
+    })
+})
+function renderItems(doc){
+    let optionlist = document.createElement('option');
+    optionlist.textContent = doc.data().Stock_Name;
+    optionlist.value = doc.data().Stock_Price;
+    ItemList.append(optionlist);
 }
 function getSelectedItem(){
     var selectedValue = document.getElementById("I_Content").value;
     var selectedText = document.getElementById("I_Content").options[I_Content.selectedIndex].innerHTML;
-    console.log(selectedValue + selectedText);
+    var initialP = parseInt(totalprice,10);
+    var tempprice = parseInt(selectedValue,10);
+    totalprice = initialP + tempprice;
+    console.log(selectedValue + " " + selectedText);
+    console.log(totalprice);
 
-    listNode = document.getElementById('S_List');
-    liNode = document.createElement("LI");
-    liNode.className = "list-group-item";
-    txt = document.createTextNode(selectedText + " RM" + selectedValue);
+    let tr = document.createElement('tr');
+    tr.className = "text-center";
 
-    liNode.appendChild(txt);
-    listNode.appendChild(liNode);
+    let S_txt = document.createElement('td');
+    let S_value = document.createElement('td');
+    var btnEdit=document.createElement("BUTTON");
+    btnEdit.innerHTML="Edit";
+    btnEdit.className="btn btn-outline-info btn-xs";
+    var btnDelete=document.createElement("BUTTON");
+    btnDelete.innerHTML="Delete";
+    btnDelete.className="btn btn-outline-danger btn-xs";
+
+    Stxt = document.createTextNode(selectedText);
+    Svalue = document.createTextNode("RM"+selectedValue);
+
+    S_txt.appendChild(Stxt);
+    S_value.appendChild(Svalue);
+    tr.appendChild(S_txt);
+    tr.appendChild(S_value);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDelete);
+
+    SummaryI.append(tr);
+
+    btnEdit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+    })
+    btnDelete.addEventListener('click', function(e){
+        // var temp = e.target.parentElement.S_value;
+        // var deltemp = parseInt(temp,10);
+        // console.log(temp);
+        e.target.parentElement.remove();
+    })
 }
 
 //logout module
