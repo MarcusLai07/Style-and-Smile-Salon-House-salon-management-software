@@ -97,10 +97,10 @@ function getSelectedService() {
     tr.className = "text-center";
 
     let S_txt = document.createElement('td');
-    S_txt.textContent=selectedText;
+    S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent=selectedValue;
-    
+    S_value.textContent = selectedValue;
+
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
     btnEdit.className = "btn btn-outline-info btn-xs";
@@ -108,9 +108,10 @@ function getSelectedService() {
     var btnDelete = document.createElement("BUTTON");
     btnDelete.innerHTML = "Delete";
     btnDelete.className = "btn btn-outline-danger btn-xs";
-    
+
     reappend();
-    function reappend(){
+
+    function reappend() {
         tr.appendChild(S_txt);
         tr.appendChild(S_value);
         tr.appendChild(btnEdit);
@@ -120,8 +121,8 @@ function getSelectedService() {
 
     btnEdit.addEventListener('click', (e) => {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp,10);
-        discount = deltemp/2;
+        var deltemp = parseInt(temp, 10);
+        discount = deltemp / 2;
         S_value.textContent = discount;
         totalprice -= discount;
         console.log(totalprice);
@@ -129,7 +130,7 @@ function getSelectedService() {
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp,10);
+        var deltemp = parseInt(temp, 10);
         totalprice -= deltemp;
         console.log(totalprice);
         e.target.parentElement.remove();
@@ -170,20 +171,21 @@ function getSelectedItem() {
     tr.className = "text-center";
 
     let S_txt = document.createElement('td');
-    S_txt.textContent=selectedText;
+    S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent=selectedValue;
-    
+    S_value.textContent = selectedValue;
+
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
     btnEdit.className = "btn btn-outline-info btn-xs";
-    
+
     var btnDelete = document.createElement("BUTTON");
     btnDelete.innerHTML = "Delete";
     btnDelete.className = "btn btn-outline-danger btn-xs";
 
     reappend();
-    function reappend(){
+
+    function reappend() {
         tr.appendChild(S_txt);
         tr.appendChild(S_value);
         tr.appendChild(btnEdit);
@@ -193,15 +195,15 @@ function getSelectedItem() {
 
     btnEdit.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp,10);
-        discount = deltemp/2;
+        var deltemp = parseInt(temp, 10);
+        discount = deltemp / 2;
         S_value.textContent = discount;
         totalprice -= discount;
         console.log(totalprice);
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp,10);
+        var deltemp = parseInt(temp, 10);
         totalprice -= deltemp;
         console.log(totalprice);
         e.target.parentElement.remove();
