@@ -1,13 +1,35 @@
 /*jslint white:true*/
 /*global angular*/
+var chart;
+var stock=[];
+// Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
+        authDomain: "style-and-smile-salon-house.firebaseapp.com",
+        databaseURL: "https://style-and-smile-salon-house.firebaseio.com",
+        projectId: "style-and-smile-salon-house",
+        storageBucket: "style-and-smile-salon-house.appspot.com",
+        messagingSenderId: "1030007772704"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+        db.settings({timestampsInSnapshots: true})
+
+db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
+    snapshot.docs.forEach(doc=>{
+//        renderTable(doc);
+        stock.push(doc.data().Stock_Name);
+    }) 
+    console.log(stock);
+    
+})
 
 
 //from interface design lecture 8
-
-var chart=Highcharts.chart('myChart',{
-    
+function GenerateChart(){
+ chart=Highcharts.chart('myChart',{
     chart:{
-        type:'line'
+        type:'column'
     },
     
     title:{
@@ -15,7 +37,7 @@ var chart=Highcharts.chart('myChart',{
     },
     
     xAxis:{
-        categories:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories:['Leave In', 'Deep Acting', 'Ordinary', 'Pack', 'Clarifying', 'Everyday','Voluminizing', 'Oily Hair', 'Dry & Damaged Hair', 'Hair Wax', 'Hair Spary', 'Hair Gel','Hair Mousse'],
         title:{
             enabled:true,
             text:"Month"
@@ -30,8 +52,8 @@ var chart=Highcharts.chart('myChart',{
     },
 
     series:[{
-        name:'Sales',
-        data:[200,400,600,800,1000,1200,750,2000,3000,1000,11000,20000]
+        name:'Total Earn in RM ',
+        data:[600,1200,900,400,800,800,2500,3000,4200,3200,3300,2800,2200]
         
     }],
         exporting: {
@@ -56,10 +78,12 @@ var chart=Highcharts.chart('myChart',{
   }
    
      
-});
+    });
+}
 
 function downloadCSV()
 {
+    'use strict';
     chart.downloadCSV();
 }
 

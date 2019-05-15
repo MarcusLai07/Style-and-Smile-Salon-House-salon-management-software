@@ -45,6 +45,7 @@
                 <ul class="dropdown-menu bg-secondary">
                     <li><a class="text-light" href="staff.html">Staff Management</a></li>
                     <li><a  class="text-light"href="salesReport.html">Sales Report</a></li>
+                      <li><a  class="text-light"href="staffReport.html">Staffs Report</a></li>
                 </ul>
           </div>
       </div>
@@ -132,6 +133,9 @@
 					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input3" value="" /><br/>
+				 Preference:<br>
+                 <input type="text" name="P_Staff" placeholder="Please Key in staff's name">
+                 <br><br>
 				 <button>Submit</button>
 					</div> 
 							</form>           
@@ -156,12 +160,15 @@
                                     <input type="text" name="EditA_services" placeholder="" required><br>
                                     Date:<br>
                                     <div class="input-append date form_date" data-date="" data-link-format="dd-yy-">
-    <input size="16" type="text" value=""  name="EditA_date" required>
-    <span class="add-on"><i class="icon-remove"></i></span>
-    <span class="add-on"><i class="icon-calendar"></i></span>
-</div><br>
+                                    <input size="16" type="text" value=""  name="EditA_date" required>
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div><br>
                                     Time:<br>
                                     <input type="text" name="EditA_time" placeholder="00:00" required><br><br>
+                                    Preference:<br>
+                                    <input type="text" name="P_Staff" placeholder="Please Key in staff's name">
+                                    <br><br>
 									<button>Submit</button>
                                   </form>
                         </div>
@@ -191,8 +198,9 @@
                                             
                                             <th>Time</th>
                                             <th>Date</th>
-                                            <th>Action</th>
                                             <th>Preference</th>
+                                            <th>Action</th>
+                                            
                                             
                                         </tr>
                                     </thead>
@@ -211,8 +219,9 @@
                                             
                                             <th>Time</th>
                                             <th>Date</th>
-                                            <th>Action</th>
                                             <th>Preference</th>
+                                            <th>Action</th>
+        
                                         </tr>
                                     </thead>
                                     <tbody id="upcoming_content">
@@ -230,8 +239,9 @@
                                             
                                             <th>Time</th>
                                             <th>Date</th>
-                                            <th>Action</th>
                                             <th>Preference</th>
+                                            <th>Action</th>
+                                            
                                             
                                         </tr>
                                     </thead>
@@ -251,8 +261,9 @@
                                             
                                             <th>Time</th>
                                             <th>Date</th>
-                                            <th>Action</th>
                                             <th>Preference</th>
+                                            <th>Action</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody id="all_content">

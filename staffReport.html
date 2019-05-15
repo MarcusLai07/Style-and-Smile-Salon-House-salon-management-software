@@ -89,8 +89,8 @@
         <div class="container">
                 <div class="row col-md-12 col-md-offset-2 custyle">
          <div class="addbutton">
-                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
-            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                 <button class="btn btn-outline-primary btn-xs" onClick="GenerateChart()">Generate Chart</button>
+             <button class="btn btn-outline-primary btn-xs" onClick="downloadCSV()">Export Chart</button>
         </div>
         
         
@@ -123,6 +123,7 @@
 -->
         
           
+<!--
         <table class="table table-striped custab">
         <thead>
             <tr class="text-center">
@@ -130,25 +131,22 @@
                 <th>Staff Name</th>
                 <th>Phone Number</th>
                 <th>Position</th>
-                <th>Ranking</th>
+                <th>Total selected by Customer</th>
             </tr>
         </thead>
         <tbody id="staff_content">
         </tbody>
     </table>
-    
-    
+-->
 
          
     </div>
     </div>
-           <div id="myChart">
+          
+    <div id="myChart">
               
-            </div>
-           
-           <button class="btn btn-outline-primary btn-xs" onClick="">Export Table</button>
-           <br>
-           <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
+    </div>
+       
             
     </div>
       
