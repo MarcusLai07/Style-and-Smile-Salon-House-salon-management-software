@@ -7,6 +7,10 @@ label{
     font-weight: bold;
 }
 
+#showTotal{
+    margin-top: 5%;
+}
+
 #S_Content{
     width: 70%;
     overflow: auto;

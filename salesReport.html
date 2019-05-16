@@ -87,8 +87,8 @@
         <div class="container">
                 <div class="row col-md-10 col-md-offset-2 custyle">
          <div class="addbutton">
-                 <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn">Generate Report</a>
-            <a href="#" class="btn btn-outline-primary pull-right btn-xs btnAddandRefresh" id="myBtn_Refresh" onclick="window.location.reload(true)">Refresh</a>
+                <button class="btn btn-outline-primary btn-xs" onClick="GenerateChart()">Generate Chart</button>
+                <button class="btn btn-outline-primary btn-xs" onClick="downloadCSV()">Export Chart</button>
         </div>
         <!-- Choose duration modal -->
         <div id="myModal" class="modal">
@@ -98,6 +98,7 @@
               <h2>Generate Report</h2>
               <span class="close">&times;</span>
           </div>
+<!--
           <div class="modal-body">
                   <form id="durationReport">
                           <br>
@@ -113,9 +114,11 @@
                       <button>Submit</button>
                     </form>
           </div>
+-->
           </div>
         </div>
         
+<!--
           
         <table class="table table-striped custab">
         <thead>
@@ -129,16 +132,13 @@
         <tbody id="data_content">
         </tbody>
     </table>
+-->
   
          
     </div>
             <div id="myChart">
               
             </div>
-             <button class="btn btn-outline-primary btn-xs" onClick="downloadCSV()">Export Chart</button>
-            
-            <br>
-             <p class="small"><span>&#42;</span>The chart is generated based on the table above.</p>
     
     </div>
             

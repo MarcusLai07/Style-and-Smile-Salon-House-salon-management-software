@@ -12,6 +12,7 @@
         db.settings({timestampsInSnapshots: true})
 
 
+var staffName=[];
 
 //get real time database, if changes made, refresh automatically
 db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot =>{
@@ -28,6 +29,15 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
     })
 	
 });
+
+//get staff database to display name on the option list in the form.
+db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
+    snapshot.docs.forEach(doc=>{
+        
+            staffName.push(doc.data().Staff_Name)
+    }) 
+    
+})
 
 
 
@@ -48,8 +58,11 @@ var selectedID;
 
 
 
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> d12a82e6067e41b30e00081765983cfe475beb05
 
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
@@ -58,13 +71,18 @@ const form2 = document.querySelector('#edit-appointment-form');
 //Render all appoinments
 const AppointmentList = document.querySelector('#all_content');
 
+
 function renderAppointment(doc){
     let tr = document.createElement('tr');
     let A_name = document.createElement('td');
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+<<<<<<< HEAD
 	
+=======
+    let A_Preference=document.createElement('td');
+>>>>>>> d12a82e6067e41b30e00081765983cfe475beb05
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
@@ -80,12 +98,14 @@ function renderAppointment(doc){
     A_services.textContent = doc.data().services;
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
+    A_Preference.textContent=doc.data().S_Preference;
     
 	
     tr.appendChild(A_name);
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(A_Preference);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDel);
 
@@ -157,6 +177,7 @@ function renderTodayAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    let A_Preference=document.createElement('td');
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
@@ -172,12 +193,14 @@ function renderTodayAppointment(doc){
     A_services.textContent = doc.data().services;
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
+    A_Preference.textContent=doc.data().S_Preference;
 	
     
     tr.appendChild(A_name);
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(A_Preference);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDel);
 
@@ -228,6 +251,7 @@ function renderUpcomingAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    let A_Preference=document.createElement('td');
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
@@ -243,11 +267,13 @@ function renderUpcomingAppointment(doc){
     A_services.textContent = doc.data().services;
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
+    A_Preference.textContent=doc.data().S_Preference;
     
     tr.appendChild(A_name);
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(A_Preference);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDel);
 
@@ -301,6 +327,7 @@ function renderPreviousAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+    let A_Preference=document.createElement('td');
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
@@ -316,11 +343,13 @@ function renderPreviousAppointment(doc){
     A_services.textContent = doc.data().services;
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
+    A_Preference.textContent=doc.data().S_Preference;
     
     tr.appendChild(A_name);
     tr.appendChild(A_services);
     tr.appendChild(A_time);
     tr.appendChild(A_date);
+    tr.appendChild(A_Preference);
     tr.appendChild(btnEdit);
     tr.appendChild(btnDel);
 
@@ -376,7 +405,9 @@ form.addEventListener('submit', (e) => {
 		customer_name: form.A_name.value,
 		services: form.A_services.value,
 		time: form.A_time.value,
-		date: form.A_date.value
+		date: form.A_date.value,
+        S_Preference: form.P_Staff.value
+        
 	})
 });
 	
@@ -394,7 +425,9 @@ form2.addEventListener('submit', (e) => {
 		
 		time: form2.EditA_time.value,
 		
-		date: form2.EditA_date.value
+		date: form2.EditA_date.value,
+         
+        S_Preference: form.P_Staff.value
 	})
 	
 	confirm("You had made the changes on the details! Please refresh the page!");
