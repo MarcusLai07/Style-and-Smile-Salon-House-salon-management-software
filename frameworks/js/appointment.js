@@ -44,9 +44,10 @@ var modal_Edit = document.getElementById('myModal2');
 
 var span = document.getElementById('close');
 var selectedID;
+ 
 
 
-	
+
 	
 	
 
@@ -63,6 +64,7 @@ function renderAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
+	
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
@@ -79,6 +81,7 @@ function renderAppointment(doc){
     A_time.textContent = doc.data().time;
     A_date.textContent = doc.data().date;
     
+	
     tr.appendChild(A_name);
     tr.appendChild(A_services);
     tr.appendChild(A_time);
@@ -117,7 +120,28 @@ btnEdit.addEventListener('click', (e) => {
 		db.collection('Appointment').doc(id).delete();
 			alert("You had successfully delete the item from system! Your table will now be updated!");
 	});
+	
+	
+	
+	
+	var date1 = document.appointform.A_date.value;
+	var time1 = document.appointform.A_time.value; 
+	
+    var date2 = A_date;
+	var time2 = A_time;
+    console.log(A_time);
+
+	
+	if (A_time == time1){
+		
+		alert("Please select another date");
+	
+	
+	}
+	
+	
 }
+
 
 
 
@@ -344,10 +368,10 @@ db.collection('Appointment').where('date', '<', today).orderBy('date').get().the
 
 
 
-
 //form is to add appointment to the table
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+
 	db.collection('Appointment').add({
 		customer_name: form.A_name.value,
 		services: form.A_services.value,

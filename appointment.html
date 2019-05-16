@@ -17,8 +17,10 @@
     
   <!-- Bootstrap core CSS -->
 <!--  <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+ 
   <link href="frameworks/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="frameworks/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  
 <!--
   <link href="frameworks/bootstrap/js/bootstrap.bundle.min.js" rel="stylesheet">
   <link href="frameworks/jquery/jquery.min.js" rel="stylesheet">
@@ -96,7 +98,7 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                                <form id="add-appointment-form">
+                                <form id="add-appointment-form" name="appointform" method="post">
                                    <div class="form-group">
                                     <label class="col-xs-2 control-label">Customer Name</label>
                                     <div class="input-group col-md-8">
@@ -115,7 +117,7 @@
                       <div class="form-group">
                    <label for="dtp_input2" class="col-xs-2 control-label">Date Picking</label>
                 <div class="input-group date form_date col-md-4" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd-mm-yyyy">
-                    <input id="submitdate" class="form-control" size="16" name="A_date" type="text" readonly >
+                    <input id="submitdate" class="form-control" size="20" name="A_date" type="text" readonly >
                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -150,19 +152,43 @@
                         </div>
                         <div class="modal-body">
                                 <form id="edit-appointment-form">
-                                    Customer Name:<br>
-                                    <input type="text" name="EditA_name" placeholder="" required><br>
-                                    Services:<br>
-                                    <input type="text" name="EditA_services" placeholder="" required><br>
-                                    Date:<br>
-                                    <div class="input-append date form_date" data-date="" data-link-format="dd-yy-">
-    <input size="16" type="text" value=""  name="EditA_date" required>
-    <span class="add-on"><i class="icon-remove"></i></span>
-    <span class="add-on"><i class="icon-calendar"></i></span>
-</div><br>
-                                    Time:<br>
-                                    <input type="text" name="EditA_time" placeholder="00:00" required><br><br>
-									<button>Submit</button>
+                                   <div class="form-group">
+                                    <label class="col-xs-2 control-label">Customer Name</label>
+                                    <div class="input-group col-md-8">
+                                    <input type="text" onkeypress="return (event.charCode > 64 && 
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" name="EditA_name" required><br>
+                                    
+                           </div>
+                         </div>
+                                   <div class="form-group">
+                                   <label class="col-xs-2 control-label">Services</label>
+                                   <div class="input-group col-md-8">
+                                    <input type="text" name="EditA_services" required><br>
+									   </div>
+                          			</div>
+                          			
+                      <div class="form-group">
+                   <label for="dtp_input2" class="col-xs-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-4" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd-mm-yyyy">
+                    <input id="submitdate" class="form-control" size="20" name="EditA_date" type="text" readonly >
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+					</div>				
+                                 
+                                 
+                          <div class="form-group">        
+                <label for="dtp_input3" class="col-xs-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-4" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" name="EditA_time" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+				 <button>Submit</button>
+					</div> 
                                   </form>
                         </div>
                         </div>
