@@ -74,7 +74,8 @@ db.collection("Stocks").get().then(function (querySnapshot) {
         if (doc.data().Stock_Quantity < 10) {
             console.log(doc.data().Stock_Name);
             var indicator = "These Stocks are running low!";
-             document.getElementById("low-stock-indicator").className="text-danger";
+            document.getElementById("low-stock-main-table").className="table";
+            document.getElementById("low-stock-indicator").className="text-danger";
             document.getElementById("low-stock-indicator").innerHTML = indicator;
             document.getElementById("low-stock-name").innerHTML = "Name";
             document.getElementById("low-stock-quantity").innerHTML = "Quantity";
