@@ -13,6 +13,8 @@
 
 
 var staffName=[];
+var dbDate=[];
+var dbTime=[];
 
 //get real time database, if changes made, refresh automatically
 db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot =>{
@@ -20,7 +22,7 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
     changes.forEach(change=>{
         if(change.type=='added'){
             renderAppointment(change.doc)
-		    
+		  
 			
         }else if (change.type=='removed'){
             let tr = AppointmentList.querySelector('[data-id=' + change.doc.id +']');
@@ -30,6 +32,17 @@ db.collection('Appointment').orderBy('date').orderBy('time').onSnapshot(snapshot
 	
 });
 
+
+db.collection('Appointment').get().then((snapshot)=>{
+    snapshot.docs.forEach(doc=>{
+		
+        dbDate.push(doc.data().date)
+		dbTime.push(doc.data().time)
+    }) 
+    
+})
+  
+
 //get staff database to display name on the option list in the form.
 db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
@@ -38,7 +51,6 @@ db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     }) 
     
 })
-
 
 
 //Declare a variable to keep track on today's date
@@ -147,21 +159,20 @@ btnEdit.addEventListener('click', (e) => {
 	var date1 = document.appointform.A_date.value;
 	var time1 = document.appointform.A_time.value; 
 	
-    var date2 = A_date;
-	var time2 = A_time;
-    console.log(A_time);
-
+   
+    
+	console.log(dbTime);
+	for (i =0; i<dbTime.length; i++){
+			if(time1 == dbTime[i]){
+				
+				alert("Please select another time");
+			}
 	
-	if (A_time == time1){
-		
-		alert("Please select another date");
-	
-	
+			
+	break;
 	}
 	
-	
 }
-
 
 
 
