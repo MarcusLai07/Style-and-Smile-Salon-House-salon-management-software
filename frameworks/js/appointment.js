@@ -58,11 +58,7 @@ var selectedID;
 
 
 
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> d12a82e6067e41b30e00081765983cfe475beb05
+
 
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
@@ -78,11 +74,11 @@ function renderAppointment(doc){
     let A_services = document.createElement('td');
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
-<<<<<<< HEAD
+
 	
-=======
+
     let A_Preference=document.createElement('td');
->>>>>>> d12a82e6067e41b30e00081765983cfe475beb05
+
     //creating button
     var btnEdit=document.createElement("BUTTON");
     btnEdit.innerHTML="Edit"
