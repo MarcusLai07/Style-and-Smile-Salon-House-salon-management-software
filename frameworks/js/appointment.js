@@ -75,7 +75,11 @@ function renderAppointment(doc){
     let A_date = document.createElement('td');
     let A_time = document.createElement('td');
 
+
 	
+
+    let A_Preference=document.createElement('td');
+
 
     let A_Preference=document.createElement('td');
 
