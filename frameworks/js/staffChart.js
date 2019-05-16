@@ -25,6 +25,8 @@ var custPreference=[];
 db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
 //        renderTable(doc);
+        
+        staffName.push(doc.data().Staff_Name)
     }) 
     console.log(staffName);
     
