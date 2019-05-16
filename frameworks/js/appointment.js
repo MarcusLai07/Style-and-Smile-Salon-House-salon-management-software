@@ -78,7 +78,7 @@ function renderAppointment(doc){
 
 	
 
-    let A_Preference=document.createElement('td');
+   
 
 
     let A_Preference=document.createElement('td');
