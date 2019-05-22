@@ -11,20 +11,19 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+//declared globally to let downloading CSV function able to access the chart
 var chart;
 
 
 //store staff name from staff management page
 var staffName=[];
-var staffID=[];
 
 //store TSales from staff management page
 var TSales=[];
-//getting Names from database
+
+//getting Names and Total Sales from database
 db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
-//        renderTable(doc);
-        staffID.push(doc.data().Staff_ID)
         staffName.push(doc.data().Staff_Name)
         TSales.push(doc.data().TSales)
     }) 
@@ -38,51 +37,8 @@ db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
 
 
 
+//Generate Chart function after click Generate Button
 
-
-
-
-
-
-//
-//Select table and form from the html file.
-
-//const StaffReportList = document.querySelector('#staff_content');
-//var selectedID;
-//
-//// populate the membership table with the data in the database
-//function renderTable(doc){
-//    //debugging purpose
-//    console.log("you rendered a table");
-//    
-//    
-//    let tr = document.createElement('tr');
-//    tr.className="text-center"
-//    
-//    let Staff_id = document.createElement('td');
-//    let Staff_Name = document.createElement('td');
-//    let Staff_PNumb = document.createElement('td');
-//    let Staff_Pos = document.createElement('td');
-//    let Staff_TSales=document.createElement('td');
-//    
-//    
-//
-//    tr.setAttribute('data-id', doc.id);
-//    Staff_id.textContent = doc.data().Staff_ID;
-//    Staff_Name.textContent=doc.data().Staff_Name;
-//    Staff_PNumb.textContent=doc.data().Staff_PNum;
-//    Staff_Pos.textContent=doc.data().Staff_Position;
-//    
-//    tr.appendChild(Staff_id);
-//    tr.appendChild(Staff_Name);
-//    tr.appendChild(Staff_PNumb);
-//    tr.appendChild(Staff_Pos);
-//
-//    
-//    StaffReportList.append(tr);     
-//}
-
-//from interface design lecture 8
 function GenerateChart(){
 //    CalHighest();
     chart=Highcharts.chart('myChart',{
@@ -92,7 +48,7 @@ function GenerateChart(){
     },
     
     title:{
-        text:'Style and Smile Salon House 2018 Staff Performance Report'
+        text:'Style and Smile Salon House 2018 Staff Performance Report (Services)'
     },
     
    
@@ -101,6 +57,7 @@ function GenerateChart(){
         categories:staffName,
         title:{
             enabled:true,
+            showInLegend:true,
             text:"Staff Name"
         }
     },
@@ -114,6 +71,7 @@ function GenerateChart(){
 
     series:[{
         name:"Total Sales in Services of Each Staff(s)",
+        colorByPoint: true,
         data:TSales
         
     }],
@@ -122,19 +80,21 @@ function GenerateChart(){
     enabled:false,
         
         //enable Labels
-      chartOptions:{
-      plotOptions:{
-      series:{
-      dataLabels: {
-             enabled: true
-                  }
-             }
-         }
-
-       },
+//      chartOptions:{
+//      plotOptions:{
+//      series:{
+//      dataLabels: {
+//             enabled: false
+//                  }
+//             },
+//      showInLegend: true
+//         }
+//
+//       },
      
     csv: {
-        itemDelimiter: ' ; '
+        itemDelimiter: ' ; ',
+        lineDelimiter: '\n'
     }
   }
    
@@ -160,6 +120,17 @@ function GenerateChart(){
 //    alert(Max+"  " +staffName + " " + "Has the highest(better) sales/performance!");
 //}
 
+function invertedChart() {
+    chart.update({
+        chart: {
+            inverted: true,
+            polar: false
+        },
+        subtitle: {
+            text: 'Inverted'
+        }
+    });
+}
 
 
 

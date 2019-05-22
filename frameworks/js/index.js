@@ -201,17 +201,7 @@ function getSelectedItem() {
         e.stopPropagation();
 
         modal_Edit.style.display="block";
-         span.onclick=function()
-         {
-             modal_Edit.style.display="none";
-         }
-         window.onclick=function(event)
-         {
-             if(event.target==modal_Edit)
-                 {
-                     modal_Edit.style.display="none";
-                 }
-         }
+      
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
