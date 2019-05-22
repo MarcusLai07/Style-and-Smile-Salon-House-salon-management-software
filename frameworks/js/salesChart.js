@@ -18,7 +18,7 @@ var stock=[];
 db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
 //        renderTable(doc);
-        stock.push(doc.data().Stock_Name);
+        stock.push(doc.data().Stock_Name)
     }) 
     console.log(stock);
     
@@ -37,10 +37,10 @@ function GenerateChart(){
     },
     
     xAxis:{
-        categories:['Leave In', 'Deep Acting', 'Ordinary', 'Pack', 'Clarifying', 'Everyday','Voluminizing', 'Oily Hair', 'Dry & Damaged Hair', 'Hair Wax', 'Hair Spary', 'Hair Gel','Hair Mousse'],
+        categories:stock,
         title:{
             enabled:true,
-            text:"Month"
+            text:"Product Name"
         }
     },
     
@@ -53,7 +53,7 @@ function GenerateChart(){
 
     series:[{
         name:'Total Earn in RM ',
-        data:[600,1200,900,400,800,800,2500,3000,4200,3200,3300,2800,2200]
+        data:
         
     }],
         exporting: {

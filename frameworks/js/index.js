@@ -89,6 +89,8 @@ function renderServices(doc) {
 function getSelectedService() {
     var selectedValue = document.getElementById("S_Content").value;
     var selectedText = document.getElementById("S_Content").options[S_Content.selectedIndex].innerHTML;
+   
+    
     var initialP = parseInt(totalprice, 10);
     var tempprice = parseInt(selectedValue, 10);
     totalprice = initialP + tempprice;

@@ -12,49 +12,37 @@
         db.settings({timestampsInSnapshots: true})
 
 var chart;
+
+
 //store staff name from staff management page
 var staffName=[];
-//
+var staffID=[];
 
-////store staff get choosed for preference from appointment page time to populate the data into pie chart
-var choosedPreference=[600,400,900,800,1000,1300,2000,2500,3000,2800,3200,3000];
-
-
-var custPreference=[];
-
+//store TSales from staff management page
+var TSales=[];
+//getting Names from database
 db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
 //        renderTable(doc);
-        
+        staffID.push(doc.data().Staff_ID)
         staffName.push(doc.data().Staff_Name)
+        TSales.push(doc.data().TSales)
     }) 
-    console.log(staffName);
+
+
+    
+    console.log("Test Name" + " " +staffName);
+    console.log("Total Sales"+ " " +TSales);
     
 })
 
 
 
 
-db.collection('Appointment').get().then((snapshot)=>{
-    snapshot.docs.forEach(doc=>{
-        custPreference.push(doc.data().S_Preference)
-    })
-    
-    console.log(custPreference);
-})
 
-//
-//function calculateTotalSelectedPreference()
-//{
-//    for(i=0;i<custPreference.length;i++)
-//        {
-//            if(custPreference.toString=="Daniel")
-//                {
-//                    
-//                }
-//        }
-//    console.log(Total_Selected + " "+ "TEsting");
-//}
+
+
+
 
 //
 //Select table and form from the html file.
@@ -96,6 +84,7 @@ db.collection('Appointment').get().then((snapshot)=>{
 
 //from interface design lecture 8
 function GenerateChart(){
+//    CalHighest();
     chart=Highcharts.chart('myChart',{
     
     chart:{
@@ -103,29 +92,29 @@ function GenerateChart(){
     },
     
     title:{
-        text:'Style and Smile Salon House Yearly Sales Report'
+        text:'Style and Smile Salon House 2018 Staff Performance Report'
     },
     
    
     xAxis:{
        
-        categories:["Daniel","Marcus","Chuan hek","Gimmy","Paul","Darren","Sharon","Jessica","Chloe","Jane","Wanda","Tony"],
+        categories:staffName,
         title:{
             enabled:true,
-            text:"Month"
+            text:"Staff Name"
         }
     },
-    
+
     yAxis:{
-         title:{
+        title:{
             enabled:true,
-            text:"Sales"
-        } 
+            text:"Amount of Sales"
+        }
     },
 
     series:[{
-        name:"Total Sales",
-        data:choosedPreference
+        name:"Total Sales in Services of Each Staff(s)",
+        data:TSales
         
     }],
         exporting: {
@@ -157,6 +146,19 @@ function GenerateChart(){
 {
     chart.downloadCSV();
 }
+
+
+//function CalHighest()
+//{
+//     var Max;
+//   
+//    for(i=0;i<staffName.length;i++)
+//        for(i=0;i<TSales.length;i++)
+//    {
+//        Max=(Math.max(...TSales));
+//    }
+//    alert(Max+"  " +staffName + " " + "Has the highest(better) sales/performance!");
+//}
 
 
 
