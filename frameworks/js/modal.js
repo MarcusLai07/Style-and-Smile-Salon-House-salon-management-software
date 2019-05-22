@@ -2,7 +2,7 @@
 // Get the modal
 var modal = document.getElementById('myModal');
 var modal2=document.getElementById('myModal2');
-
+var modal3=document.getElementById('myModal3');
 
 // Get the button that opens the modal (ADD new button  for all pages)
 var btn = document.getElementById("myBtn");
@@ -10,6 +10,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var span2 = document.getElementsByClassName("close")[1];
+var span3 = document.getElementsByClassName("close")[2];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
@@ -25,14 +26,20 @@ btn.onclick = function() {
    span2.onclick = function() {
      modal2.style.display = "none";
    }
+   span3.onclick = function() {
+    modal3.style.display = "none";
+  }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
-  }else if(event.target==modal2)
+  }else if(event.target == modal2)
       {
-          modal2.style.display="none"
+          modal2.style.display = "none"
+      }else if(event.target == modal3)
+      {
+        modal3.style.display = "none"
       }
 }
 
