@@ -99,6 +99,20 @@
               </div>
 
               <div class="col-sm">
+                  <div id="myModal3" class="modal">
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Edit Price</h2>
+                            <span class="close" id="exit">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                          <input type="number" id="discountpercent" name="Edit_price" placeholder="Percentage of discount given"><br>
+                          <button id="calculate" class="btn btn-primary">Calculate Discount</button>
+                        </div>
+                      </div>
+                    </div>
+                    
                   <table class="table table-striped custab" id="summaryS-table">
                       <thead>
                           <tr class="text-center">
@@ -121,20 +135,6 @@
                     <tbody id="PurchaseItemsSummary">
                     </tbody>
                 </table>
-
-                <div id="myModal" class="modal">
-                  <!-- Modal content -->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Edit Price</h2>
-                        <span class="close" id="exit">&times;</span>
-                    </div>
-                    <div class="modal-body">
-                      <input type="number" id="discountpercent" name="Edit_price" placeholder="Percentage of discount given"><br>
-                      <button id="calculate" class="btn btn-primary">Calculate Discount</button>
-                    </div>
-                  </div>
-                </div>
 
               </div>
             </div>

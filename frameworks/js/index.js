@@ -29,7 +29,7 @@ const SummaryI = document.querySelector('#PurchaseItemsSummary');
 const ItemList = document.querySelector('#I_Content');
 const SummaryT = document.querySelector('#TotalSummary');
 var totalprice = 0;
-var modal_Edit = document.getElementById('myModal');
+var modal_Edit = document.getElementById('myModal3');
 var span = document.getElementById("close");
 
 function renderTotalPrice() {
@@ -106,6 +106,7 @@ function getSelectedService() {
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
     btnEdit.className = "btn btn-outline-info btn-xs";
+    btnEdit.id = "myBtn";
 
     var btnDelete = document.createElement("BUTTON");
     btnDelete.innerHTML = "Delete";
