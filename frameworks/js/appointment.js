@@ -54,6 +54,7 @@ db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
             StaffList.removeChild(tr);
         }
     })
+});
   
 
 
@@ -79,18 +80,8 @@ var selectedID;
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
 const form2 = document.querySelector('#edit-appointment-form');
-const staffNameList=document.querySelector('#S_Content');
 //Render all appoinments
 const AppointmentList = document.querySelector('#all_content');
-
-//function renderStaffName(doc)
-// {
-//    let staffList=document.createElement('option');
-//     staffList.textContent=doc.data().Staff_Name;
-//     console.log(staffList);
-//     staffNameList.append(staffList);
-//     
-// }
 
 function renderAppointment(doc){
     let tr = document.createElement('tr');
@@ -458,15 +449,7 @@ form2.addEventListener('submit', (e) => {
 	console.log("you edited the item!");
 	
 });
-//
-//function AddTotalSales()
-//{
-//    var TempSales;
-//    
-//    var TempName= form.P_Staff.value;
-//    console.log(TempName);
-//    
-//}
+
 
 
 
