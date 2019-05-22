@@ -29,8 +29,8 @@ const SummaryI = document.querySelector('#PurchaseItemsSummary');
 const ItemList = document.querySelector('#I_Content');
 const SummaryT = document.querySelector('#TotalSummary');
 var totalprice = 0;
-var modal_Edit = document.getElementById('myModal3');
-var span = document.getElementById("close");
+var modal_Edit = document.getElementById('myModal');
+//var span = document.getElementById("close");
 
 function renderTotalPrice() {
     let tr = document.createElement('tr');
@@ -41,6 +41,7 @@ function renderTotalPrice() {
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
     btnEdit.className = "btn btn-outline-info btn-xs";
+    btnEdit.id = "myBtn";
     var btnConfirm = document.createElement("BUTTON");
     btnConfirm.innerHTML = "Confirm";
     btnConfirm.className = "btn btn-outline-primary btn-xs";
@@ -57,6 +58,11 @@ function renderTotalPrice() {
     tr.appendChild(btnConfirm);
     SummaryT.append(tr);
 
+    btnEdit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal();
+        CalculateTotal();
+    })
     btnConfirm.addEventListener('click', (e) => {
         e.preventDefault();
         db.collection('Sales').add({
@@ -78,14 +84,14 @@ db.collection('Services').orderBy("Service_Name").onSnapshot(snapshot => {
         }
     })
 })
-
+//render the services list from into the options list
 function renderServices(doc) {
     let optionlist = document.createElement('option');
     optionlist.textContent = doc.data().Service_Name;
     optionlist.value = doc.data().Service_Price;
     ServiceList.append(optionlist);
 }
-
+//get the selected service from the options list and render into the service summary table
 function getSelectedService() {
     var selectedValue = document.getElementById("S_Content").value;
     var selectedText = document.getElementById("S_Content").options[S_Content.selectedIndex].innerHTML;
@@ -103,7 +109,7 @@ function getSelectedService() {
     let S_txt = document.createElement('td');
     S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent = selectedValue;
+    S_value.textContent = "RM" + selectedValue;
 
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
@@ -114,24 +120,16 @@ function getSelectedService() {
     btnDelete.innerHTML = "Delete";
     btnDelete.className = "btn btn-outline-danger btn-xs";
 
-    reappend();
-
-    function reappend() {
-        tr.appendChild(S_txt);
-        tr.appendChild(S_value);
-        tr.appendChild(btnEdit);
-        tr.appendChild(btnDelete);
-        SummaryS.append(tr);
-    }
+    tr.appendChild(S_txt);
+    tr.appendChild(S_value);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDelete);
+    SummaryS.append(tr);
 
     btnEdit.addEventListener('click', (e) => {
-        var temp = S_value.textContent;
-        var deltemp = parseInt(temp, 10);
-        discount = deltemp / 2;
-        S_value.textContent = discount;
-        totalprice -= discount;
-        console.log(totalprice);
-
+        e.stopPropagation();
+        closeModal();
+        Calculate(S_value);
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
@@ -154,14 +152,14 @@ db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot => {
         }
     })
 })
-
+//render the item list from database into the options list
 function renderItems(doc) {
     let optionlist = document.createElement('option');
     optionlist.textContent = doc.data().Stock_Name;
     optionlist.value = doc.data().Retail_Price;
     ItemList.append(optionlist);
 }
-
+//get the selected item from the options list and render into the item summary table
 function getSelectedItem() {
     var selectedValue = document.getElementById("I_Content").value;
     var selectedText = document.getElementById("I_Content").options[I_Content.selectedIndex].innerHTML;
@@ -177,30 +175,72 @@ function getSelectedItem() {
     let S_txt = document.createElement('td');
     S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent = selectedValue;
+    S_value.textContent = "RM" + selectedValue;
 
     var btnEdit = document.createElement("BUTTON");
     btnEdit.innerHTML = "Edit";
     btnEdit.className = "btn btn-outline-info btn-xs";
+    btnEdit.id = "myBtn";
 
     var btnDelete = document.createElement("BUTTON");
     btnDelete.innerHTML = "Delete";
     btnDelete.className = "btn btn-outline-danger btn-xs";
 
-    reappend();
-
-    function reappend() {
-        tr.appendChild(S_txt);
-        tr.appendChild(S_value);
-        tr.appendChild(btnEdit);
-        tr.appendChild(btnDelete);
-        SummaryI.append(tr);
-    }
+    tr.appendChild(S_txt);
+    tr.appendChild(S_value);
+    tr.appendChild(btnEdit);
+    tr.appendChild(btnDelete);
+    SummaryI.append(tr);
 
     btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
+        closeModal();
+        Calculate(S_value);
+    })
+    btnDelete.addEventListener('click', function (e) {
+        var temp = S_value.textContent;
+        var parsetemp = parseInt(temp, 10);
+        totalprice -= parsetemp;
+        console.log(totalprice);
+        e.target.parentElement.remove();
+    })
+}
 
-        modal_Edit.style.display="block";
+//calculate the discount for items and services
+function Calculate(S_value){
+    document.getElementById('calculate').addEventListener("click", (e) =>{
+        var percent = document.getElementById('discountpercent').value;
+        var parsepercent = parseFloat(percent, 10).toFixed(2);
+        var calcpercent = 100 - parsepercent;
+        var temp = S_value.textContent;
+        var parsetemp = parseFloat(temp, 10).toFixed(2);
+        discount = (parsetemp/100)*parsepercent;
+        newprice = (parsetemp/100)*calcpercent;
+        S_value.textContent = "RM" + newprice.toFixed(2);
+        totalprice -= discount;
+        console.log(totalprice);
+        modal_Edit.style.display="none";
+    });
+}
+
+//calculate the discount for total price
+function CalculateTotal(){
+    document.getElementById('calculate').addEventListener("click", (e) =>{
+        var percent = document.getElementById('discountpercent').value;
+        var parsepercent = parseFloat(percent, 10).toFixed(2);
+        var calcpercent = parseInt(100 - parsepercent, 10);
+        var temp = totalprice;
+        var parsetemp = parseFloat(temp, 10).toFixed(2);
+        newprice = (parsetemp/100)*calcpercent;
+        totalprice = newprice.toFixed(2);
+        console.log(newprice);
+        modal_Edit.style.display="none";
+    });
+}
+
+//function of closing the modal
+function closeModal(){
+    modal_Edit.style.display="block";
          span.onclick=function()
          {
              modal_Edit.style.display="none";
@@ -212,28 +252,32 @@ function getSelectedItem() {
                      modal_Edit.style.display="none";
                  }
          }
-    })
-    btnDelete.addEventListener('click', function (e) {
-        var temp = S_value.textContent;
-        var parsetemp = parseInt(temp, 10);
-        totalprice -= parsetemp;
-        console.log(totalprice);
-        e.target.parentElement.remove();
-    })
 }
 
-function Calculate(){
-    document.getElementById('calculate').addEventListener("click", (e) =>{
-        var percent = document.getElementById('discountpercent').value;
-        var parsepercent = parseFloat(percent, 10).toFixed(2);
-        var calcpercent = 100 - parsepercent;
-        var temp = S_value.textContent;
-        var parsetemp = parseFloat(temp, 10).toFixed(2);
-        discount = (parsetemp/100)*50; //calcpercent;
-        S_value.textContent = discount.toFixed(2);
-        totalprice -= discount;
-        console.log(totalprice);
-    });
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 //logout module
