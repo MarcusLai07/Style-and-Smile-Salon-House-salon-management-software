@@ -2,6 +2,8 @@
 /*global angular*/
 var chart;
 var stock=[];
+var TEarn=[];
+var Total=[];
 // Initialize Firebase
         var config = {
         apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
@@ -19,8 +21,10 @@ db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
 //        renderTable(doc);
         stock.push(doc.data().Stock_Name)
+        TEarn.push(doc.data().TEarn)
     }) 
     console.log(stock);
+    console.log(TEarn);
     
 })
 
@@ -29,31 +33,31 @@ db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
 function GenerateChart(){
  chart=Highcharts.chart('myChart',{
     chart:{
-        type:'column'
+        type:'pie'
     },
     
     title:{
         text:'Style and Smile Salon House Yearly Sales Report'
     },
     
-    xAxis:{
-        categories:stock,
-        title:{
-            enabled:true,
-            text:"Product Name"
-        }
-    },
-    
-    yAxis:{
-         title:{
-            enabled:true,
-            text:"Sales"
-        } 
-    },
+//    xAxis:{
+//        categories:stock,
+//        title:{
+//            enabled:true,
+//            text:"Product Name"
+//        }
+//    },
+//    
+//    yAxis:{
+//         title:{
+//            enabled:true,
+//            text:"Sales"
+//        } 
+//    },
 
     series:[{
         name:'Total Earn in RM ',
-        data:
+        data:stock,600,1200,900,400,800,800,2500,3000,4200,3200,3300,2800,2200
         
     }],
         exporting: {

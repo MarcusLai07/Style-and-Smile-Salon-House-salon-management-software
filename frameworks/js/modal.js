@@ -4,7 +4,7 @@ var modal = document.getElementById('myModal');
 var modal2=document.getElementById('myModal2');
 
 
-// Get the button that opens the modal
+// Get the button that opens the modal (ADD new button  for all pages)
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
