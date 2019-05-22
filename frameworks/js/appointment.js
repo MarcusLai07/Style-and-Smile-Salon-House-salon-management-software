@@ -11,7 +11,7 @@
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
-
+//storing data into arrays
 var staffName=[];
 var dbDate=[];
 var dbTime=[];
@@ -41,16 +41,20 @@ db.collection('Appointment').get().then((snapshot)=>{
     }) 
     
 })
-  
 
-//get staff database to display name on the option list in the form.
-db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
-    snapshot.docs.forEach(doc=>{
-        
-            staffName.push(doc.data().Staff_Name)
-    }) 
-    
-})
+
+//getting staff name from staffs' collections
+db.collection('Staffs').orderBy("Staff_ID").onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach(change=>{
+        if(change.type=='added'){
+            renderTable(change.doc)
+        }else if (change.type=='removed'){
+            let tr = StaffList.querySelector('[data-id=' + change.doc.id +']');
+            StaffList.removeChild(tr);
+        }
+    })
+  
 
 
 //Declare a variable to keep track on today's date
@@ -75,10 +79,18 @@ var selectedID;
 //Adding appoinment into database
 const form = document.querySelector('#add-appointment-form');
 const form2 = document.querySelector('#edit-appointment-form');
-
+const staffNameList=document.querySelector('#S_Content');
 //Render all appoinments
 const AppointmentList = document.querySelector('#all_content');
 
+//function renderStaffName(doc)
+// {
+//    let staffList=document.createElement('option');
+//     staffList.textContent=doc.data().Staff_Name;
+//     console.log(staffList);
+//     staffNameList.append(staffList);
+//     
+// }
 
 function renderAppointment(doc){
     let tr = document.createElement('tr');
@@ -411,6 +423,7 @@ db.collection('Appointment').where('date', '<', today).orderBy('date').get().the
 //form is to add appointment to the table
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+    AddTotalSales();
 
 	db.collection('Appointment').add({
 		customer_name: form.A_name.value,
@@ -445,6 +458,15 @@ form2.addEventListener('submit', (e) => {
 	console.log("you edited the item!");
 	
 });
+//
+//function AddTotalSales()
+//{
+//    var TempSales;
+//    
+//    var TempName= form.P_Staff.value;
+//    console.log(TempName);
+//    
+//}
 
 
 
