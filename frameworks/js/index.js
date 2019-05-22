@@ -39,7 +39,7 @@ function renderTotalPrice() {
 
     let P_total = document.createElement('td');
     var btnEdit = document.createElement("BUTTON");
-    btnEdit.innerHTML = "Edit";
+    btnEdit.innerHTML = "Discount";
     btnEdit.className = "btn btn-outline-info btn-xs";
     btnEdit.id = "myBtn";
     var btnConfirm = document.createElement("BUTTON");
@@ -60,8 +60,8 @@ function renderTotalPrice() {
 
     btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
-        closeModal();
         CalculateTotal();
+        closeModal();
     })
     btnConfirm.addEventListener('click', (e) => {
         e.preventDefault();
@@ -96,7 +96,6 @@ function getSelectedService() {
     var selectedValue = document.getElementById("S_Content").value;
     var selectedText = document.getElementById("S_Content").options[S_Content.selectedIndex].innerHTML;
    
-    
     var initialP = parseInt(totalprice, 10);
     var tempprice = parseInt(selectedValue, 10);
     totalprice = initialP + tempprice;
@@ -109,10 +108,10 @@ function getSelectedService() {
     let S_txt = document.createElement('td');
     S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent = "RM" + selectedValue;
+    S_value.textContent = selectedValue;
 
     var btnEdit = document.createElement("BUTTON");
-    btnEdit.innerHTML = "Edit";
+    btnEdit.innerHTML = "Discount";
     btnEdit.className = "btn btn-outline-info btn-xs";
     btnEdit.id = "myBtn";
 
@@ -128,12 +127,12 @@ function getSelectedService() {
 
     btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
-        closeModal();
         Calculate(S_value);
+        closeModal();
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp, 10);
+        var deltemp = parseFloat(temp, 10).toFixed(2);
         totalprice -= deltemp;
         console.log(totalprice);
         e.target.parentElement.remove();
@@ -175,10 +174,10 @@ function getSelectedItem() {
     let S_txt = document.createElement('td');
     S_txt.textContent = selectedText;
     let S_value = document.createElement('td');
-    S_value.textContent = "RM" + selectedValue;
+    S_value.textContent = selectedValue;
 
     var btnEdit = document.createElement("BUTTON");
-    btnEdit.innerHTML = "Edit";
+    btnEdit.innerHTML = "Discount";
     btnEdit.className = "btn btn-outline-info btn-xs";
     btnEdit.id = "myBtn";
 
@@ -194,12 +193,12 @@ function getSelectedItem() {
 
     btnEdit.addEventListener('click', (e) => {
         e.stopPropagation();
-        closeModal();
         Calculate(S_value);
+        closeModal();
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var parsetemp = parseInt(temp, 10);
+        var parsetemp = parseFloat(temp, 10).toFixed(2);
         totalprice -= parsetemp;
         console.log(totalprice);
         e.target.parentElement.remove();
@@ -211,12 +210,12 @@ function Calculate(S_value){
     document.getElementById('calculate').addEventListener("click", (e) =>{
         var percent = document.getElementById('discountpercent').value;
         var parsepercent = parseFloat(percent, 10).toFixed(2);
-        var calcpercent = 100 - parsepercent;
+        var calcpercent = parseFloat(100 - parsepercent, 10).toFixed(2);
         var temp = S_value.textContent;
         var parsetemp = parseFloat(temp, 10).toFixed(2);
         discount = (parsetemp/100)*parsepercent;
         newprice = (parsetemp/100)*calcpercent;
-        S_value.textContent = "RM" + newprice.toFixed(2);
+        S_value.textContent = newprice.toFixed(2);
         totalprice -= discount;
         console.log(totalprice);
         modal_Edit.style.display="none";
@@ -228,7 +227,7 @@ function CalculateTotal(){
     document.getElementById('calculate').addEventListener("click", (e) =>{
         var percent = document.getElementById('discountpercent').value;
         var parsepercent = parseFloat(percent, 10).toFixed(2);
-        var calcpercent = parseInt(100 - parsepercent, 10);
+        var calcpercent = parseFloat(100 - parsepercent, 10).toFixed(2);
         var temp = totalprice;
         var parsetemp = parseFloat(temp, 10).toFixed(2);
         newprice = (parsetemp/100)*calcpercent;
