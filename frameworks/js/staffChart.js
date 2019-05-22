@@ -29,7 +29,7 @@ db.collection('Staffs').orderBy("Staff_ID").get().then((snapshot)=>{
     }) 
 
 
-    
+    //testing if data stored into arrays
     console.log("Test Name" + " " +staffName);
     console.log("Total Sales"+ " " +TSales);
     

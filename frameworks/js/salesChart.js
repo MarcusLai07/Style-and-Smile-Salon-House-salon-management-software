@@ -1,9 +1,7 @@
 /*jslint white:true*/
 /*global angular*/
-var chart;
-var stock;
-var TEarn;
-var Total=[];
+
+
 // Initialize Firebase
         var config = {
         apiKey: "AIzaSyB8gd8MusZyqJ0vLQFkgoUX8E6A6RP5t_A",
@@ -17,9 +15,22 @@ var Total=[];
         const db = firebase.firestore();
         db.settings({timestampsInSnapshots: true})
 
+
+//declared globally to let downloading CSV function able to access the chart
+var chart;
+
+//store stock name from stock page
+var stock;
+//store Total Earn name from stock page
+var TEarn;
+
+//an Array to store stocks and Total Earn together to display in the Series.
+var Total=[];
+
+
+//getting stock name and TotalEarn from firebase
 db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
     snapshot.docs.forEach(doc=>{
-//        renderTable(doc);
         stock=doc.data().Stock_Name
         TEarn=doc.data().TEarn
         Total.push({
@@ -28,6 +39,8 @@ db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
             
         })
     }) 
+    
+    //testing if the data store it into the array correctly
     console.log(stock);
     console.log(TEarn);
     console.log(Total);
@@ -35,7 +48,7 @@ db.collection('Stocks').orderBy("SKU").get().then((snapshot)=>{
 })
 
 
-//from interface design lecture 8
+//Generate pie chart after clicking Generate button from HTML file
 function GenerateChart(){
  chart=Highcharts.chart('myChart',{
     chart:{
@@ -78,6 +91,8 @@ function GenerateChart(){
     });
 }
 
+
+//export the chart to CSV file and let users download
 function downloadCSV()
 {
     'use strict';
