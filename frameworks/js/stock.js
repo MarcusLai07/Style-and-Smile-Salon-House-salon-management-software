@@ -92,6 +92,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
             low_Stock_Table.append(tr);
         }
     });
+    
     //    let tr = document.createElement('tr');
     //    tr.className="text-center";
     //    
@@ -119,8 +120,6 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     //    Retail_Price.textContent=doc.data().Retail_Price;
     //    Ori_Price.textContent=doc.data().Stock_Price;
 
-    setTimeout(paginateTable, 100);
-
     //    tr.appendChild(SKU);
     //    tr.appendChild(Category);
     //    tr.appendChild(S_Name);
@@ -132,7 +131,7 @@ db.collection("Stocks").get().then(function (querySnapshot) {
     //
     //    StockList.append(tr); 
     //    
-    //    
+    setTimeout(paginateTable, 100);  
 
     //this function allow staffs to deletes a selected stock item
     $(document).on("click", ".btnDelete", function () {

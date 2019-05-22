@@ -4,7 +4,7 @@ var modal = document.getElementById('myModal');
 var modal2=document.getElementById('myModal2');
 var modal3=document.getElementById('myModal3');
 
-// Get the button that opens the modal
+// Get the button that opens the modal (ADD new button  for all pages)
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
@@ -35,12 +35,13 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }else if(event.target == modal2)
-      {
-          modal2.style.display = "none"
-      }else if(event.target == modal3)
-      {
-        modal3.style.display = "none"
-      }
+  {
+        modal2.style.display = "none";
+  }
+    else if(event.target == modal3)
+  {
+        modal3.style.display = "none";
+  }
 }
 
 
