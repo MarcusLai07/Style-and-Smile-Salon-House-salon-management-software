@@ -29,6 +29,8 @@ const SummaryI = document.querySelector('#PurchaseItemsSummary');
 const ItemList = document.querySelector('#I_Content');
 const SummaryT = document.querySelector('#TotalSummary');
 var totalprice = 0;
+var modal_Edit = document.getElementById('myModal');
+var span = document.getElementById("close");
 
 function renderTotalPrice() {
     let tr = document.createElement('tr');
@@ -139,7 +141,6 @@ function getSelectedService() {
     })
 }
 
-
 //get real time database, if changes made, refresh automatically
 db.collection('Stocks').orderBy("SKU").onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
@@ -195,21 +196,43 @@ function getSelectedItem() {
         SummaryI.append(tr);
     }
 
-    btnEdit.addEventListener('click', function (e) {
-        var temp = S_value.textContent;
-        var deltemp = parseInt(temp, 10);
-        discount = deltemp / 2;
-        S_value.textContent = discount;
-        totalprice -= discount;
-        console.log(totalprice);
+    btnEdit.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        modal_Edit.style.display="block";
+         span.onclick=function()
+         {
+             modal_Edit.style.display="none";
+         }
+         window.onclick=function(event)
+         {
+             if(event.target==modal_Edit)
+                 {
+                     modal_Edit.style.display="none";
+                 }
+         }
     })
     btnDelete.addEventListener('click', function (e) {
         var temp = S_value.textContent;
-        var deltemp = parseInt(temp, 10);
-        totalprice -= deltemp;
+        var parsetemp = parseInt(temp, 10);
+        totalprice -= parsetemp;
         console.log(totalprice);
         e.target.parentElement.remove();
     })
+}
+
+function Calculate(){
+    document.getElementById('calculate').addEventListener("click", (e) =>{
+        var percent = document.getElementById('discountpercent').value;
+        var parsepercent = parseFloat(percent, 10).toFixed(2);
+        var calcpercent = 100 - parsepercent;
+        var temp = S_value.textContent;
+        var parsetemp = parseFloat(temp, 10).toFixed(2);
+        discount = (parsetemp/100)*50; //calcpercent;
+        S_value.textContent = discount.toFixed(2);
+        totalprice -= discount;
+        console.log(totalprice);
+    });
 }
 
 //logout module
