@@ -10,5 +10,5 @@
 ### Password: staff123
 
 
-#We have sent an invitation to your swinburne webmail:
-#sfu@swinburne.edu.my
+# We have sent an invitation to your swinburne webmail:
+# sfu@swinburne.edu.my
