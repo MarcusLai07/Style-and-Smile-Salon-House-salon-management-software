@@ -10,5 +10,5 @@
 ### Password: staff123
 
 
-## We have sent an invitation to your swinburne webmail so that you can acces the database:
+## We have sent an invitation to your swinburne webmail so that you can access the database:
 ## sfu@swinburne.edu.my
